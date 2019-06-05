@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Stacked Bar Charts"
+title: "Stacked Bar Plots"
 date: 2019-06-05
 ---
 
-The stacked bar chart has been the poster child <i>(literally on every single microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have gotten yourself an OTU table, the stacked bar chart may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html)).    
+The stacked bar plot has been the poster child <i>(literally on every single microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have gotten yourself an OTU table, the stacked bar plot may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html)).    
 
 <b> Disclaimer: </b> I am in no way an R expert, I wouldn't even really consider myself to be at the amateur level. Everything I use has basically worked for me once, and so I keep adapting it over time as needed. There are probably hundreds of better/different ways to do things in R than what I do, but all the code I'm sharing has worked for me and is what I've become relatively comfortable with.  
 
@@ -21,6 +21,8 @@ library(reshape2)
 ```
 
 For most analyses in R I find it easiest to upload a csv file that has your species as columns and your samples as rows. Many of the outputs for the 16S pipelines I've seen have the order the other way around, so you may have to manipulate and transpose your data to get it in the right orientation. I do a lot of my early data manipulations in excel <i>(gasp)</i>, because I find it easiest to 1) get a first glance at the data, and 2) visually observe all the changes I'm making. I can also easily add in extra descriptor columns to define my samples on treatments, or environmental conditions, or any other parameter I could be interested in testing. 
+
+<b> E.g. </b>
 
 
 ![useful image]({{ site.url }}/assets/OTU_table_screenshot.png)
@@ -40,9 +42,11 @@ In the following command, all variables that are not names of OTUs (or species, 
 
 ```
 #convert data frame from a "wide" format to a "long" format
-pcm = melt(pc, id = "Sample")
+pcm = melt(pc, id = c("Sample"))
 
 ```
+<b> An example of what the long formatted version of the above data table would like in excel:</b>
+
 
 ![useful image]({{ site.url }}/assets/OTU_table_screenshot_long.png)
 
@@ -51,7 +55,7 @@ pcm = melt(pc, id = "Sample")
 Picking colours that go nicely together can also be a challenge. I find that using colour scheme generators like [this one](https://coolors.co/app), can be a good place to start. R understands six digit hex codes, and select colour names that can be found [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) 
 
 
-<i>P.S. A better way to display abundance data for many (10+) variables/species/OTUs is a [Bubble plot](http://blog/Bubble). </i>  
+<i>P.S. A better way to display abundance data for many (10+) variables/species/OTUs is a [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html). </i>  
 
 ```
 #define the colours to use in the figure
@@ -67,7 +71,10 @@ pcm$Sample <- factor(pcm$Sample,levels=unique(pcm$Sample))
 ```
 
 
-ggplot2 is a fantastic visualization tool once you can get your head around the syntax. You start with code that tells the ggplot command what data frame to use, and then you map your variables to various aesthetics within the "aes" bracket. Try adding each element (the parts before the "+") one at a time to see how they are changing the plot.  There are many different ggplot tutorials out there if you want more information on how to use the package. [Here is just one example](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
+ggplot2 is a fantastic visualization tool once you can get your head around the syntax. You start with code that tells the ggplot command what data frame to use, and then you map your variables to various aesthetics within the "aes" bracket. From there, you can layer on different "geoms" which essentially tell ggplot how you would like to display your data (i.e. bar, point, line).  
+
+
+Try adding each element (the parts before the "+") one at a time to see how they are changing the plot.  There are many different ggplot tutorials out there if you want more information on how to use the package. [Here is just one example](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
 
 ```
 #make the plot!
@@ -86,7 +93,7 @@ mx
 ![useful image]({{ site.url }}/assets/Stacked_bar_for_blog.png)
 
 
-I've started using ggsave almost exclusively for saving my R generated images.  It's awesome because you can save your figures as svg files, and use a program like Inkscape to make the final edits. Because it's in an svg format, the layers (i.e. text, points, blocks, etc) added from ggplot can all be edited separately, without distorting other parts of the images.  
+I've started using ggsave almost exclusively for saving my R generated images.  It's awesome because you can save your figures as svg files, and use a program like Inkscape to make the final edits. Because it's in an svg format, the layers (i.e. text, points, blocks, etc) added from ggplot can all be edited separately, without distorting other parts of the image.  
 
 
 ```
