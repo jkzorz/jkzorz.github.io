@@ -1,7 +1,6 @@
 body {
     margin: 60px auto;
     width: 70%;
-    font-family: 'Arial';
     font-size: 1.2em;
 }
 nav ul, footer ul {
@@ -29,6 +28,7 @@ p {
     font-size: 1.2em;
     line-height: 1.4em;
     color: #333;
+    font-family: 'Arial';
 }
 footer {
     border-top: 1px solid #d5d5d5;
