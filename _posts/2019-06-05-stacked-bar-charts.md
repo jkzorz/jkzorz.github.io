@@ -32,7 +32,7 @@ pc = read.csv("Your_csv_file.csv", header = TRUE)
 
 ```
 
-I always find the "wide" and "long" data table formats difficult to explain. The best I can do is that <i> wide </i> has a column for each variable, whereas <i> long </i> has one column for all possible variables, and a column for the corresponding values. This is important for plotting because ggplot only lets you plot one <b>x</b> variable against one <b>y</b> variable. So if you want to plot multiple species simultaneously in one figure, they need to be in one column (rather than each having its own column).  
+I've always found the "wide" and "long" data table formats difficult to explain. The best I can do is that <i> wide </i> has a column for each variable, whereas <i> long </i> has one column for all possible variables, and a column for the corresponding values. This is important for plotting because ggplot only lets you plot one <b>x</b> variable against one <b>y</b> variable. So if you want to plot multiple species simultaneously in one figure, they need to be in one column (rather than each having its own column).  
 
 In the following command, all variables that are not names of OTUs (or species, etc) are placed inside the "id" bracket.  
 
@@ -49,7 +49,7 @@ pcm = melt(pc, id = c("Bin", "Taxonomy"))
 Picking colours that go nicely together can also be a challenge. I find that using colour scheme generators like [this one](https://coolors.co/app), can be a good place to start. R understands six digit hex codes, and select colour names that can be found [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) 
 
 
-P.S. A better way to display abundance data for many (10+) variables/species/OTUs is a [Bubble plot](http://blog/Bubble).   
+<i>P.S. A better way to display abundance data for many (10+) variables/species/OTUs is a [Bubble plot](http://blog/Bubble). </i>  
 
 ```
 #define the colours to use in the figure
@@ -57,7 +57,7 @@ colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#
 
 ```
 
-ggplot2 is a fantastic visualization tool once you can get your head around the syntax. You start with code that tells the ggplot command what data frame to use, and then you map your variables to various aesthetics within the "aes" bracket. Try adding each element (the parts before the "+") one at a time to see how they are changing the plot
+ggplot2 is a fantastic visualization tool once you can get your head around the syntax. You start with code that tells the ggplot command what data frame to use, and then you map your variables to various aesthetics within the "aes" bracket. Try adding each element (the parts before the "+") one at a time to see how they are changing the plot.  There are many different ggplot tutorials out there if you want more information on how to use the package. [Here is just one example](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
 
 ```
 #make the plot!
