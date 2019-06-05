@@ -74,7 +74,7 @@ mx
 ```
 
 
-![useful image]({{ site.url }}/assets/Autofermentation_bar_at_least_5pc_BM.png)
+![useful image]({{ site.url }}/assets/Autofermentation_bar_at_least_5pc_BM_small.png)
 
 
 I've started using ggsave almost exclusively for saving my R generated images.  It's awesome because you can save your figures as svg files, and use a program like Inkscape to make the final edits. Because it's in an svg format, the layers (i.e. text, points, blocks, etc) added from ggplot can all be edited separately, without distorting other parts of the images.  
