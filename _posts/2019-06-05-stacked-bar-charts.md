@@ -4,7 +4,7 @@ title: "Stacked Bar Charts"
 date: 2019-06-05
 ---
 
-The stacked bar chart has been the poster child <i>(literally on every single microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. particularly if you are using 16S amplicon sequencing 
+The stacked bar chart has been the poster child <i>(literally on every single microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have gotten yourself an OTU table, the stacked bar chart may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](http://blog/Bubble)).    
 
 <b> Disclaimer: </b> I am in no way an R code expert, I wouldn't even really consider myself to be at the amateur level. Everything I use has basically worked for me once, and so I keep adapting it over time as needed. Sometimes I try new things, but mainly I stick to what I know. That being said, there are probably 100s of better/different ways to do things in R than what I do, but all the code I'm sharing is what has worked for me and is what I've become comparatively comfortable with.  
 
