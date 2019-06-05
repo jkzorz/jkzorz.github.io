@@ -40,7 +40,7 @@ In the following command, all variables that are not names of OTUs (or species, 
 
 ```
 #convert data frame from a "wide" format to a "long" format
-pcm = melt(pc, id = c("Bin", "Taxonomy"))
+pcm = melt(pc, id = "Sample")
 
 ```
 
@@ -57,15 +57,23 @@ colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#
 
 ```
 
+The following code is useful only if you want to keep the order of your samples the same in your figure as they are in your excel sheet. Otherwise, R will order variables alphabetically.
+
+```
+pcm$Sample <- factor(pcm$Sample,levels=unique(pcm$Sample))
+
+```
+
+
 ggplot2 is a fantastic visualization tool once you can get your head around the syntax. You start with code that tells the ggplot command what data frame to use, and then you map your variables to various aesthetics within the "aes" bracket. Try adding each element (the parts before the "+") one at a time to see how they are changing the plot.  There are many different ggplot tutorials out there if you want more information on how to use the package. [Here is just one example](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
 
 ```
 #make the plot!
-mx = ggplot(pcm, aes(x = variable, y = value, fill = Cluster)) + 
+mx = ggplot(pcm, aes(x = Sample, fill = variable, y = value)) + 
     geom_bar(stat = "identity", colour = "black") + 
     theme(axis.text.x = element_text(angle = 90, size = 14, colour = "black", vjust = 0.5, hjust = 1, face= "bold"), axis.title.y = element_text(size = 16, face = "bold"), legend.title = element_text(size = 16, face = "bold"), legend.text = element_text(size = 12, face = "bold", colour = "black"), axis.text.y = element_text(colour = "black", size = 12, face = "bold")) + 
-    scale_y_continuous(expand = c(0,0))  + labs(x = "", y = "Relative Abundance (%)", fill = "Class") + 
-    geom_vline(xintercept = 6.5, size = 1.2, colour = "black") + 
+    scale_y_continuous(expand = c(0,0)) + 
+    labs(x = "", y = "Relative Abundance (%)", fill = "OTU") + 
     scale_fill_manual(values = colours)
     
 mx
@@ -78,4 +86,9 @@ mx
 
 I've started using ggsave almost exclusively for saving my R generated images.  It's awesome because you can save your figures as svg files, and use a program like Inkscape to make the final edits. Because it's in an svg format, the layers (i.e. text, points, blocks, etc) added from ggplot can all be edited separately, without distorting other parts of the images.  
 
-powered by [Jekyll](http://jekyllrb.com) 
+
+```
+ggsave("Stacked_bar_plot.svg")
+
+```
+
