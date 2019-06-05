@@ -44,6 +44,8 @@ pcm = melt(pc, id = "Sample")
 
 ```
 
+![useful image]({{ site.url }}/assets/OTU_table_screenshot_long.png)
+
 <b>Pick your colours!</b> The following code allows you to define the colours that you will be using in your figure. Stacked bar charts are limited for data with many variables, because anything over 10 colours on a figure starts to look messy.  I have 11 in the figure below, and you can decide for yourself if this figure is too busy. 
 
 Picking colours that go nicely together can also be a challenge. I find that using colour scheme generators like [this one](https://coolors.co/app), can be a good place to start. R understands six digit hex codes, and select colour names that can be found [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) 
