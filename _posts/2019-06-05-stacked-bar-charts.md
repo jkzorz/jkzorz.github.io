@@ -23,8 +23,7 @@ library(reshape2)
 For most analyses in R I find it easiest to upload a csv file that has your species as columns and your samples as rows. Many of the outputs for the 16S pipelines I've seen have the order the other way around, so you may have to manipulate and transpose your data to get it in the right orientation. I do a lot of my early data manipulations in excel <i>(gasp)</i>, because I find it easiest to 1) get a first glance at the data, and 2) visually observe all the changes I'm making. I can also easily add in extra descriptor columns to define my samples on treatments, or environmental conditions, or any other parameter I could be interested in testing. 
 
 
-****Screenshot of OTU table 
-
+![useful image]({{ site.url }}/assets/OTU_table_screenshot.png)
 
 ```
 #set your working directory by either setwd() or manually in R studio--> Session --> Set Working Directory --> Choose Directory
