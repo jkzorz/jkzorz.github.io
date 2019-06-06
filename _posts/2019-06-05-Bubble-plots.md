@@ -118,7 +118,7 @@ xx = ggplot(pcm, aes(x = Sample, y = variable)) +
        scale_y_discrete(limits = rev(levels(pcm$variable))) 
 ```
 
-![useful image]({{ site.url }}/assets/OTU_table_larger_for_blog.png)
+![useful image]({{ site.url }}/assets/OTU_table_large_forblog.png)
 
 You can see that this time I am colouring the dots based on whether the sample was "early" or "late", which is more reasonable than giving each of the 40 OTUs their own colour.   
 
