@@ -107,8 +107,10 @@ To keep sample order the same as the excel sheet:
 ```
 pcm$Sample <- factor(pcm$Sample,levels=unique(pcm$Sample))
 ```
-```
+
 Now we plot it: 
+
+```
 xx = ggplot(pcm, aes(x = Sample, y = variable)) + 
       geom_point(aes(size = value, fill = Time), alpha = 0.75, shape = 21) + 
        scale_size_continuous(limits = c(0.000001, 80), range = c(1,10), breaks = c(1,10,50,75)) + 
