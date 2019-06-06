@@ -113,7 +113,13 @@ xx = ggplot(pcm, aes(x = Sample, y = variable)) +
       geom_point(aes(size = value, fill = Time), alpha = 0.75, shape = 21) + 
        scale_size_continuous(limits = c(0.000001, 80), range = c(1,10), breaks = c(1,10,50,75)) + 
        labs( x= "", y = "", size = "Relative Abundance (%)", fill = "Time")  + 
-       theme(legend.key=element_blank(), axis.text.x = element_text(colour = "black", size = 12, face = "bold", angle = 90, vjust = 0.3, hjust = 1), axis.text.y = element_text(colour = "black", face = "bold", size = 9), legend.text = element_text(size = 10, face ="bold", colour ="black"), legend.title = element_text(size = 11, face = "bold"), panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2), legend.position = "right", panel.grid.major.y = element_line(colour = "grey95")) +  
+       theme(legend.key=element_blank(), 
+       axis.text.x = element_text(colour = "black", size = 12, face = "bold", angle = 90, vjust = 0.3, hjust = 1), 
+       axis.text.y = element_text(colour = "black", face = "bold", size = 9), 
+       legend.text = element_text(size = 10, face ="bold", colour ="black"), 
+       legend.title = element_text(size = 11, face = "bold"), panel.background = element_blank(), 
+       panel.border = element_rect(colour = "black", fill = NA, size = 1.2), 
+       legend.position = "right", panel.grid.major.y = element_line(colour = "grey95")) +  
        scale_fill_manual(values = c("darkorange", "skyblue"), guide = guide_legend(override.aes = list(size=5))) + 
        scale_y_discrete(limits = rev(levels(pcm$variable))) 
 ```
