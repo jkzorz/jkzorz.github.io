@@ -29,11 +29,11 @@ pc = read.csv("Your_OTU_table.csv", header= TRUE)
 
 ```
 
-Now you want to make a data frame that has only your species/OTU abundance data. So a data frame that only includes your OTU columns. In my case, my column 1 is sample names, and my column 2 is the treatment variable.  Therefore my abundance data goes from my 3rd column, until the end. 
+Now you want to make a data frame that has only your species/OTU abundance data. So a data frame that only includes your OTU columns. In my case, my column 1 is sample names, and my column 2 is the type of sample, and my column 3 is a treatment variable.  Therefore my abundance data goes from my 4th column, until the end. 
 
 ```
 #make community matrix - extract columns with abundance information
-com = pc[,3:ncol(pc)]
+com = pc[,4:ncol(pc)]
 
 ```
 
@@ -42,8 +42,67 @@ Often in R you will get errors because your data is not in the right format. Rig
 ```
 #turn abundance data frame into a matrix
 m_com = as.matrix(com)
+
 ```
 
+Now we can run the <i>metaMDS</i> command from the vegan package to generate an NMDS plot. I usually keep most of the parameters default, and I add "bray" as the distance measure. [Here is the R documentation for the metaMDS command](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/metaMDS) 
+
+```
+nmds = metaMDS(m_com, distance = "bray")
+```
+
+You can easily plot your NMDS in base R: 
+
+```
+plot(nmds)
+```
+
+
+But as you can see, the plot can get very crowded and doesn't give you any information about the samples (circles), or species (stars). For this reason, I often export the data I need from my nmds object so that I can plot the figure in a nicer way using <b>ggplot2</b>.  
+
+So to do this, first you need to obtain the coordinates for your NMDS1 and NMDS2 axes and put them in a new data frame, I've called "data.scores": 
+
+```
+#extract NMDS scores (x and y coordinates)
+data.scores = as.data.frame(scores(nmds))
+
+```
+Next, you can add columns from your original data (pc) to your new NMDS coordinates data frame. This will come in handy when you plot your data and want to differentiate groups or treatments: 
+
+```
+#add columns to data frame 
+data.scores$Sample = pc$Sample
+ data.scores$Time = pc$Time
+ data.scores$Type = pc$Type
+ 
+ head(data.scores)
+ ```
+
+You can add as little or as many columns as you want to your new NMDS data frame, and you can change the names of the variables (the part after the $) to what is meaningful for your data. The "head" command at the end will show you the first 5 rows of your new data frame (just for your own reference).
+
+<b> Now we can plot our NMDS in ggplot2</b>
+
+```
+library(ggplot2)
+
+xx = ggplot(data.scores, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 9, aes( shape = Type, colour = Time))+ 
+    theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+    axis.text.x = element_text(colour = "black", face = "bold", size = 12), 
+    legend.text = element_text(size = 12, face ="bold", colour ="black"), 
+    legend.position = "right", axis.title.y = element_text(face = "bold", size = 14), 
+    axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+    legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+    panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2)) + 
+    labs(x = "NMDS1", colour = "Time", y = "NMDS2", shape = "Type")  + 
+    geom_text(label = "Stress = 0.03", x = 0.2, y = -0.2, colour = "black", size = 5)+ 
+    scale_colour_manual(values = c("#009E73", "#E69F00")) 
+    
+    xx
+    
+    ggsave("NMDS.svg")
+```
+    
 
 
 
