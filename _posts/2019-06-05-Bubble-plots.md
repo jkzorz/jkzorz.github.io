@@ -7,7 +7,7 @@ date: 2019-06-05
 
 Bubble plots are another way to visualize compositional microbial community data. In a bubble plot the relative abundance of a species in a sample is scaled to match the size of the corresponding point.  
 
-The data manipulation steps for this bubble plot are the same as for the [stacked bar chart](https://jkzorz.github.io/2019/06/05/stacked-bar-charts.html). Check out the [stacked bar chart](https://jkzorz.github.io/2019/06/05/stacked-bar-charts.html) post for a more in-depth description of the steps, see below for the abridged version.  
+The data manipulation steps for this bubble plot are the same as for the [stacked bar chart](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html). Check out the [stacked bar chart](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html) post for a more in-depth description of the steps, see below for the abridged version.  
 
 Again, start by setting your directory, uploading a csv file with species as columns and samples as rows. 
 
