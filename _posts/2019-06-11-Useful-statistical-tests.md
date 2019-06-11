@@ -92,5 +92,5 @@ ANOSIM statistic R: 0.941
 Permutation: free
 Number of permutations: 9999
 ```
-This time, my Significance value is 0.001, and my R value is 0.941. My significance value is much lower than 0.05, and my R value is close to 1. Therefore there is a strong statistically significant difference in my microbial communities based on the Time grouping.  
+This time, my Significance value is 0.001, and my R value is 0.941. My significance value is much lower than 0.05, and my R value is close to 1. Therefore there is a strong statistically significant difference in my microbial communities based on the grouping "Time".  
 
