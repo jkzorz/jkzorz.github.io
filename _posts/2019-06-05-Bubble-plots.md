@@ -14,7 +14,8 @@ Start by setting your directory, uploading a csv file with species as columns an
 ![useful image]({{ site.url }}/assets/OTU_table_screenshot.png)
 
 ```
-#set your working directory by either setwd() or manually in R studio--> Session --> Set Working Directory --> Choose Directory
+#set your working directory by either setwd() 
+#or manually in R studio--> Session --> Set Working Directory --> Choose Directory
 #upload your data to R - exchange "Your_csv_file.csv" with the name of your csv file
 pc = read.csv("Your_csv_file.csv", header = TRUE)
 library(ggplot2)
@@ -27,13 +28,13 @@ Change your data structure from a "wide" format to a "long" format. Put any vari
 ```
 #convert data frame from a "wide" format to a "long" format
 pcm = melt(pc, id = c("Sample"))
-
 ```
 
 Pick your colours: 
 
 ```
-colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#F9ECCC", "#679289", "#33658A", "#F6AE2D","#86BBD8")
+colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#F9ECCC", "#679289", "#33658A",
+"#F6AE2D","#86BBD8")
 ```
 
 Keep the order of samples from your excel sheet:
@@ -50,7 +51,8 @@ xx = ggplot(pcm, aes(x = Sample, y = variable)) +
   theme(legend.key=element_blank(), 
   axis.text.x = element_text(colour = "black", size = 12, face = "bold", angle = 90, vjust = 0.3, hjust = 1), 
   axis.text.y = element_text(colour = "black", face = "bold", size = 11), 
-  legend.text = element_text(size = 10, face ="bold", colour ="black"), legend.title = element_text(size = 12, face = "bold"), 
+  legend.text = element_text(size = 10, face ="bold", colour ="black"), 
+  legend.title = element_text(size = 12, face = "bold"), 
   panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2), 
   legend.position = "right") +  
   scale_fill_manual(values = colours, guide = FALSE) + 
@@ -100,7 +102,6 @@ You can see that I've added a column with a discrete variable called "Time", wit
  Now I will convert the "wide" format to a "long" format. This time because I have an extra variable that is not a species/OTU column, I include this name in the "id" bracket as well:
 ``` 
 pcm = melt(pc, id = c("Sample", "Time"))
-
 ```
 
 To keep sample order the same as the excel sheet: 
