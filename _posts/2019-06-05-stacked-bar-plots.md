@@ -6,11 +6,9 @@ date: 2019-06-05
 
 The stacked bar plot has been the poster child <i>(literally on every microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have gotten yourself an OTU table, the stacked bar plot may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html)).    
 
-<b> Disclaimer: </b> I am in no way an R expert, I wouldn't even really consider myself to be at the amateur level. Everything I use has basically worked for me once, and so I keep adapting it over time as needed. There are probably hundreds of better/different ways to do things in R than what I do, but all the code I'm sharing has worked for me and is what I've become relatively comfortable with.  
-
 
 Load and/or install ggplot2 (for plotting) and reshape2 (for data manipulation) packages. 
-<i> Alternatively, packages like tidyr and dplyr are also great for data manipulation (see disclaimer above)</i>
+<i> Alternatively, packages like tidyr and dplyr are also great for data manipulation if you prefer</i>
 
 ```
 install.packages("ggplot2")
@@ -39,7 +37,8 @@ Your OTU/species table may have hundreds (or thousands) of OTUs. Obviously, it's
 The following code uses the csv file above as input. 
 
 ```
-#set your working directory by either setwd() or manually in R studio--> Session --> Set Working Directory --> Choose Directory
+#set your working directory by either setwd() 
+#or manually in R studio--> Session --> Set Working Directory --> Choose Directory
 #upload your data to R - exchange "Your_csv_file.csv" with the name of your csv file
 pc = read.csv("Your_csv_file.csv", header = TRUE)
 
@@ -71,7 +70,8 @@ The following code creates an object called <b>colours</b>, which contains 11 di
 
 ```
 #define the colours to use in the figure
-colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#F9ECCC", "#679289", "#33658A", "#F6AE2D","#86BBD8")
+colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#F9ECCC", "#679289", "#33658A",
+"#F6AE2D","#86BBD8")
 
 ```
 
