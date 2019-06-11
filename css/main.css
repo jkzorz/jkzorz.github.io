@@ -44,8 +44,8 @@ ul.posts li {
 }
 
 pre code {
-  background-color: #eee;
-  border: 1px solid #999;
+  background-color: #d5d5d5;
+  border: 1px solid #d5d5d6;
   display: block;
   padding: 20px;
 }
