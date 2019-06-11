@@ -20,7 +20,6 @@ The first test that I'll talk about is the [ANOSIM test](https://sites.google.co
 
 Some examples where you can use an ANOSIM test: 
 <ul> 
-  <li>Is there a statistical difference between the microbial communities of samples from: </li>
   <li>Healthy vs sick individuals </li>
   <li>Different sampling environments</li>
   <li>Different seasons</li>
@@ -36,11 +35,11 @@ library(vegan)
 pc = read.csv("Your_OTU_table.csv", header= TRUE)
 ```
 
-xxx excel figure xxx
+![useful image]({{ site.url }}/assets/NMDS_table_excel.png)
 
 As a reminder, this is the NMDS figure we made in this [tutorial](https://jkzorz.github.io/2019/06/06/NMDS.html). I will be checking statistical significance of the groupings of "Time" and "Type" below. 
 
-xxx NMDS figure XXX
+![useful image]({{ site.url }}/assets/NMDS.png)
 
 Just like in the NMDS code, we need to make a data frame with just our abundance information. The first three columns of my data have information about my samples, so my abundance data goes from column 4 until the end. I then need to turn my data frame into a matrix.  
 
