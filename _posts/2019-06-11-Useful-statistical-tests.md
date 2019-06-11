@@ -9,11 +9,11 @@ Statistics can be a scary word, especially, if you're like me and it's been a lo
 
 <h2> ANOSIM Test </h2>
 
-<b>Purpose: 
+<b>Purpose: </b>
   <ul>
     <li><i>To test if there is a statistical difference between the microbial communities of two or more groups of samples. </i></li>
-    <li>The null hypothesis is that there is no difference between the microbial communities of your groups of samples. </li>
-  </ul></b>
+    <li>Null Hypothesis: there is no difference between the microbial communities of your groups of samples. </li>
+  </ul>
  
 
 The first test that I'll talk about is the [ANOSIM test](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim). The ANOSIM test is similar to an ANOVA hypothesis test, but it's using a dissimilarity matrix as input instead of raw data. It is also non-parametric, meaning it doesn't assume things about your data (like normal distribution etc), so it's a good bet for often-skewed microbial abundance data. As a non-parametric test, ANOSIM uses ranked dissimilarities instead of actual distances, and in this way it's a very nice complement to an [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). The main point of the ANOSIM test is to determine if the differences between two or more groups is significant. In our case, it is used to test if there is a significant difference in the microbial communities of samples separated into two or more groups. 
