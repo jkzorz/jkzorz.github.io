@@ -70,6 +70,28 @@ Permutation: free
 Number of permutations: 9999
 ```
 
+When interpreting these results you want to look at the <b>ANOSIM statistic R</b> and the <b>Significance</b> values.  A Significance value less than 0.05 is generally considered to be statistically significant, and means the null hypothesis can be rejected. Therefore, there is a statistically significant difference in the microbial communities between your groups. Greater than 0.05, means that there is no statistical difference between the microbial communities in your groups. 
 
+"The ANOSIM statistic "R" compares the mean of ranked dissimilarities between groups to the mean of ranked dissimilarities within groups. An R value close to "1.0" suggests dissimilarity between groups while an R value close to "0" suggests an even distribution of high and low ranks within and between groups" [(GUSTAME)](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim). In other words, the higher the R value, the more dissimilar your groups are in terms of microbial community composition.  
 
+In the example above, my significance value is 0.14, and my R value is only 0.12. Because my significance value is greater than 0.05, I would not be able to reject the null hypothesis in this case. Therefore, there is no statistical difference between the microbial communities based on Type of sample. 
+
+Now I will run ANOSIM with the "Time" grouping: 
+```
+ano = anosim(m_com, pc$Time, distance = "bray", permutations = 9999)
+ano
+```
+The results are:
+```
+Call:
+anosim(x = m_com, grouping = pc$Time, permutations = 9999, distance = "bray") 
+Dissimilarity: bray 
+
+ANOSIM statistic R: 0.941 
+      Significance: 0.0012 
+
+Permutation: free
+Number of permutations: 9999
+```
+This time, my Significance value is 0.001, and my R value is 0.941. My significance value is much lower than 0.05, and my R value is close to 1. Therefore there is a strong difference in my microbial communities based on the Time grouping.  
 
