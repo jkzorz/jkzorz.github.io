@@ -42,3 +42,10 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
