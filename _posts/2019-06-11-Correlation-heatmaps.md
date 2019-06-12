@@ -84,3 +84,34 @@ dev.off()
 
 The plots generated with corrplot are easy to make and generate very nice figures. However, they are difficult to customize, so if you're looking for more control over your figures I would point you back in the direction of <b>ggplot2</b>. Below I'll show you how to make a heatmap with the correlation data using ggplot2.  
 
+
+
+```
+cc_df = as.data.frame(cc)
+cc_df$OTUs = row.names(cc_df)
+ccm = melt(cc_df, id = "OTUs")
+```
+
+To keep order the same as excel sheet:
+```
+ccm$OTUs <- factor(ccm$OTUs,levels=unique(ccm$OTUs))
+```
+Plotting in ggplot:
+```
+xx = ggplot(ccm, aes(x = variable, y = OTUs)) + 
+    geom_tile(aes(fill = value), colour = "grey45") + 
+    coord_equal() + 
+    scale_fill_gradient(low = "navy", high = "darkorange") + 
+    theme(axis.text.y = element_text(face = "bold", colour = "grey25"), legend.title = element_text(size = 10, face = "bold"),legend.position = "bottom", axis.text.x = element_text(angle = 90, face = "bold",colour = "grey25", vjust = 0.5, hjust = 0), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = NA), axis.ticks = element_blank()) + 
+    labs(x= "", y = "", fill = "Spearman's Correlation") + 
+    scale_x_discrete(position = "top") +
+scale_y_discrete(limits = rev(levels(ccm$OTUs))) 
+```
+
+Save with ggsave: 
+```
+ggsave("Correlation_heatmap.svg")
+```
+
+
+
