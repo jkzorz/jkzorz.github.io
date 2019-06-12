@@ -28,7 +28,7 @@ Next, read in your data as before:
 pc = read.csv("Autofermentation_bin_abundance_at_least_5pc_BM_transpose_larger.csv", header = TRUE)
 ```
 
-Create a data frame with only your abundance data. In my case, the first two columns are sample names and groups, so my abundance data starts in column 3.  
+Create a data frame with only your abundance data. In my case, the first two columns are sample names and groups, so my abundance data starts in column 3. <b><i>You may have hundreds of OTUs, but I recommend subsetting your data so that you are including no more than 50 OTUs at a time in your analysis, otherwise it's hard to look at</i></b> 
 
 ```
 com = pc[,3:ncol(pc)]
@@ -39,7 +39,7 @@ Now create a correlation matrix with your community composition data using the c
 ```
 cc = cor(com, method = "spearman")
 
-###if you have missing values in your data, you'll have to add the 'use' parameter. Check '?cor' for the cor command help page
+###if you have missing values in your data add the 'use' parameter. Check '?cor' for the cor command help page
 
 ```
 
@@ -52,5 +52,31 @@ Now you have a correlation matrix that contains correlation coefficients for eve
  [This wikipedia page provides some visual examples of the differences between Spearman and Pearson correlation](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient). 
 
 
-The easiest way to visualize this correlation matrix 
+The easiest way to visualize this correlation matrix is using the function "corrplot" from the package <b>corrplot</b>:
+
+```
+corrplot(cc)
+```
+
+***basic corrplot figure
+
+This produces quite a nice figure already. Along each axis are your OTUs and the colours where two OTUs meet is the correlation between those OTUs. Blue is positive and red is negative.  The diagonal line of dark blue cutting across the square is due to the perfect correlation between an OTU and itself. 
+
+Some things I would like to change in this figure are the font colour and size. I also would like to cluster my OTUs so that those with similar patterns of correlation coefficients are closer together.  I can do this by defining the 'order' parameter with "hclust" (for heirarchical clustering), and the 'hclust.method' as "average".  I can also add rectangles with 'addrect' which will divide the OTUs into a given number of groups based on heirarchical clustering.    
+
+
+```
+corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
+```
+
+***updated corrplot figure
+
+
+Save this plot using: 
+
+```
+png(filename = "corrplot.png", width = 6, height = 6, units = "in", res = 400)
+corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
+dev.off()
+```
 
