@@ -60,7 +60,7 @@ The easiest way to visualize this correlation matrix is using the function "corr
 corrplot(cc)
 ```
 
-![useful image]({{ site.url }}/assets/Corrplot_basic.png)
+![useful image]({{ site.url }}/assets/corrplot_basic.png)
 
 This produces quite a nice figure already. Along each axis are your OTUs and the colours where two OTUs meet is the correlation between those OTUs. Blue is positive and red is negative.  The diagonal line of dark blue cutting across the square is due to the perfect correlation between an OTU and itself. 
 
@@ -71,7 +71,7 @@ I don't particularly like the font size or colour so I will change these paramet
 corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
 ```
 
-![useful image]({{ site.url }}/assets/Corrplot.png)
+![useful image]({{ site.url }}/assets/corrplot.png)
 
 
 Save this plot using: 
