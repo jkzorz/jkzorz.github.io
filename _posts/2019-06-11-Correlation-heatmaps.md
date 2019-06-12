@@ -112,7 +112,11 @@ xx = ggplot(ccm, aes(x = variable, y = OTUs)) +
     geom_tile(aes(fill = value), colour = "grey45") + 
     coord_equal() + 
     scale_fill_gradient(low = "navy", high = "darkorange") + 
-    theme(axis.text.y = element_text(face = "bold", colour = "grey25"), legend.title = element_text(size = 10, face = "bold"),legend.position = "bottom", axis.text.x = element_text(angle = 90, face = "bold",colour = "grey25", vjust = 0.5, hjust = 0), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = NA), axis.ticks = element_blank()) + 
+    theme(axis.text.y = element_text(face = "bold", colour = "grey25"), 
+    legend.title = element_text(size = 10, face = "bold"),legend.position = "bottom", 
+    axis.text.x = element_text(angle = 90, face = "bold",colour = "grey25", vjust = 0.5, hjust = 0), 
+    panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = NA), 
+    axis.ticks = element_blank()) + 
     labs(x= "", y = "", fill = "Spearman's Correlation") + 
     scale_x_discrete(position = "top") +
 scale_y_discrete(limits = rev(levels(ccm$OTUs))) 
