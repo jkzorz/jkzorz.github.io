@@ -85,14 +85,22 @@ dev.off()
 The plots generated with corrplot are easy to make and generate very nice figures. However, they are difficult to customize, so if you're looking for more control over your figures I would point you back in the direction of <b>ggplot2</b>. Below I'll show you how to make a heatmap with the correlation data using ggplot2.  
 
 
+You need to manipulate the correlation matrix a bit to get it in the proper format for ggplot:
+<ul>
+  <li>First you need to change the matrix into a data frame format</li>
+  <li>Make the row names of your data frame into a column in your new data frame </li>
+  <li>Load in the package <b>reshape2</b> for data manipulation
+  <li>Finally, convert your "wide" format data frame into a "long" format data frame </li>
+  </ul>
 
 ```
 cc_df = as.data.frame(cc)
 cc_df$OTUs = row.names(cc_df)
+library(reshape2)
 ccm = melt(cc_df, id = "OTUs")
 ```
 
-To keep order the same as excel sheet:
+To keep order the same as initial excel sheet:
 ```
 ccm$OTUs <- factor(ccm$OTUs,levels=unique(ccm$OTUs))
 ```
