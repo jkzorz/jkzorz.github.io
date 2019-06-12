@@ -89,7 +89,7 @@ You need to manipulate the correlation matrix a bit to get it in the proper form
 <ul>
   <li>First you need to change the matrix into a data frame format</li>
   <li>Make the row names of your data frame into a column in your new data frame </li>
-  <li>Load in the package <b>reshape2</b> for data manipulation
+  <li>Load in the package <b>reshape2</b> for data manipulation</li>
   <li>Finally, convert your "wide" format data frame into a "long" format data frame </li>
 </ul>
   
