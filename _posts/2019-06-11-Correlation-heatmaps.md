@@ -116,6 +116,8 @@ xx = ggplot(ccm, aes(x = variable, y = OTUs)) +
 scale_y_discrete(limits = rev(levels(ccm$OTUs))) 
 ```
 
+![useful image]({{ site.url }}/assets/Correlation_heatmap.png)
+
 Save with ggsave: 
 ```
 ggsave("Correlation_heatmap.svg")
