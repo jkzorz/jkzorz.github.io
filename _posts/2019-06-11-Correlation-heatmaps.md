@@ -60,7 +60,7 @@ The easiest way to visualize this correlation matrix is using the function "corr
 corrplot(cc)
 ```
 
-![useful image]({{ site.url }}/assets/corrplot_basic.png)
+![useful image]({{ site.url }}/assets/corrplot_basic_small.png)
 
 This produces quite a nice figure already. Along each axis are your OTUs and the colours where two OTUs meet is the correlation between those OTUs. Blue is positive and red is negative.  The diagonal line of dark blue cutting across the square is due to the perfect correlation between an OTU and itself. 
 
