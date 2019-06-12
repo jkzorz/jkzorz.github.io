@@ -10,7 +10,7 @@ In microbial ecology, I find that using correlation analyses to determine which 
 
 There can be hundreds of OTUs in microbial ecology data, which would make the process of testing for correlations between each possible OTU pairing very tedious. Instead of doing these analyses one at a time, you can use R to generate correlation matrices, which calculate the correlations between many OTUs, which you can then plot out in a heatmap form for an easy visualization.    
 
-Below I will show you how to generate a correlation matrix with your OTU data, and then how to plot that matrix as a heatmap using the R packages <b>corrplot</b>, <b> gplots</b> and <b>ggplot2</b>. 
+Below I will show you how to generate a correlation matrix with your OTU data, and then how to plot that matrix as a heatmap using the R packages <b>corrplot</b>, and <b>ggplot2</b>. 
 
 First, install and load the appropriate packages:
 
@@ -62,7 +62,7 @@ corrplot(cc)
 
 This produces quite a nice figure already. Along each axis are your OTUs and the colours where two OTUs meet is the correlation between those OTUs. Blue is positive and red is negative.  The diagonal line of dark blue cutting across the square is due to the perfect correlation between an OTU and itself. 
 
-Some things I would like to change in this figure are the font colour and size. I also would like to cluster my OTUs so that those with similar patterns of correlation coefficients are closer together.  I can do this by defining the 'order' parameter with "hclust" (for heirarchical clustering), and the 'hclust.method' as "average".  I can also add rectangles with 'addrect' which will divide the OTUs into a given number of groups based on heirarchical clustering.    
+I don't particularly like the font size or colour so I will change these parameters with 'tl.cex', and 'tl.col'. I also would like to cluster my OTUs so that those with similar patterns of correlation coefficients are closer together.  I can do this by defining the 'order' parameter with "hclust" (for heirarchical clustering), and the 'hclust.method' as "average".  I can also add rectangles with 'addrect' which will divide the OTUs into a given number of groups based on heirarchical clustering.    
 
 
 ```
@@ -79,4 +79,6 @@ png(filename = "corrplot.png", width = 6, height = 6, units = "in", res = 400)
 corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
 dev.off()
 ```
+
+The plots generated with corrplot are easy to make and generate very nice figures. However, they are difficult to customize, so if you're looking for more control over your figures I would point you back in the direction of <b>ggplot2</b>. Below I'll show you how to make a heatmap with the correlation data using ggplot2.  
 
