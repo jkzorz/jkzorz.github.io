@@ -25,8 +25,10 @@ library(ggplot2)
 
 Next, read in your data as before:  
 ```
-pc = read.csv("Autofermentation_bin_abundance_at_least_5pc_BM_transpose_larger.csv", header = TRUE)
+pc = read.csv("Your_OTU_table.csv", header = TRUE)
 ```
+
+![useful image]({{ site.url }}/assets/Wide_extra_variable_excel.png)
 
 Create a data frame with only your abundance data. In my case, the first two columns are sample names and groups, so my abundance data starts in column 3. <b><i>You may have hundreds of OTUs, but I recommend subsetting your data so that you are including no more than 50 OTUs at a time in your analysis, otherwise it's hard to look at</i></b> 
 
@@ -58,7 +60,7 @@ The easiest way to visualize this correlation matrix is using the function "corr
 corrplot(cc)
 ```
 
-***basic corrplot figure
+![useful image]({{ site.url }}/assets/Corrplot_basic.png)
 
 This produces quite a nice figure already. Along each axis are your OTUs and the colours where two OTUs meet is the correlation between those OTUs. Blue is positive and red is negative.  The diagonal line of dark blue cutting across the square is due to the perfect correlation between an OTU and itself. 
 
@@ -69,7 +71,7 @@ I don't particularly like the font size or colour so I will change these paramet
 corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
 ```
 
-***updated corrplot figure
+![useful image]({{ site.url }}/assets/Corrplot.png)
 
 
 Save this plot using: 
