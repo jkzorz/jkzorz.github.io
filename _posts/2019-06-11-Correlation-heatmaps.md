@@ -71,7 +71,7 @@ I don't particularly like the font size or colour so I will change these paramet
 corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addrect = 4, tl.cex = 0.7)
 ```
 
-![useful image]({{ site.url }}/assets/corrplot.png)
+![useful image]({{ site.url }}/assets/corrplot_small.png)
 
 
 Save this plot using: 
