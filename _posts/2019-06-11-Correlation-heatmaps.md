@@ -91,7 +91,9 @@ You need to manipulate the correlation matrix a bit to get it in the proper form
   <li>Make the row names of your data frame into a column in your new data frame </li>
   <li>Load in the package <b>reshape2</b> for data manipulation
   <li>Finally, convert your "wide" format data frame into a "long" format data frame </li>
-  </ul>
+</ul>
+  
+  
 
 ```
 cc_df = as.data.frame(cc)
