@@ -46,7 +46,10 @@ cc = cor(com, method = "spearman")
 Now you have a correlation matrix that contains correlation coefficients for every pairwise combination of OTUs in your data. The command is fairly straightforward, but you do have one statistical decision to make in deciding the method that is used to calculate the correlation coefficients. You can decide between <b>"pearson"</b>, <b>"spearman"</b>, and kendall coefficients, but I generally choose either pearson or spearman: 
 <ul>
   <li><b>Pearson correlation:</b> is the linear correlation between two variables. [Read more here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) </li>
-  <li><b>Spearman:</b></li> is a non-parametric measure of rank correlation and assesses how well a relationship between two variables can be described using a monotonic function. A monotonic function is just a fancy way of describing a relationship where for each x value, the y value increases. I usually use Spearman correlation because I'm not overly concerned that my relationships fit a linear model, and Spearman captures all types of positive or negative relationships (i.e. exponential, logarithmic). [This wikipedia page provides some visual examples of the differences between Spearman and Pearson](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient). 
+  <li><b>Spearman correlation:</b> is a non-parametric measure of rank correlation and assesses how well a relationship between two variables can be described using a monotonic function. A monotonic function is just a fancy way of describing a relationship where for each x value, the y value increases. I usually use Spearman correlation because I'm not overly concerned that my relationships fit a linear model, and Spearman captures all types of positive or negative relationships (i.e. exponential, logarithmic).</li>
+    </ul>
+    
+ [This wikipedia page provides some visual examples of the differences between Spearman and Pearson correlation](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient). 
 
 
 The easiest way to visualize this correlation matrix 
