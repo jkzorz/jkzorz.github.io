@@ -4,10 +4,10 @@ title: "Stacked Bar Plots"
 date: 2019-06-05
 ---
 
-The stacked bar plot has been the poster child <i>(literally on every microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have gotten yourself an OTU table, the stacked bar plot may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html)).    
+The stacked bar plot has been the poster child <i>(literally on every microbial ecology poster in the past 5 years)</i> of compositional microbial community data visualizations. If you are doing 16S amplicon sequencing and have been given an OTU table with no idea where to go from here, the stacked bar plot may be a good place to start observing trends in your data. Whether or not you move on to some other form of data visualization afterwards is up to you (i.e. [Bubble plot](https://jkzorz.github.io/2019/06/05/Bubble-plots.html)).    
 
 
-Load and/or install ggplot2 (for plotting) and reshape2 (for data manipulation) packages. 
+Load and/or install <b>ggplot2</b> (for plotting) and <b>reshape2</b> (for data manipulation) packages. 
 <i> Alternatively, packages like tidyr and dplyr are also great for data manipulation if you prefer</i>
 
 ```
@@ -15,10 +15,9 @@ install.packages("ggplot2")
 install.packages("reshape2")
 library(ggplot2)
 library(reshape2)
-
 ```
 
-For most analyses in R I find it easiest to upload a csv file that has your species as columns and your samples as rows. Many of the outputs for the 16S pipelines I've seen have the order the other way around, so you may have to manipulate and transpose your data to get it in the right orientation. I do a lot of my early data manipulations in excel because I find it easiest to 1) get a first glance at the data, and 2) visually observe all the changes I'm making. I can also easily add in extra descriptor columns to define my samples by treatments, or environmental conditions, or any other parameter I could be interested in observing. 
+For most analyses in R I find it easiest to upload a csv file that has your species as columns and your samples as rows. Many of the outputs for the 16S pipelines I've seen have the order the other way around, so you may have to manipulate and transpose your data to get it in the right orientation. I do a lot of my early data manipulations in excel because I find it easiest to 1) get a first glance at the data, and 2) visually observe all the changes I'm making. I can also easily add in extra descriptor columns to define my samples by treatments, or environmental conditions, or any other parameter I could be interested in observing. If you're a keen coder however, all of these steps are of course possible to do in R. 
 
 Your OTU/species table may have hundreds (or thousands) of OTUs. Obviously, it's not reasonable or necessary to visualize all these OTUs at once. This is why you may want to select only a few of your most interesting OTUs for this visualization.  I tend to choose OTUs for visualization based on criteria like: 
 
@@ -41,7 +40,6 @@ The following code uses the csv file above as input.
 #or manually in R studio--> Session --> Set Working Directory --> Choose Directory
 #upload your data to R - exchange "Your_csv_file.csv" with the name of your csv file
 pc = read.csv("Your_csv_file.csv", header = TRUE)
-
 ```
 
 I've always found the "wide" and "long" data table formats a difficult concept to explain, especially if you haven't thought about data in this way before. Briefly, <i> wide </i> data has a column for each variable, whereas <i> long </i> data has one column for all possible variables, and a column for their corresponding values (see figure below). This is important for plotting because ggplot only lets you plot one <b>x</b> variable against one <b>y</b> variable. So if you want to plot multiple species simultaneously in one figure, they need to be in one column (rather than each having its own column).  
@@ -53,7 +51,6 @@ In the following command I am changing my data structure from a “wide” forma
 ```
 #convert data frame from a "wide" format to a "long" format
 pcm = melt(pc, id = c("Sample"))
-
 ```
 <b> An example of what the long formatted version of the above data table would like in excel:</b>
 
@@ -72,14 +69,12 @@ The following code creates an object called <b>colours</b>, which contains 11 di
 #define the colours to use in the figure
 colours = c( "#A54657",  "#582630", "#F7EE7F", "#4DAA57","#F1A66A","#F26157", "#F9ECCC", "#679289", "#33658A",
 "#F6AE2D","#86BBD8")
-
 ```
 
 The following code is useful only if you want to keep the order of your samples the same in your figure as they are in your excel sheet. Otherwise, R will order variables alphabetically.
 
 ```
 pcm$Sample <- factor(pcm$Sample,levels=unique(pcm$Sample))
-
 ```
 
 
@@ -101,7 +96,6 @@ mx = ggplot(pcm, aes(x = Sample, fill = variable, y = value)) +
     scale_fill_manual(values = colours)
     
 mx
-
 ```
 
 
