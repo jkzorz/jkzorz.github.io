@@ -114,7 +114,7 @@ Once you have an overview of how your microbiome data looks, you may want to dig
     <li>[NMDS plots](https://jkzorz.github.io/2019/06/06/NMDS.html)</li>
     <li>[Hypothesis testing](https://jkzorz.github.io/2019/06/11/Useful-statistical-tests.html)</li>
     <li>[Correlation analyses](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)</li>
-    </ul>
+</ul>
        
        
         
