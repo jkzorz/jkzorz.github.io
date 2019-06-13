@@ -110,10 +110,10 @@ ggsave("Stacked_bar_plot.svg")
 ```
 
 Once you have an overview of how your microbiome data looks, you may want to dig deeper to find out the factors influencing microbial distribution through: 
-        
-   [NMDS plots](https://jkzorz.github.io/2019/06/06/NMDS.html)
-   [Hypothesis testing](https://jkzorz.github.io/2019/06/11/Useful-statistical-tests.html)
-   [Correlation analyses](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)
+
+<p>[NMDS plots](https://jkzorz.github.io/2019/06/06/NMDS.html)
+<p>[Hypothesis testing](https://jkzorz.github.io/2019/06/11/Useful-statistical-tests.html)
+<p>[Correlation analyses](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)
 
 
        
