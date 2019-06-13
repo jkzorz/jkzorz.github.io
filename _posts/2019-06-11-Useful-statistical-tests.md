@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Useful Statistical Tests"
+title: "ANOSIM Test"
 date: 2019-06-11
 ---
 
