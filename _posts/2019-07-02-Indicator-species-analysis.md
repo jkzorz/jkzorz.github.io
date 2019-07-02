@@ -57,11 +57,14 @@ To view the results:
 summary(inv)
 ```
 
-The summary function will only return the statistically significant species (<i> p < 0.05</1>). If you are interested in all your species, add <i> alpha = 1 </i> to your command. The output of summary looks like:
+The summary function will only return the statistically significant species (<i> p < 0.05</i>). If you are interested in all your species, add <i> alpha = 1 </i> to your command. The output of summary looks like:
  
  ![useful image]({{ site.url }}/assets/Indicspecies.png)
  
-  
+ 
+From this output, I can see that the significance level being reported is <b>0.05</b>, and that the function <b>"r/g"</b> was used. There were <b>39</b> species tested in total. <b>24</b> of these were significantly associated with one group.
+
+The first list contains the species found significantly more often in the <b>"Early"</b> grouping. The <b>#sps 6</b> shows that 6 species were identified as indicators for this group.  The first column contains species names, the next column contains the <b>stat</b> value (higher means the OTU is more strongly associated). The <b>p.value</b> column contains the statistical p values for the species association (lower means stronger significance). The final column shows the significance level, which is explained by the <b>Signif. codes</b> at the bottom of the output.   
 
 
 
