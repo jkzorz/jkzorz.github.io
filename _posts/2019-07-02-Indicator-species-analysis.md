@@ -39,7 +39,7 @@ Next we can run the indicator species command:
 ```
  inv = multipatt(abund, time, func = "r.g", control = how(nperm=9999))
 ```
-<b>multipatt</b> is the name of the command from the <b><i>indicspecies</i></b> package. The mulitpatt command results in lists of species that are associated to your particular groups of samples. If your group has more than 2 categories, multipatt will also identify species that are statistically more abundant in combinations of groups.   
+<b>multipatt</b> is the name of the command from the <b><i>indicspecies</i></b> package. The mulitpatt command results in lists of species that are associated with a particular group of samples. If your group has more than 2 categories, multipatt will also identify species that are statistically more abundant in combinations of categories.   
 
 The parameters for <b>multipatt</b> are as follows: 
 <ul>
