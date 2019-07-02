@@ -9,7 +9,7 @@ When analyzing microbial data, you may often want to identify microbial species 
 
 Indicator species are:
 
-<b> <i>"A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition." </b> United Nations Environment Programme (1996)</i> 
+<b> <i>"A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition." </i></b> <i>  - United Nations Environment Programme (1996)</i> 
 
 
 
