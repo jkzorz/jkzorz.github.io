@@ -4,7 +4,7 @@ title: "Indicator Species Analysis"
 date: 2019-07-02
 ---
 
-When analyzing microbial data, you may want to identify microbial species that are significantly found more often in one treatment group compared to another.  There are a number of ways to find these differentially abundant species, all of which use slightly different methods. Generally however, I've found that these different methods should all reach similar conclusions. <b>[SIMPER](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/simper) </b>, and <b>[Indicator Species Analysis](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf) </b> (below) are examples of statistical tests used to find differentially abundant species.     
+When analyzing microbial data, you may want to identify microbial species that are found more often in one treatment group compared to another.  There are a number of ways to find these differentially abundant species, all of which use slightly different methods. Generally however, I've found that these different methods should all reach similar conclusions. <b>[SIMPER](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/simper) </b>, <b>[mvabund](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.2041-210X.2012.00190.x)</b> and <b>[Indicator Species Analysis](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf) </b> (below) are examples of statistical tests used to find differentially abundant species.     
 
 
 <b>Indicator species are:</b>
