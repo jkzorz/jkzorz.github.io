@@ -7,7 +7,9 @@ date: 2019-07-02
 
 Indicator species are:
 
-<h3><i> "A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition."</h3> - United Nations Environment Programme (1996)</i>
+<h4><i> "A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition."</h4> - United Nations Environment Programme (1996)</i>
+
+
 
 
 
