@@ -23,3 +23,37 @@ pc = read.csv("Your_OTU_table.csv", header= TRUE)
 ```
 
 ![useful image]({{ site.url }}/assets/Wide_extra_variable_excel.png)
+
+
+In this case, I have one column called "Time", that contains the information for grouping my samples into "Early" and "Late" categories. Next I want to create a data frame with all my abundance data, and a vector that contains the information from the "Time" column:
+
+```
+abund = pc[,3:ncol(pc)]
+time = pc$Time
+
+```
+
+Because my abundance data starts in the 3rd column of my original "pc" data frame. I put a "3" in the code above. Channge this number to match the column where your abundance data starts. Also change "Time" to whatever you have called your grouping variable. 
+
+Next we can run the indicator species command: 
+
+```
+ inv = multipatt(abund, time, func = "r.g", control = how(nperm=9999))
+ 
+```
+<b>multipatt</b> is the command name from the <b><i>indicspecies</i></b> package. The mulitpatt command results in lists of species that are associated to your particular groups of samples. If your group has more than 2 categories, multipatt will also identify species that are statistically more abudnant in combinations of groups.   
+
+The parameters for <b>multipatt</b> are as follows: 
+<ul>
+  <li>the community abundance matrix:<i>"abund"</i></li>
+  <li>the vector that contains your sample grouping information: <i>"time"</i></li>
+  <li>the function that multipatt is using to identify indicator species: <i> func = "r.g" </i></li>
+  <li>the number of permutations used in the statistical test: <i> control = how(nperm=9999)</i></li>  
+ </ul>
+
+I almost exclusively use the <i>"r.g"</i> function because it takes abundance information, rather than solely presence/absence information into account when calculating significance.   
+  
+
+
+
+
