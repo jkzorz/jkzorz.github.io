@@ -4,10 +4,10 @@ title: "Indicator Species Analysis"
 date: 2019-07-02
 ---
 
-When analyzing microbial data, you may often want to identify microbial species that are significantly found more often in one treatment group compared to another.  There are a number of ways to find these differentially abundant species, all of which use slightly different methods. Generally however, I've found that these different methods should all reach similar conclusions. <b>[SIMPER](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/simper) </b>, and <b>[Indicator Species Analysis](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf) </b> (below) are examples of statistical tests used to find differentially abundant species.     
+When analyzing microbial data, you may want to identify microbial species that are significantly found more often in one treatment group compared to another.  There are a number of ways to find these differentially abundant species, all of which use slightly different methods. Generally however, I've found that these different methods should all reach similar conclusions. <b>[SIMPER](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/simper) </b>, and <b>[Indicator Species Analysis](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf) </b> (below) are examples of statistical tests used to find differentially abundant species.     
 
 
-Indicator species are:
+<b>Indicator species are:</b>
 
 <b> <i>"A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition." </i></b> <i>  - United Nations Environment Programme (1996)</i> 
 
@@ -67,5 +67,7 @@ From this output, I can see that the significance level being reported is <b>0.0
 The first list contains the species found significantly more often in the <b>"Early"</b> grouping. The <b>#sps 6</b> shows that 6 species were identified as indicators for this group.  The first column contains species names, the next column contains the <b>stat</b> value (higher means the OTU is more strongly associated). The <b>p.value</b> column contains the statistical p values for the species association (lower means stronger significance). The final column shows the significance level, which is explained by the <b>Signif. codes</b> at the bottom of the output.   
 
 Below this first list are the species associated with the other group, <b>"Late"</b>. There are 18 species significantly associated with this group. In both cases, the species are listed in order with strongest association at the top.     
+
+I use these results to help me get an initial overview of the species that might be more interesting to investigate. To display these results visually, I often use a <b>box plot</b> to show the differences in distribution of these identified species between my groupings.
 
 
