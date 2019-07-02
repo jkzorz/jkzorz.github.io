@@ -1,13 +1,15 @@
 ---
 layout: post
-title: "ANOSIM Test"
-date: 2019-06-11
+title: "Indicator Species Analysis"
+date: 2019-07-02
 ---
 
 
-Statistics can be a scary word, especially, if you're like me and it's been a long time since you've had anything to do with probability or math. For the most part, I don't think it's necessary to understand all the equations behind the statistics that you do, but I do think it's important to know that you're using the right test for your data, and that you're not making any assumptions about your data that aren't supported.  Again, I find that the [GUSTAME](https://sites.google.com/site/mb3gustame/) website is a fantastic resource for learning about the basics of whatever test you decide to do.  
+Indicator species are:
 
-<h2> ANOSIM Test </h2>
+<h3><i> "A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition."</h3> - United Nations Environment Programme (1996)</i>
+
+
 
 <b>Purpose: </b>
   <ul>
