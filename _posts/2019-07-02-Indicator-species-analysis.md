@@ -22,4 +22,4 @@ library(indicspecies)
 pc = read.csv("Your_OTU_table.csv", header= TRUE)
 ```
 
-![useful image]({{ site.url }}/assets/NMDS_table_excel.png)
+![useful image]({{ site.url }}/assets/Wide_extra_variable_excel.png)
