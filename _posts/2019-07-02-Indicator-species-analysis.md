@@ -62,10 +62,10 @@ The summary function will only return the statistically significant species (<i>
  ![useful image]({{ site.url }}/assets/Indicspecies.png)
  
  
-From this output, I can see that the significance level being reported is <b>0.05</b>, and that the function <b>"r/g"</b> was used. There were <b>39</b> species tested in total. <b>24</b> of these were significantly associated with one group.
+From this output, I can see that the significance level being reported is <b>0.05</b>, and that the function <b>"r.g"</b> was used. There were <b>39</b> species tested in total. <b>24</b> of these were significantly associated with one group.
 
 The first list contains the species found significantly more often in the <b>"Early"</b> grouping. The <b>#sps 6</b> shows that 6 species were identified as indicators for this group.  The first column contains species names, the next column contains the <b>stat</b> value (higher means the OTU is more strongly associated). The <b>p.value</b> column contains the statistical p values for the species association (lower means stronger significance). The final column shows the significance level, which is explained by the <b>Signif. codes</b> at the bottom of the output.   
 
-
+Below this first list are the species associated with the other group, <b>"Late"</b>. There are 18 species significantly associated with this group. In both cases, the species are listed in order with strongest association at the top.     
 
 
