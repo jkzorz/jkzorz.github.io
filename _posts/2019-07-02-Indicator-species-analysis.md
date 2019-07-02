@@ -14,23 +14,11 @@ Indicator species are:
 In order to perform indicator species analysis you need an OTU table, or something similar, that contains all the information about your species distributions across your samples. You also need corresponding data that assigns these same samples to groups. The groups you use can be habitat type, treatment, time, etc.  I often use the same groups that I used in the [ANOSIM statistical test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html). This way I can check to see which species are most responsible for the differences in microbial community composition between my groups.       
 
 
-
- 
-
-Some examples where you can use an ANOSIM test to test for differences in microbial communities between: 
-<ul> 
-  <li>Healthy vs sick individuals </li>
-  <li>Different sampling environments</li>
-  <li>Different seasons</li>
-  <li>Treatment vs control groups </li>
-  </ul>
-  
-  
-This test is quite straightforward to do in R, and follows much of the same data manipulation as the [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). First load in your data with columns as OTUs and rows as samples, and install/load the package <b>vegan</b> 
+There is a specific R package to perform <b>Indicator Species Analysis</b> called <b><i>indicspecies</i></b>, developed by the authors of [this paper](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1600-0706.2010.18334.x). They also have a thorough [tutorial](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf) if you want more information. To begin, load and install the <b><i>indicspecies</b></i> package. Then load in your data. I find it easiest if your data is in the format of columns as OTUs and rows as samples. 
 
 ```
-install.packages("vegan")
-library(vegan)
+install.packages("indicspecies")
+library(indicspecies)
 pc = read.csv("Your_OTU_table.csv", header= TRUE)
 ```
 
