@@ -68,6 +68,6 @@ The first list contains the species found significantly more often in the <b>"Ea
 
 Below this first list are the species associated with the other group, <b>"Late"</b>. There are 18 species significantly associated with this group. In both cases, the species are listed in order with strongest association at the top.     
 
-I use these results to help me get an initial overview of the species that might be more interesting to investigate. To display these results visually, I often use a <b>box plot</b> to show the differences in distribution of these identified species between my groupings.
+I use these results to help me get an initial overview of the species that might be more interesting to investigate. To display these results visually, I often use a <b>[boxplot](https://jkzorz.github.io/2019/07/02/boxplots.html)</b> to show the differences in distribution of these identified species between my groupings.
 
 
