@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Indicator Species Analysis"
+title: "Indicator Species Analysis in R"
 date: 2019-07-02
 ---
 
