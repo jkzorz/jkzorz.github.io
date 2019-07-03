@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stacked Bar Plots"
+title: "Stacked Bar Plots in R"
 date: 2019-06-05
 ---
 
