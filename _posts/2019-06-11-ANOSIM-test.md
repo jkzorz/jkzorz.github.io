@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ANOSIM Test"
+title: "ANOSIM Test in R"
 date: 2019-06-11
 ---
 
