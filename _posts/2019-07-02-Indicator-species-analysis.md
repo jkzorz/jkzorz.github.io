@@ -9,7 +9,9 @@ When analyzing microbial data, you may want to identify microbial species that a
 
 <b>Indicator species are:</b>
 
-<b> <i>"A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition." </i></b> <i>  - United Nations Environment Programme (1996)</i> 
+<b> <i>"A species whose status provides information on the overall condition of the ecosystem and of other species in that ecosystem. They reflect the quality and changes in environmental conditions as well as aspects of community composition." </i></b> <i><h6>  - United Nations Environment Programme (1996)</h6></i> 
+
+
 
 In order to perform indicator species analysis you need an OTU table, or something similar, that contains all the information about your species distributions across your samples. You also need corresponding data that assigns these same samples to groups. The groups you use can be habitat type, treatment, time, etc.  I often use the same groups that I used in the [ANOSIM statistical test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html). This way I can check to see which species are most responsible for the differences in microbial community composition between my groups.       
 
