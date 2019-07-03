@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bubble Plots"
+title: "Bubble Plots in R"
 date: 2019-06-05
 ---
 
