@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Correlation Heatmaps"
+title: "Correlation Heatmaps in R"
 ---
 
 
