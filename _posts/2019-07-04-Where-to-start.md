@@ -22,7 +22,9 @@ It can be daunting to know where to start with your data analysis once you've re
 <h3>Statistical Testing</h3>
 
   - **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)**: Analysis of similarities test. A non-parametric test, used to determine if there are statistical differences in the microbial communities of two or more discrete groups of samples
+  
   - **[NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html)**: Non-metric multidimensional scaling. A non-parametric ordination technique used to visually display multidimensional data (i.e. abundances of many species over many samples) in two dimensions. Points (generally samples) that are closer together have more similar microbial communities
+  
   - **[Indicator Species test](https://jkzorz.github.io/2019/07/02/Indicator-species-analysis.html)**: A test used to determine "indicator species" of a particular group of samples. Identifies the species that are found statistically more abundantly in one group of samples compared to others 
   
   
