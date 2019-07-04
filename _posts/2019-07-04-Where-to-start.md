@@ -11,8 +11,8 @@ It can be daunting to know where to start with your data analysis once you've re
 <h3>Data Visualization</h3>
 
   <b>[Stacked bar plots](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)</b> For displaying compositional data (i.e. relative abundance of species) of discrete samples 
-  [Bubble plots](https://jkzorz.github.io/2019/06/05/Bubble-plots.html): For displaying compositional data (i.e. relative abundance of species) of discrete samples
-  [Box plots](https://jkzorz.github.io/2019/07/02/boxplots.html): For displaying information on the distribution of continuous data (i.e. relative abundance, diversity) across a dataset (or dataset subset) for a specific set of species or samples
+  <p>[Bubble plots](https://jkzorz.github.io/2019/06/05/Bubble-plots.html): For displaying compositional data (i.e. relative abundance of species) of discrete samples
+  <p>[Box plots](https://jkzorz.github.io/2019/07/02/boxplots.html): For displaying information on the distribution of continuous data (i.e. relative abundance, diversity) across a dataset (or dataset subset) for a specific set of species or samples
 
 
 
