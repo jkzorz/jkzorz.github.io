@@ -18,7 +18,14 @@ It can be daunting to know where to start with your data analysis once you've re
 
 
 <h3>Statistical Testing</h3>
-
+<ul>
+  <li>ANOSIM test: </li>
+  <li>Indicator Species test: </li>
+  <li>NMDS plot: </li>
+  </ul>
+  
+  
+  
 
 
 
