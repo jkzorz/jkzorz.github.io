@@ -1,7 +1,11 @@
+---
+layout: post
+title: "Where to start?"
+date: 2019-06-05
+---
 
 
-
-It can be daunting to know where to start with your data analysis once you've received your likely huge amplicon sequencing dataset. Below I've divided the tutorials into categories based on what you may be looking to accomplish: 
+It can be daunting to know where to start with your data analysis once you've received your (likely huge) amplicon sequencing dataset. Below I've divided the R tutorials into categories based on what you may be looking to accomplish: 
 
 
 <h3>Data Visualization</h3>
