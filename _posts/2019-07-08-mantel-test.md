@@ -67,7 +67,8 @@ dist.abund = vegdist(abund, method = "bray")
 dist.temp = dist(temp, method = "euclidean")
 
 #geographic data frame - haversine distance 
-dist.geo = distm(geo, fun = distHaversine)
+d.geo = distm(geo, fun = distHaversine)
+dist.geo = as.dist(d.geo)
 ```
 
 Now we can run the ***mantel*** command: 
@@ -88,6 +89,6 @@ The mantel command requires the user to specify certain parameters:
 - **permutations**. Mantel tests determine significance by [permuting](https://mb3is.megx.net/gustame/hypothesis-tests/the-mantel-test) (randomizing) one matrix x number of times and observing the expected distribution of the statistic. I tend to pick a larger permutation number, but if computing power is low, feel free to decrease
 - **na.rm**. An optional addition to the command that tells R to delete rows in which there are missing values.
 
+From the results, I can see that the **temperature distance matrix has a strong relationship with the species Bray-Curtis dissimiliarity matrix** (**Mantel statistic R: 0.667**, *p value = 1e-04*). In other words, as samples become more dissimilar in terms of temperature, they also become more dissimilar in terms of  microbial community composition.  
 
-
-
+In contrast, the species Bray-Curtis dissimilarity matrix did not have a significant relationship with the geographic separation of the samples (**Mantel statistic R: 0.138**, *p value = 0.052*). 
