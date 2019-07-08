@@ -18,7 +18,7 @@ I find this is a difficult concept to explain without defining what the matrices
 - **Environmental parameter distance matrix**: generally created using *Euclidean Distance* (i.e. temperature differences between samples)
 - **Geographic distance matrix**: the physical distance between sites (i.e. *Haversine distance*)
 
-With these matrix examples, you could determine if the differences in community composition between samples are correlated, or rather "co-vary", with the differences in temperature between samples, or the physical distance between samples.  
+With these matrix examples, you could determine if the differences in community composition between samples are correlated, or rather "co-vary", with the differences in temperature between samples, or the physical distance between samples. These tests can be used to address whether the **environment is "selecting"** for the microbial community, or if there is a strong **distance decay pattern, suggesting dispersal limitation**. These are important questions in studies of **[Microbial Biogeography](https://en.wikipedia.org/wiki/Microbial_biogeography)**   
 
 To perform a Mantel test in R. First load/install the required packages. The mantel test function is part of the **vegan** package, which is also used for *anosim* tests and *nmds* plots. 
 
@@ -89,7 +89,7 @@ The mantel command requires the user to specify certain parameters:
 - **permutations**. Mantel tests determine significance by [permuting](https://mb3is.megx.net/gustame/hypothesis-tests/the-mantel-test) (randomizing) one matrix x number of times and observing the expected distribution of the statistic. I tend to pick a larger permutation number, but if computing power is low, feel free to decrease
 - **na.rm**. An optional addition to the command that tells R to delete rows in which there are missing values.
 
-The output of these Mantel tests are: 
+**The output of these Mantel tests are: **
 
 ```
 #abundance vs temperature test
@@ -98,7 +98,7 @@ The output of these Mantel tests are:
 Mantel statistic based on Spearman's rank correlation rho 
 
 Call:
-mantel(xdis = dist.abund, ydis = dist.temp, method = "spearman",      permutations = 9999, na.rm = TRUE) 
+mantel(xdis = dist.abund, ydis = dist.temp, method = "spearman", permutations = 9999, na.rm = TRUE) 
 
 Mantel statistic r: 0.677 
       Significance: 1e-04 
@@ -116,7 +116,7 @@ Number of permutations: 9999
 Mantel statistic based on Spearman's rank correlation rho 
 
 Call:
-mantel(xdis = dist.abund, ydis = dist.geo, method = "spearman",      permutations = 9999, na.rm = TRUE) 
+mantel(xdis = dist.abund, ydis = dist.geo, method = "spearman", permutations = 9999, na.rm = TRUE) 
 
 Mantel statistic r: 0.1379 
       Significance: 0.0525 
@@ -132,3 +132,46 @@ Number of permutations: 9999
 From the results, I can see that the **temperature distance matrix has a strong relationship with the species Bray-Curtis dissimiliarity matrix** (**Mantel statistic R: 0.667**, *p value = 1e-04*). In other words, as samples become more dissimilar in terms of temperature, they also become more dissimilar in terms of  microbial community composition.  
 
 In contrast, the species Bray-Curtis dissimilarity matrix did not have a significant relationship with the geographic separation of the samples (**Mantel statistic R: 0.138**, *p value = 0.052*). 
+
+
+If I was interested in investigating the effect of my environmental variables on my microbial community structure further, I would swap out "Temperature" in the above code, and trade in "Salinity" or "Nitrate".  Alternatively, if I was interested in the total effect of environmental parameters on my microbial community, I could combine all environmental parameters into one distance matrix and test the correlation of this matrix with my abundance data: 
+
+```
+#create environmental data frame 
+#make subset
+env = df[,2:5]
+
+#scale data 
+scale.env = scale(env, center = TRUE, scale = TRUE)
+
+#create distance matrix of scaled data
+dist.env = dist(scale.env, method = "euclidean")
+
+#run mantel test 
+abund_env = mantel(dist.abund, dist.env, method = "spearman", permutations = 9999, na.rm = TRUE)
+abund_env
+```
+In this case we need to scale the environmental data prior to creating a distance matrix. This is because the environmental variables were all measured using different metrics that are not comparable to each other. 
+
+```
+##Mantel statistic based on Spearman's rank correlation rho 
+
+Call:
+mantel(xdis = dist.abund, ydis = dist.env, method = "spearman",      permutations = 9999, na.rm = TRUE) 
+
+Mantel statistic r: 0.6858 
+      Significance: 1e-04 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.151 0.201 0.244 0.292 
+Permutation: free
+Number of permutations: 9999
+
+```
+The results show again that the cumulative environmental factors are strongly correlated with the microbial community (**Mantel statistic r: 0.686**, *p value = 1e-04*). Because the environmental variables are more strongly correlated with the microbial community than the geographic distance, I would draw the conclusion that in this system, the environment is selecting for the microbial community, and there is minimal (or comparatively minimal) dispersal limitation occurring.   
+
+
+Stating the statistical values from the Mantel test is a sufficient way to report the results of these tests. I also think that plotting the correlation as a **pairwise scatter plot** can be an intuitive way to show the relationships. **[Check out this tutorial to see how to make scatter plots in R]()**.    
+
+
