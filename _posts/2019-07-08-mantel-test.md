@@ -89,6 +89,46 @@ The mantel command requires the user to specify certain parameters:
 - **permutations**. Mantel tests determine significance by [permuting](https://mb3is.megx.net/gustame/hypothesis-tests/the-mantel-test) (randomizing) one matrix x number of times and observing the expected distribution of the statistic. I tend to pick a larger permutation number, but if computing power is low, feel free to decrease
 - **na.rm**. An optional addition to the command that tells R to delete rows in which there are missing values.
 
+The output of these Mantel tests are: 
+
+```
+#abundance vs temperature test
+> abund_temp
+
+Mantel statistic based on Spearman's rank correlation rho 
+
+Call:
+mantel(xdis = dist.abund, ydis = dist.temp, method = "spearman",      permutations = 9999, na.rm = TRUE) 
+
+Mantel statistic r: 0.677 
+      Significance: 1e-04 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.148 0.198 0.246 0.290 
+Permutation: free
+Number of permutations: 9999
+
+
+#abundance vs geography test
+> abund_geo
+
+Mantel statistic based on Spearman's rank correlation rho 
+
+Call:
+mantel(xdis = dist.abund, ydis = dist.geo, method = "spearman",      permutations = 9999, na.rm = TRUE) 
+
+Mantel statistic r: 0.1379 
+      Significance: 0.0525 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.107 0.140 0.170 0.204 
+Permutation: free
+Number of permutations: 9999
+
+```
+
 From the results, I can see that the **temperature distance matrix has a strong relationship with the species Bray-Curtis dissimiliarity matrix** (**Mantel statistic R: 0.667**, *p value = 1e-04*). In other words, as samples become more dissimilar in terms of temperature, they also become more dissimilar in terms of  microbial community composition.  
 
 In contrast, the species Bray-Curtis dissimilarity matrix did not have a significant relationship with the geographic separation of the samples (**Mantel statistic R: 0.138**, *p value = 0.052*). 
