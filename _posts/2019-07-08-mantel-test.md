@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mantel Test in R"
-date: 2019-06-11
+date: 2019-07-08
 ---
 
 
