@@ -36,7 +36,27 @@ Next load in your data with columns as OTUs/variables, and rows as samples.
 df = read.csv("Your_OTU_table.csv", header= TRUE)
 ```
 
-The data I'm using looks like this:
-The first column is sample name, the next 4 columns contain environmental parameters for each sample (i.e. Salinity, Temperature, etc). Then, the following 2 columns contain the latitude and longitude for each sample, and the remaining columns contain the 200+ OTU abundances that correspond to each sample. 
+**The data I'm using looks like this:**
+
 
 ![useful image]({{ site.url }}/assets/Excel_for_mantel.png)
+
+
+The first column is sample name, the next 4 columns contain environmental parameters for each sample (i.e. Salinity, Temperature, etc). Then, the following 2 columns contain the latitude and longitude for each sample, and the remaining columns contain the 200+ OTU abundances that correspond to each sample. 
+
+Now I need to subset my data into smaller data frames/vectors that contain just the information I need to generate the corresponding distance matrices. I will make three subsets: an abundance data frame, a vector with temperature info, and a data frame with the latitude and longitude of my samples. My OTU data starts at column 8. In the code below change the '8' to the column where your OTU data starts. Change the environmental parameter name ('Temperature') to whatever you have called it. 
+
+```
+#abundance data frame
+abund = df[,8:ncol(df)]
+
+#environmental vector
+temp = df$Temperature
+
+#longitude and latitude 
+geo = data.frame(df$Longitude, df$Latitude)
+```
+
+
+
+
