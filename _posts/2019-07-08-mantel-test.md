@@ -20,5 +20,23 @@ I find this is a difficult concept to explain without defining what the matrices
 
 With these matrix examples, you could determine if the differences in community composition between samples are correlated, or rather "co-vary", with the differences in temperature between samples, or the physical distance between samples.  
 
+To perform a Mantel test in R. First load/install the required packages. The mantel test function is part of the **vegan** package, which is also used for *anosim* tests and *nmds* plots. 
+
+```
+library(vegan)
+install.packages("geosphere")
+library(geosphere)
+```
+If you are interested in using physical distance as a matrix for the mantel test. The package **geosphere** contains a function for calculating Haversine distances (distance between two points on a sphere) given latitude and longitude. 
+
+
+Next load in your data with columns as OTUs/variables, and rows as samples. 
+
+```
+df = read.csv("Your_OTU_table.csv", header= TRUE)
+```
+
+The data I'm using looks like this:
+The first column is sample name, the next 4 columns contain environmental parameters for each sample (i.e. Salinity, Temperature, etc). Then, the following 2 columns contain the latitude and longitude for each sample, and the remaining columns contain the 200+ OTU abundances that correspond to each sample. 
 
 ![useful image]({{ site.url }}/assets/Excel_for_mantel.png)
