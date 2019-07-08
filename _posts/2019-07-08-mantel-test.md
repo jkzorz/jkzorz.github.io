@@ -57,6 +57,37 @@ temp = df$Temperature
 geo = data.frame(df$Longitude, df$Latitude)
 ```
 
+Now we have to convert these subsets into distance matrices.  
+
+```
+#abundance data frame - bray curtis dissimilarity
+dist.abund = vegdist(abund, method = "bray")
+
+#environmental vector - euclidean distance
+dist.temp = dist(temp, method = "euclidean")
+
+#geographic data frame - haversine distance 
+dist.geo = distm(geo, fun = distHaversine)
+```
+
+Now we can run the ***mantel*** command: 
+```
+#abundance vs environmental 
+abund_temp = mantel(dist.abund, dist.temp, method = "spearman", permutations = 9999, na.rm = TRUE)
+abund_temp
+
+#abundance vs geographic 
+abund_geo  = mantel(dist.abund, dist.geo, method = "spearman", permutations = 9999, na.rm = TRUE)
+abund_geo
+```
+
+The mantel command requires the user to specify certain parameters: 
+
+- **distance matrices** (i.e. dist.abund and dist.temp)
+- **correlation method**. I use Spearman here to make the test "non-parametric". Learn more about correlation methods **[here](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)**
+- **permutations**. Mantel tests determine significance by [permuting](https://mb3is.megx.net/gustame/hypothesis-tests/the-mantel-test) (randomizing) one matrix x number of times and observing the expected distribution of the statistic. I tend to pick a larger permutation number, but if computing power is low, feel free to decrease
+- **na.rm**. An optional addition to the command that tells R to delete rows in which there are missing values.
+
 
 
 
