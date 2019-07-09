@@ -87,7 +87,8 @@ It's obvious that there is a relationship between this species and temperature. 
 
 ```
 xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
- geom_smooth(method = "lm", alpha = 0.2, colour = "black") + geom_point(aes(colour = Latitude), size = 4) +
+ geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
+ geom_point(aes(colour = Latitude), size = 4) +
 labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
 theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
 axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
@@ -109,7 +110,7 @@ xx
 lm = lm(df$Temperature~df$Pelagibacteraceae.OTU_307744)
 summary(lm)
 ```
-The output of this shows the relationship is highly statistically significant (**Adjusted R-squared value: 0.823, p value <<<< 0.05**): 
+The output of this shows the relationship is highly statistically significant (**Adjusted R-squared value: 0.823, p value<<<0.05**): 
 
 ```
 Call:
@@ -134,5 +135,41 @@ F-statistic: 103.3 on 1 and 21 DF,  p-value: 1.454e-09
 **Faceting plots**
 
 Cool, now we have colour and regressions in our scatter plot, but we're still only looking at the relationship of one environmental variable with one species.  What if we wanted to cover a bit more ground, and look at this relationship over multiple species? This is where **faceting** comes in handy. 
+
+Below we will facet the scatter plot so that we can see the relationship between temperature and species abundance over four different species
+
+First, I need to load in the **reshape2** package for data manipulation, and then take a smaller subset of my data that includes 4 OTU columns: 
+
+```
+library(reshape2)
+otus = df[,1:11]
+```
+
+Now I convert my "wide" format data into "long" format, while specifying all columns I want to keep separate (all columns that are not OTUs)
+```
+otus_melt = melt(otus, id = c("Station", "Salinity", "Temperature", "Oxygen", "Nitrate", "Latitude", "Longitude"))
+```
+
+Now my data is in the right format, and I can plot it in ggplot2 using the **facet_wrap** parameter. 
+
+```
+xx = ggplot(otus_melt, aes(x = Temperature, y = value)) + 
+facet_wrap(.~variable, scales = "free_y") +
+ geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
+ geom_point(aes(colour = Latitude), size = 4) +
+labs(y = "Relative Abundance (%)", x = "Temperature (C)") + 
+theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+axis.text.y = element_text(face = "bold", size = 10, colour = "black"), 
+axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+panel.background = element_blank(), 
+panel.border = element_rect(fill = NA, colour = "black"), 
+legend.title = element_text(size =12, face = "bold", colour = "black"),
+legend.text = element_text(size = 10, face = "bold", colour = "black"), 
+legend.position = "top", strip.background = element_rect(fill = "grey90", colour = "black"),
+strip.text = element_text(size = 9, face = "bold")) +
+scale_colour_continuous(high = "navy", low = "salmon")
+```
+
+![useful image]({{ site.url }}/assets/Scatter_facet.png)
 
 
