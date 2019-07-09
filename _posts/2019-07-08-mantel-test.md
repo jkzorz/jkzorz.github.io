@@ -171,6 +171,6 @@ Number of permutations: 9999
 The results show again that the cumulative environmental factors are strongly correlated with the microbial community (**Mantel statistic r: 0.686**, *p value = 1e-04*). Because the microbial community is more strongly correlated with the environmental parameters than the geographic distance, I would draw the conclusion that in this system, the environment is "selecting" for the microbial community, and there is minimal (or comparatively minimal) dispersal limitation occurring.   
 
 
-Stating the statistical values from the Mantel test is a sufficient way to report the results of these tests. I also think that plotting the correlation as a **pairwise scatter plot** can be an intuitive way to show these rather complex relationships. **[Check out this tutorial to see how to make scatter plots in R](https://jkzorz.github.io/2019/07/08/scatter-plots.html)**.    
+Stating the statistical values from the Mantel test is a sufficient way to report the results of these tests. I also think that plotting the correlation as a **pairwise scatter plot** can be an intuitive way to show these rather complex relationships. **[Check out this tutorial to see how to make scatter plots in R](https://jkzorz.github.io/2019/07/09/scatter-plots.html)**.    
 
 
