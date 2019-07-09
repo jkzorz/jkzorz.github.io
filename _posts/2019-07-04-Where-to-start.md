@@ -18,7 +18,7 @@ It can be daunting to know where to start with your data analysis once you've re
   
   - **[Heatmaps](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)**: For displaying the continuous values (i.e. relative abundance or correlation) associated with discrete data (i.e. samples or species) 
   
-  - **[Scatter plots](https://jkzorz.github.io/2019/07/08/scatter-plots.html)**: For displaying two continuous variables (i.e. abundance of species 1 vs species 2, or abundance of a species vs temperature, etc) 
+  - **[Scatter plots](https://jkzorz.github.io/2019/07/09/scatter-plots.html)**: For displaying two continuous variables (i.e. abundance of species 1 vs species 2, or abundance of a species vs temperature, etc) 
 
 
 
