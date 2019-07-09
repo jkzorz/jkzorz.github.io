@@ -172,4 +172,87 @@ scale_colour_continuous(high = "navy", low = "salmon")
 
 ![useful image]({{ site.url }}/assets/Scatter_facet.png)
 
+Now we can see the relationship of temperature vs abundance for four different OTUs. I've specified *scales = "free_y"* because my abundance ranges vary considerably across these four species. 
+
+
+**Pairwise scatter plots**
+
+I will now introduce pairwise scatter plots, a visualization strategy I brought up in the [Mantel test tutorial](https://jkzorz.github.io/2019/07/08/mantel-test.html). The point of this figure will be to visualize the correlation between two corresponding matrices of data. **Each point in these pairwise scatter plots will represent the difference between two samples** (rather than the value for one sample as was the case in the previous plots).   
+
+Briefly, I first generate the dissimilarity matrices from the Mantel test tutorial. One for community abundance, one for temperature, and one for physical separation.  
+
+```
+abund = df[,8:ncol(df)]
+temp = df$Temperature
+geo = data.frame(df$Longitude, df$Latitude)
+
+
+#distances
+#abundance - Bray Curtis
+dist.abund = vegdist(abund, method = "bray")
+
+#temperature - Euclidean
+dist.temp = dist(temp, method = "euclidean")
+
+#geographic distance - Haversine
+d.geo = distm(geo, fun = distHaversine)
+dist.geo = as.dist(d.geo)
+```
+
+Next, I need to convert these distance matrices (multiple columns) into vectors (one column), and then combine these matrices into one new data frame *mat* 
+
+```
+aa = as.vector(dist.abund)
+tt = as.vector(dist.temp)
+gg = as.vector(dist.geo)
+
+#new data frame with vectorized distance matrices
+mat = data.frame(aa,tt,gg)
+```
+
+Now I'm ready to plot my data: 
+
+```
+#abundance vs temperature
+mm = ggplot(mat, aes(y = aa, x = tt)) + 
+geom_point(size = 3, alpha = 0.5) + 
+labs(x = "Difference in Temperature (C)", y = "Bray-Curtis Dissimilarity") + 
+theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+panel.background = element_blank(), 
+panel.border = element_rect(fill = NA, colour = "black"))
+mm
+```
+
+```
+#abundance vs geographic distance
+mm = ggplot(mat, aes(y = aa, x = gg/1000)) + 
+geom_point(size = 3, alpha = 0.5) + 
+labs(x = "Physical separation (km)", y = "Bray-Curtis Dissimilarity") + 
+theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+panel.background = element_blank(), 
+panel.border = element_rect(fill = NA, colour = "black"))
+mm
+```
+
+
+```
+mm = ggplot(mat, aes(y = aa, x = tt)) + 
+    geom_point(size = 4, alpha = 0.75, colour = "black",shape = 21, aes(fill = gg/1000)) + 
+    geom_smooth(method = "lm", colour = "black", alpha = 0.2) + 
+    labs(x = "Difference in Temperature (C)", y = "Bray-Curtis Dissimilarity", fill = "Physical Separation (km)") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+           axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+           axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+           panel.background = element_blank(), 
+           panel.border = element_rect(fill = NA, colour = "black"),
+           legend.position = "top",
+           legend.text = element_text(size = 10, face = "bold"),
+           legend.title = element_text(size = 11, face = "bold")) +
+    scale_fill_continuous(high = "navy", low = "skyblue")
+```
+
 
