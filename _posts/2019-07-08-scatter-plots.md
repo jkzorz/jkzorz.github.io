@@ -50,3 +50,31 @@ This is a pretty bare-boned plot with Temperature on the x-axis and the species 
 - *labs* specifies the labels of my axes
 - *theme* specifies all the parameters that contribute to the plot's theme (i.e. text size, plot backgrounds, etc)
 
+*With ggplot2 figures, the best way to save is using **ggsave**:*
+```
+ggsave("Your_plot_name.svg")
+```
+
+**Adding colour**
+
+The previous plot was pretty boring, so let's make things more interesting... One of the most advantageous things about ggplot2 is how easy it is to map extra variables to different aesthetics, like colour, shape, or size.  In the plot below, I want to include information about the sample's *latitude* to my plot, so I map the aesthetic *colour* within *geom_point* to latitude: 
+
+```
+xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
+geom_point(aes(colour = Latitude), size = 4) + 
+labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
+theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+panel.background = element_blank(), 
+panel.border = element_rect(fill = NA, colour = "black"), 
+legend.title = element_text(size =12, face = "bold", colour = "black"),
+legend.text = element_text(size = 10, face = "bold", colour = "black")) +
+scale_colour_continuous(high = "navy", low = "salmon")
+
+xx
+```
+
+
+
+
