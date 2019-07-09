@@ -210,7 +210,7 @@ gg = as.vector(dist.geo)
 mat = data.frame(aa,tt,gg)
 ```
 
-Now I'm ready to plot my data: 
+Now I'm ready to plot my data. First is the pairwise comparison of **community dissimilarity** and **differences in temperature**: 
 
 ```
 #abundance vs temperature
@@ -224,6 +224,12 @@ panel.background = element_blank(),
 panel.border = element_rect(fill = NA, colour = "black"))
 mm
 ```
+![useful image]({{ site.url }}/assets/Scatter_pairwise_abund_temp.png)
+
+In this figure, difference in temperature is along the x axis, while community dissimilarity increases along the y-axis. It's clear that as the difference in temperature between two samples (one pairwise point) increases, so too does the dissimilarity in microbial community structure. This matches the high statistically significant correlation identified in the [Mantel test](https://jkzorz.github.io/2019/07/08/mantel-test.html).
+
+
+Next we plot **community dissimilarity** and **physical separation** of samples. 
 
 ```
 #abundance vs geographic distance
@@ -237,7 +243,13 @@ panel.background = element_blank(),
 panel.border = element_rect(fill = NA, colour = "black"))
 mm
 ```
+![useful image]({{ site.url }}/assets/Scatter_pairwise_abund_geo.png)
 
+Here there doesn't seem to be much of a relationship between how far apart samples are and how different their microbial communities are. This too matches the non-significant result from the [Mantel test](https://jkzorz.github.io/2019/07/08/mantel-test.html).
+
+
+
+Finally, we can also add colour and regression lines to pairwise plots. Here I'm plotting again the the pairwise comparison of **community dissimilarity** and **differences in temperature**, and I'm overlaying the **geographic distance** separating the samples in colour. I've also included my cheat to get points that have filled in colour and are outlined in black, using *shape=21* and *colour="black"* in the *geom_point* parameter.  
 
 ```
 mm = ggplot(mat, aes(y = aa, x = tt)) + 
@@ -256,3 +268,4 @@ mm = ggplot(mat, aes(y = aa, x = tt)) +
 ```
 
 
+![useful image]({{ site.url }}/assets/Scatter_pairwise_abund_temp_fill.png)
