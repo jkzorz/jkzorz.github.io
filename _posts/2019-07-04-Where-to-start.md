@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Where to start?"
-date: 2019-07-04
+date: 2019-07-10
 ---
 
 
