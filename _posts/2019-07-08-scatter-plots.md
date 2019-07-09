@@ -75,6 +75,64 @@ scale_colour_continuous(high = "navy", low = "salmon")
 xx
 ```
 
+![useful image]({{ site.url }}/assets/Scatter_colour.png)
 
+
+Now the plot is a bit more exciting. Samples at lower latitudes are pink in colour, while samples at higher latitudes are navy in colour. 
+
+
+**Adding a regression**
+
+It's obvious that there is a relationship between this species and temperature.  To showcase this better, we can add a regression line using *geom_smooth*. Because the relationship looks linear, I'll use *method="lm"* (for linear model)
+
+```
+xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
+ geom_smooth(method = "lm", alpha = 0.2, colour = "black") + geom_point(aes(colour = Latitude), size = 4) +
+labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
+theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+panel.background = element_blank(), 
+panel.border = element_rect(fill = NA, colour = "black"), 
+legend.title = element_text(size =12, face = "bold", colour = "black"),
+legend.text = element_text(size = 10, face = "bold", colour = "black")) +
+scale_colour_continuous(high = "navy", low = "salmon")
+
+xx
+```
+![useful image]({{ site.url }}/assets/Scatter_colour_lm.png)
+
+
+*FYI: to statistically support this relationship, perform a linear regression in R to get the R2 and p values*:
+
+```
+lm = lm(df$Temperature~df$Pelagibacteraceae.OTU_307744)
+summary(lm)
+```
+The output of this shows the relationship is highly statistically significant (**Adjusted R-squared value: 0.823, p value <<<< 0.05**): 
+
+```
+Call:
+lm(formula = df$Temperature ~ df$Pelagibacteraceae.OTU_307744)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.2053 -0.9336 -0.5215  0.5028  3.8232 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                       0.4082     0.4476   0.912    0.372    
+df$Pelagibacteraceae.OTU_307744   1.3008     0.1280  10.165 1.45e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.634 on 21 degrees of freedom
+Multiple R-squared:  0.8311,	Adjusted R-squared:  0.823 
+F-statistic: 103.3 on 1 and 21 DF,  p-value: 1.454e-09
+```
+
+**Faceting plots**
+
+Cool, now we have colour and regressions in our scatter plot, but we're still only looking at the relationship of one environmental variable with one species.  What if we wanted to cover a bit more ground, and look at this relationship over multiple species? This is where **faceting** comes in handy. 
 
 
