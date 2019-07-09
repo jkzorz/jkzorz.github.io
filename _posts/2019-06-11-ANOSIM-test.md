@@ -15,7 +15,7 @@ date: 2019-06-11
   </ul>
  
 
-The first test that I'll talk about is the [ANOSIM test](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim). The ANOSIM test is similar to an ANOVA hypothesis test, but it uses a dissimilarity matrix as input instead of raw data. It is also non-parametric, meaning it doesn't assume much about your data (like normal distribution etc), so it's a good bet for often-skewed microbial abundance data. As a non-parametric test, ANOSIM uses ranked dissimilarities instead of actual distances, and in this way it's a very nice complement to an [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). The main point of the ANOSIM test is to determine if the differences between two or more groups is significant. In our case, it is used to test if there is a significant difference in the microbial community composition of groups of samples. 
+The [ANOSIM test](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim) is similar to an ANOVA hypothesis test, but it uses a dissimilarity matrix as input instead of raw data. It is also non-parametric, meaning it doesn't assume much about your data (like normal distribution etc), so it's a good bet for often-skewed microbial abundance data. As a non-parametric test, ANOSIM uses ranked dissimilarities instead of actual distances, and in this way it's a very nice complement to an [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). The main point of the ANOSIM test is to determine if the differences between two or more groups is significant. In our case, it is used to test if there is a significant difference in the microbial community composition of groups of samples. 
 
 Some examples where you can use an ANOSIM test to test for differences in microbial communities between: 
 <ul> 
@@ -92,4 +92,10 @@ Permutation: free
 Number of permutations: 9999
 ```
 This time, my Significance value is 0.001, and my R value is 0.941. My significance value is much lower than 0.05, and my R value is close to 1. Therefore, there is a strong, statistically significant difference in my microbial communities based on the grouping "Time".  
+
+Reporting these statistics is sufficient for an ANOSIM test. If you want to dig deeper however, and find out which species are found statistically more abundantly in one group versus another, try **[Indicator species analysis](https://jkzorz.github.io/2019/07/02/Indicator-species-analysis.html)**
+
+
+
+
 
