@@ -41,7 +41,7 @@ Keep the order of samples from your excel sheet:
 ```
 pcm$Sample <- factor(pcm$Sample,levels=unique(pcm$Sample))
 ```
-Plot it! For a bubble plot, you are using the geom_point and scaling the size to your value (relative abundance) variable. 
+Plot it! For a bubble plot, you are using *geom_point* and scaling the size to your value (relative abundance) column. 
 
 ```
 xx = ggplot(pcm, aes(x = Sample, y = variable)) + 
@@ -81,7 +81,7 @@ pc = read.csv("Your_csv_file_larger.csv", header = TRUE)
 ```
 ![useful image]({{ site.url }}/assets/Wide_extra_variable_excel.png)
 
-You can see that I've added a column with a discrete variable called "Time", with the options of either "early" or "late". Discrete and continuous variables come up a lot in R so it's important to understand what they mean: 
+You can see that I've added a column with a discrete variable called "Time", with the options of either "early" or "late". Discrete and continuous variables come up a lot in *ggplot2* so it's important to understand what they mean: 
 
 <ul>
   <li><b> Discrete: </b> Data that can only take particular, distinct values. They can be numerical or they can be categorical. 
@@ -96,7 +96,7 @@ You can see that I've added a column with a discrete variable called "Time", wit
   </li>
   </ul>
   
-  It gets a bit confusing because you can often determine how you would like to define a numerical variable (e.g. years), particularly for the purposes of visualization, but I won't get into that now. For our purposes the variable "Time" is <b> Discrete </b> 
+  It gets a bit confusing because you can often determine if you would like to define a numerical variable (e.g. years) as discrete or continuous, particularly for the purposes of visualization, but I won't get into that now. For our purposes the variable "Time" is <b> Discrete </b> 
  
  
  Now I will convert the "wide" format to a "long" format. This time because I have an extra variable that is not a species/OTU column, I include this name in the "id" bracket as well:
