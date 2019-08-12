@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "R Functions for automated data formatting and analysis using MetaAmp output"
-date: 2019-08-12
+date: 2019-08-11
 ---
 
 **[MetaAmp](http://ebg.ucalgary.ca/metaamp/)** is an easy on-line pipeline used to analyze phylogenetic marker gene datasets (i.e. 16S/18S rRNA). Below are three R functions that allow the user to perform basic data manipulation and cleaning using the OTU table output from MetaAmp.  
@@ -36,9 +36,9 @@ Below is the code for the three functions. Briefly, each function does the follo
    - Only keeps OTUs that reach a certain user-defined abundance in at least one sample (optional)
 3. **rrna_taxa**: filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria)
 
-##The code: 
+## The code: 
 
-###rrna_summary 
+### rrna_summary 
 *Works like a pivot table in excel, and summarizes OTUs at the user defined taxonomic level. Outputs this summary as a csv file in your working directory. The csv file will be named based on the taxonomic level you pick (i.e. "Phylum_summary.csv")*
 
 
@@ -85,7 +85,7 @@ This outputs a csv table called "Phylum_summary.csv" which has all OTU abundance
 *rrna_summary phylum excel*
 
 
-###rrna_pc
+### rrna_pc
 
 *This function is particularly helpful for formatting OTUs for other analyses.  It will put your data in the format that is used as an input for all other [tutorials on these pages](https://jkzorz.github.io/blog/). It renames your OTUs to include their OTUID number and the highest level of taxonomy that could be assigned. There is also the option of including a cutoff value that will get rid of OTUs that don't reach a certain percent of relative abundance in at least one sample.*
 
