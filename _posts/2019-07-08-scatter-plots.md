@@ -266,6 +266,8 @@ mm = ggplot(mat, aes(y = aa, x = tt)) +
            legend.text = element_text(size = 10, face = "bold"),
            legend.title = element_text(size = 11, face = "bold")) +
     scale_fill_continuous(high = "navy", low = "skyblue")
+    
+mm
 ```
 
 
