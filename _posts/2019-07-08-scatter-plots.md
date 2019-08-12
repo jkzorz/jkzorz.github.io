@@ -29,13 +29,13 @@ For my first plot, I am interested in observing the relationship between tempera
 
 ```
 xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
-geom_point(size = 4) + 
-labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"))
+    geom_point(size = 4) + 
+    labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"))
 xx 
 ```
 
@@ -61,16 +61,16 @@ The previous plot was pretty boring, so let's make things more interesting... On
 
 ```
 xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
-geom_point(aes(colour = Latitude), size = 4) + 
-labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"), 
-legend.title = element_text(size =12, face = "bold", colour = "black"),
-legend.text = element_text(size = 10, face = "bold", colour = "black")) +
-scale_colour_continuous(high = "navy", low = "salmon")
+    geom_point(aes(colour = Latitude), size = 4) + 
+    labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"), 
+        legend.title = element_text(size =12, face = "bold", colour = "black"),
+        legend.text = element_text(size = 10, face = "bold", colour = "black")) +
+    scale_colour_continuous(high = "navy", low = "salmon")
 
 xx
 ```
@@ -87,17 +87,17 @@ It's obvious that there is a relationship between this species and temperature. 
 
 ```
 xx = ggplot(df, aes(x = Temperature, y = Pelagibacteraceae.OTU_307744)) + 
- geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
- geom_point(aes(colour = Latitude), size = 4) +
-labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"), 
-legend.title = element_text(size =12, face = "bold", colour = "black"),
-legend.text = element_text(size = 10, face = "bold", colour = "black")) +
-scale_colour_continuous(high = "navy", low = "salmon")
+    geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
+    geom_point(aes(colour = Latitude), size = 4) +
+    labs(y = "Pelagibacteraceae (OTU 307744) (%)", x = "Temperature (C)") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"), 
+        legend.title = element_text(size =12, face = "bold", colour = "black"),
+        legend.text = element_text(size = 10, face = "bold", colour = "black")) +
+    scale_colour_continuous(high = "navy", low = "salmon")
 
 xx
 ```
@@ -154,20 +154,21 @@ Now my data is in the right format, and I can plot it in ggplot2 using the **fac
 
 ```
 xx = ggplot(otus_melt, aes(x = Temperature, y = value)) + 
-facet_wrap(.~variable, scales = "free_y") +
- geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
- geom_point(aes(colour = Latitude), size = 4) +
-labs(y = "Relative Abundance (%)", x = "Temperature (C)") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 10, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"), 
-legend.title = element_text(size =12, face = "bold", colour = "black"),
-legend.text = element_text(size = 10, face = "bold", colour = "black"), 
-legend.position = "top", strip.background = element_rect(fill = "grey90", colour = "black"),
-strip.text = element_text(size = 9, face = "bold")) +
-scale_colour_continuous(high = "navy", low = "salmon")
+    facet_wrap(.~variable, scales = "free_y") +
+    geom_smooth(method = "lm", alpha = 0.2, colour = "black") + 
+    geom_point(aes(colour = Latitude), size = 4) +
+    labs(y = "Relative Abundance (%)", x = "Temperature (C)") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 10, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"), 
+        legend.title = element_text(size =12, face = "bold", colour = "black"),
+        legend.text = element_text(size = 10, face = "bold", colour = "black"), 
+        legend.position = "top", strip.background = element_rect(fill = "grey90", colour = "black"),
+        strip.text = element_text(size = 9, face = "bold")) +
+    scale_colour_continuous(high = "navy", low = "salmon")
+xx
 ```
 
 ![useful image]({{ site.url }}/assets/Scatter_facet.png)
@@ -215,13 +216,13 @@ Now I'm ready to plot my data. First is the pairwise comparison of **community d
 ```
 #abundance vs temperature
 mm = ggplot(mat, aes(y = aa, x = tt)) + 
-geom_point(size = 3, alpha = 0.5) + 
-labs(x = "Difference in Temperature (C)", y = "Bray-Curtis Dissimilarity") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"))
+    geom_point(size = 3, alpha = 0.5) + 
+    labs(x = "Difference in Temperature (C)", y = "Bray-Curtis Dissimilarity") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"))
 mm
 ```
 ![useful image]({{ site.url }}/assets/Scatter_pairwise_abund_temp.png)
@@ -234,13 +235,13 @@ Next we plot **community dissimilarity** and **physical separation** of samples.
 ```
 #abundance vs geographic distance
 mm = ggplot(mat, aes(y = aa, x = gg/1000)) + 
-geom_point(size = 3, alpha = 0.5) + 
-labs(x = "Physical separation (km)", y = "Bray-Curtis Dissimilarity") + 
-theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
-axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
-axis.title= element_text(face = "bold", size = 14, colour = "black"), 
-panel.background = element_blank(), 
-panel.border = element_rect(fill = NA, colour = "black"))
+    geom_point(size = 3, alpha = 0.5) + 
+    labs(x = "Physical separation (km)", y = "Bray-Curtis Dissimilarity") + 
+    theme( axis.text.x = element_text(face = "bold",colour = "black", size = 12), 
+        axis.text.y = element_text(face = "bold", size = 11, colour = "black"), 
+        axis.title= element_text(face = "bold", size = 14, colour = "black"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(fill = NA, colour = "black"))
 mm
 ```
 ![useful image]({{ site.url }}/assets/Scatter_pairwise_abund_geo.png)
