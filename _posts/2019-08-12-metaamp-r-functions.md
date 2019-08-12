@@ -85,3 +85,44 @@ This outputs a csv table called "Phylum_summary.csv" which has all OTU abundance
 *rrna_summary phylum excel*
 
 
+###rrna_pc
+
+*This function is particularly helpful for formatting OTUs for other analyses.  It will put your data in the format that is used as an input for all other [tutorials on these pages](https://jkzorz.github.io/blog/). It renames your OTUs to include their OTUID number and the highest level of taxonomy that could be assigned. There is also the option of including a cutoff value that will get rid of OTUs that don't reach a certain percent of relative abundance in at least one sample.*
+
+To use the function, first copy and paste the following code into R (ending at last curly bracket) 
+
+```
+rrna_pc = function(df, percent){
+  tax_df2 <- df[,-2]
+  samples <- select(tax_df2, contains("..."))
+  tax_df <- data.frame(OTUID = df$OTUID, samples, Taxonomy = df$Taxonomy)
+  tax_df$New_tax <- tax_df$Taxonomy
+  tax_df$short_tax<- gsub("(.*)\\(.*","\\1",tax_df$New_tax)
+  tax_df$short_tax <- gsub(".*;", "", tax_df$short_tax)
+  tax_df$otu_tax <- paste(tax_df$short_tax, tax_df$OTUID, sep = ":")
+  columns <- ncol(tax_df)
+  top_df <- tax_df[,-c(1,(columns-3):(columns-1))]
+  columns2 <- ncol(top_df)
+  otus <- top_df[,ncol(top_df)]
+  top_dft <- as.data.frame(t(top_df[,-ncol(top_df)]))
+  colnames(top_dft) <- otus
+  if(missing(percent)) {	
+    write.csv(top_dft,  file = "otus.csv")
+    return(head(top_df))
+  } else {
+    top_df$max <- apply(top_df[,1:(columns2-1)], 1, max)
+    top_df2 <- top_df[order(-top_df$max),]
+    top_df3 <- subset(top_df2, max >= percent)
+    top_df4 <- top_df3[,-ncol(top_df3)]
+    otus2 <- top_df4[,ncol(top_df4)]
+    top_dft2 <- as.data.frame(t(top_df4[,-ncol(top_df4)]))
+    colnames(top_dft2) <- otus2
+    quo_perc <- as.character(enquo(percent))
+    quo_perc2 <- quo_perc[2]
+    write.csv(top_dft2,  file = paste(quo_perc2,"pc_otu_subset.csv"))
+    return(head(top_df3))
+  }
+}
+```
+
+
