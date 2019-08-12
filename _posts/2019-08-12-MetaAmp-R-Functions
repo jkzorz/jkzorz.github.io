@@ -36,7 +36,52 @@ Below is the code for the three functions. Briefly, each function does the follo
    - Only keeps OTUs that reach a certain user-defined abundance in at least one sample (optional)
 3. **rrna_taxa**: filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria)
 
+##The code: 
+
+###rrna_summary 
+*Works like a pivot table in excel, and summarizes OTUs at the user defined taxonomic level. Outputs this summary as a csv file in your working directory. The csv file will be named based on the taxonomic level you pick (i.e. "Phylum_summary.csv")*
 
 
+To use the function, first copy and paste the following code into R (ending at last curly bracket) 
+
+```
+rrna_summary = function(df, level){
+  samples <- select(df, contains("..."))
+  tax_df <- data.frame(OTUID = df$OTUID, samples, Taxonomy = df$Taxonomy)
+  tax_df$New_tax <- tax_df$Taxonomy
+  tax_levels <- str_split_fixed(tax_df$New_tax, ";",6)
+  tax_names <- c("Domain", "Phylum", "Class", "Order", "Family", "Genus")
+  colnames(tax_levels) <- tax_names
+  tax_levels2 <- apply(tax_levels, 2, function(y) (gsub( "\\([0-9]*\\)","", y)))
+  tax_levels22 <- apply(tax_levels2, 2, function(y) (gsub( ";","", y)))
+  tax_levels3 <- data.frame(tax_df, tax_levels22)
+  quo_level <- enquo(level)
+  quo_name <- as.character(enquo(level))
+  quo_name2<- quo_name[2]
+  level_sum <- select(tax_levels3, !!quo_level)
+  tax_level4 <- data.frame(level_sum, samples) 
+  tax_level4$Taxa <- tax_level4[,1]
+  sum_levels <- aggregate(samples, by=list(tax_level4$Taxa), FUN = sum)
+  colnames(sum_levels)[1] <- "Taxa"
+  write.csv(sum_levels, file = paste(quo_name2,"_summary.csv"))
+  return(head(sum_levels))
+}
+
+```
+You have now loaded a function called *rrna_summary* into R. 
+
+Next, supply the parameters needed for the rrna_summary function to run:
+- rrna_summary(df, level)
+- **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
+- **level** is the taxonomic level that you want to summarize. ***Options are: Phylum, Class, Order, Family, Genus (case sensitive)*** 
+
+Here is an example: 
+```
+rrna_summary(df, Phylum)
+```
+
+This outputs a csv table called "Phylum_summary.csv" which has all OTU abundances summed into their respective phyla.  Here is what it looks like in excel: 
+
+*rrna_summary phylum excel*
 
 
