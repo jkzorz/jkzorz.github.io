@@ -144,4 +144,46 @@ This outputs a csv file called "1 pc_otu_subset.csv". The order of the OTU colum
 
 *rrna_summary phylum excel*
 
+### rrna_taxa
 
+*Filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria). Useful if you are only interested in a particular taxonomic group. The function returns a csv file that contains all the OTUs belonging to your taxa of interest from your dataset. The end columns also contain all other taxonomic info related to that OTU, including a column called "otu_tax" which contains the OTUID along with the highest level of taxonomy that could be assigned to that OTU. Function is case sensitive*
+
+To use the function, first copy and paste the following code into R (ending at last curly bracket) 
+```
+rrna_taxa = function(df, level, taxa){
+  samples <- select(df, contains("..."))
+  tax_df <- data.frame(OTUID = df$OTUID, samples, Taxonomy = df$Taxonomy)
+  tax_df$New_tax <- tax_df$Taxonomy
+  tax_df$short_tax<- gsub("(.*)\\(.*","\\1",tax_df$New_tax)
+  tax_df$short_tax <- gsub(".*;", "", tax_df$short_tax)
+  tax_df$otu_tax <- paste(tax_df$short_tax, tax_df$OTUID, sep = ":")
+  tax_levels <- str_split_fixed(tax_df$New_tax, ";",6)
+  tax_names <- c("Domain", "Phylum", "Class", "Order", "Family", "Genus")
+  colnames(tax_levels) <- tax_names
+  tax_levels2 <- apply(tax_levels, 2, function(y) (gsub( "\\([0-9]*\\)","", y)))
+  tax_levels3 <- data.frame(tax_df, tax_levels2)
+  quo_level <- enquo(level)
+  quo_taxa <- as.character(enquo(taxa))
+  quo_taxa2 <- quo_taxa[2]
+  subset <- filter(tax_levels3, !!quo_level == quo_taxa2)
+  write.csv(subset, file = paste(quo_taxa2,"_subset.csv"))
+  return(head(subset))
+}
+```
+
+You have now loaded the function called *rrna_taxa* into R. 
+
+Next, supply the parameters needed for the *rrna_taxa* function to run:
+- rrna_taxa(df, level, taxa)
+- **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
+- **level** is the taxonomic level of interest. ***Options are: Phylum, Class, Order, Family, Genus (case sensitive)***  
+- **taxa** is the taxa of interest from the taxonomic level. The taxa name must be the same as it is in the MetaAmp output. 
+
+Here is an example: 
+```
+rrna_pc(df, Phylum, Cyanobacteria)
+```
+
+This outputs a csv file called "Cyanobacteria_subset.csv". The csv file contains all OTUs that were assigned to the the Phylum Cyanobacteria. The last few columns contain all taxonomic information. Here is what it looks like in excel: 
+
+*rrna_taxa excel*
