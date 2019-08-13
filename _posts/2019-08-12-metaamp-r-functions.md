@@ -4,7 +4,7 @@ title: "R functions for automated data manipulation using MetaAmp OTU table"
 date: 2019-08-11
 ---
 
-**[MetaAmp](http://ebg.ucalgary.ca/metaamp/)** is an easy on-line pipeline used to analyze phylogenetic marker gene datasets (i.e. 16S/18S rRNA). Below are three R functions that allow the user to perform basic data manipulation and cleaning using the OTU table output from MetaAmp.  
+**[MetaAmp](http://ebg.ucalgary.ca/metaamp/)** is an easy on-line pipeline used to analyze phylogenetic marker gene datasets (i.e. 16S/18S rRNA). Below are three R functions that allow the user to perform basic data manipulation using the OTU table output from MetaAmp.  
 
 **[Read more about MetaAmp here](https://www.frontiersin.org/articles/10.3389/fmicb.2017.01461/full)**
 
@@ -33,9 +33,11 @@ Next, upload your OTU table from the MetaAmp output results folder.  This file s
 df = read.table("METAMP_RUN.OTU-table.taxonomy", header = TRUE)
 ```
 
-This OTU table file looks like this when opened in excel: 
+The OTU table file looks like this when opened in excel: 
 
 ![useful image]({{ site.url }}/assets/metaamp_otu_table.png)
+
+In this file, rows are OTUs. The first column is the OTUID number, unique for each OTU. The second column "Total" is the total number of sequences across all samples for that OTU. The next columns are the number of reads for each OTU in each sample (you should have a column here for each sample - in this case there are 4 samples). After these columns, the following columns contain the relative abundance of that OTU for each sample (number of OTU sequences/total sequences for that sample). And finally, the last column contains the taxonomic information for that OTU. 
 
 
 
