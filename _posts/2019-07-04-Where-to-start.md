@@ -7,8 +7,14 @@ date: 2019-08-12
 
 It can be daunting to know where to start with your data analysis once you've received your (likely huge) amplicon sequencing dataset. Below I've divided the R tutorials into categories based on what you may be looking to accomplish: 
 
+## Data Manipulation ##
+- **[R functions](https://jkzorz.github.io/2019/08/11/metaamp-r-functions.html)** for reproducible manipulation of your OTU table data [(MetaAmp output)](http://ebg.ucalgary.ca/metaamp/). Functions include: 
+  - Summarizing OTUs based on taxonomic level (i.e. Phylum)
+  - Renaming, ordering, subsetting and transposing OTU table 
+  - Selecting only the OTUs from certain taxa (i.e. Firmicutes)
 
-<h3>Data Visualization</h3>
+
+## Data Visualization ##
 
   - **[Stacked bar plots](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**: For displaying compositional data (i.e. relative abundance of species) of discrete samples 
   
@@ -23,7 +29,7 @@ It can be daunting to know where to start with your data analysis once you've re
 
 
 
-<h3>Statistical Testing</h3>
+## Statistical Testing ##
 
 Statistics can be a scary word, especially, if you're like me and it's been a long time since you've had anything to do with probability or math. For the most part, I don't think it's necessary to understand all the equations behind the statistics that you do, but I do think it's important to know that you're using the right test for your data, and that you're not making any assumptions about your data that aren't supported.  Again, I find that the [GUSTAME](https://sites.google.com/site/mb3gustame/) website is a fantastic resource for learning about the basics of whatever test you decide to do.  
 
