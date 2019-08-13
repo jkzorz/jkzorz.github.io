@@ -8,12 +8,13 @@ date: 2019-08-11
 
 **[Read more about MetaAmp here](https://www.frontiersin.org/articles/10.3389/fmicb.2017.01461/full)**
 
-**Further below is the code for the three functions. Briefly, each function does the following: ** 
+**Briefly, each function does the following:** 
 1. **rrna_summary**: Works like a pivot table in excel by summarizing OTUs at the user defined taxonomic level 
 2. **rrna_pc**: Prepares data for further analysis in R:
    - Renames OTUs with the OTUID and the highest taxonomic level that could be assigned to the OTU
-   - Orders OTUs based on abundance
+   - Orders OTUs based on maximum abundance
    - Only keeps OTUs that reach a certain user-defined abundance in at least one sample (optional)
+   - Transposes data so that columns are OTUs and rows are samples 
 3. **rrna_taxa**: Filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria)
 
 
@@ -41,7 +42,7 @@ This OTU table file looks like this when opened in excel:
 ## The code: 
 
 ### rrna_summary 
-*Works like a pivot table in excel, and summarizes OTUs at the user defined taxonomic level. Outputs this summary as a csv file in your working directory. The csv file will be named based on the taxonomic level you pick (i.e. "Phylum_summary.csv")*
+*Works like a pivot table in excel by summarizing OTUs at the user defined taxonomic level. Outputs this summary as a csv file in your working directory. The csv file will be named based on the taxonomic level you pick (i.e. "Phylum_summary.csv")*
 
 
 To use the function, first copy and paste the following code into R (ending at last curly bracket) 
@@ -70,9 +71,9 @@ rrna_summary = function(df, level){
 }
 
 ```
-You have now loaded a function called *rrna_summary* into R. 
+You have now loaded the function called *rrna_summary* into R. 
 
-Next, supply the parameters needed for the rrna_summary function to run:
+Next, supply the parameters needed for the *rrna_summary* function to run:
 - rrna_summary(df, level)
 - **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
 - **level** is the taxonomic level that you want to summarize. ***Options are: Phylum, Class, Order, Family, Genus (case sensitive)*** 
@@ -89,7 +90,7 @@ This outputs a csv table called "Phylum_summary.csv" which has all OTU abundance
 
 ### rrna_pc
 
-*This function is particularly helpful for formatting OTUs for other analyses.  It will put your data in the format that is used as an input for all other [tutorials on these pages](https://jkzorz.github.io/blog/). It renames your OTUs to include their OTUID number and the highest level of taxonomy that could be assigned. There is also the option of including a cutoff value that will get rid of OTUs that don't reach a certain percent of relative abundance in at least one sample.*
+*This function is particularly helpful for formatting OTUs for other analyses.  It will put your data in the format that is used as an input for all other [tutorials on these pages](https://jkzorz.github.io/blog/). It renames your OTUs to include their OTUID number and the highest level of taxonomy that could be assigned. There is also the option of including a cutoff value that will get rid of OTUs that don't reach a certain percent of relative abundance in at least one sample. The function outputs a csv file that is named based on the percent value you pick (i.e. 1 pc_otu_subset.csv)*
 
 To use the function, first copy and paste the following code into R (ending at last curly bracket) 
 
@@ -126,5 +127,21 @@ rrna_pc = function(df, percent){
   }
 }
 ```
+
+You have now loaded the function called *rrna_pc* into R. 
+
+Next, supply the parameters needed for the *rrna_pc* function to run:
+- rrna_pc(df, percent)
+- **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
+- **percent** is the minimum relative abundance an OTU must reach in at least one sample to be kept. This parameter is optional and can be left blank to retain all OTUs
+
+Here is an example: 
+```
+rrna_pc(df, 1)
+```
+
+This outputs a csv file called "1 pc_otu_subset.csv". The order of the OTU columns is based on their maximum abundance across the samples. Here is what it looks like in excel: 
+
+*rrna_summary phylum excel*
 
 
