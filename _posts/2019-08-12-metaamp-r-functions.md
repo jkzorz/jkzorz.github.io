@@ -8,6 +8,14 @@ date: 2019-08-11
 
 **[Read more about MetaAmp here](https://www.frontiersin.org/articles/10.3389/fmicb.2017.01461/full)**
 
+**Further below is the code for the three functions. Briefly, each function does the following: ** 
+1. **rrna_summary**: Works like a pivot table in excel by summarizing OTUs at the user defined taxonomic level 
+2. **rrna_pc**: Prepares data for further analysis in R:
+   - Renames OTUs with the OTUID and the highest taxonomic level that could be assigned to the OTU
+   - Orders OTUs based on abundance
+   - Only keeps OTUs that reach a certain user-defined abundance in at least one sample (optional)
+3. **rrna_taxa**: Filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria)
+
 
 To use these functions you first need to make sure that the R packages *dplyr* and *stringr* are installed and loaded: 
 
@@ -24,17 +32,11 @@ Next, upload your OTU table from the MetaAmp output results folder.  This file s
 df = read.table("METAMP_RUN.OTU-table.taxonomy", header = TRUE)
 ```
 
-This is a text format that looks like this when opened in excel: 
+This OTU table file looks like this when opened in excel: 
 
 *image of OTU table**
 
-Below is the code for the three functions. Briefly, each function does the following:  
-1. **rrna_summary**: works like a pivot table in excel, and summarizes OTUs at the user defined taxonomic level 
-2. **rrna_pc**: prepares data for further analysis in R:
-   - Renames OTUs with the OTUID and the highest taxonomic level that could be assigned to the OTU
-   - Orders OTUs based on abundance
-   - Only keeps OTUs that reach a certain user-defined abundance in at least one sample (optional)
-3. **rrna_taxa**: filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria)
+
 
 ## The code: 
 
