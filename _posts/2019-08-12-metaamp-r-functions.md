@@ -76,7 +76,8 @@ rrna_summary = function(df, level){
 You have now loaded the function called *rrna_summary* into R. 
 
 Next, supply the parameters needed for the *rrna_summary* function to run:
-- rrna_summary(df, level)
+*rrna_summary(df, level)*
+
 - **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
 - **level** is the taxonomic level that you want to summarize. ***Options are: Phylum, Class, Order, Family, Genus (case sensitive)*** 
 
@@ -85,7 +86,7 @@ Here is an example:
 rrna_summary(df, Phylum)
 ```
 
-This outputs a csv table called "Phylum_summary.csv" which has all OTU abundances summed into their respective phyla.  Here is what it looks like in excel: 
+This outputs a csv table called "Phylum_summary.csv" which has all OTU abundances summed into their respective phyla. The first row contains the OTUs that couldn't be classified at the Phylum level. Here is what it looks like in excel: 
 
 ![useful image]({{ site.url }}/assets/rrna_summary excel.png)
 
@@ -133,7 +134,8 @@ rrna_pc = function(df, percent){
 You have now loaded the function called *rrna_pc* into R. 
 
 Next, supply the parameters needed for the *rrna_pc* function to run:
-- rrna_pc(df, percent)
+*rrna_pc(df, percent)*
+
 - **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
 - **percent** is the minimum relative abundance an OTU must reach in at least one sample to be kept. This parameter is optional and can be left blank to retain all OTUs
 
@@ -142,13 +144,13 @@ Here is an example:
 rrna_pc(df, 1)
 ```
 
-This outputs a csv file called "1 pc_otu_subset.csv". The order of the OTU columns is based on their maximum abundance across the samples. Here is what it looks like in excel: 
+This outputs a csv file called "1 pc_otu_subset.csv".  Only OTUs that reached 1% relative abundance in at least one sample were kept. The order of the OTU columns (left to right) is based on their maximum abundance across the samples. Here is what it looks like in excel: 
 
 ![useful image]({{ site.url }}/assets/rrna_pc excel.png)
 
 ### rrna_taxa
 
-*Filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria). Useful if you are only interested in a particular taxonomic group. The function returns a csv file that contains all the OTUs belonging to your taxa of interest from your dataset. The end columns also contain all other taxonomic info related to that OTU, including a column called "otu_tax" which contains the OTUID along with the highest level of taxonomy that could be assigned to that OTU. Function is case sensitive*
+*Filters OTU table for a certain taxa, given a taxonomic level (i.e. Phylum) and corresponding taxa name (i.e. Cyanobacteria). Useful if you are only interested in a particular taxonomic group. The function returns a csv file that contains all the OTUs belonging to your taxa of interest from your dataset. The end columns also contain all other taxonomic info related to that OTU, including a column called "otu_tax" which contains the OTUID along with the highest level of taxonomy that could be assigned to that OTU. Function is case sensitive.*
 
 To use the function, first copy and paste the following code into R (ending at last curly bracket) 
 ```
@@ -176,10 +178,11 @@ rrna_taxa = function(df, level, taxa){
 You have now loaded the function called *rrna_taxa* into R. 
 
 Next, supply the parameters needed for the *rrna_taxa* function to run:
-- rrna_taxa(df, level, taxa)
+*rrna_taxa(df, level, taxa)*
+
 - **df** is the name of your data frame object that contains the MetaAmp OTU table you loaded in previously
 - **level** is the taxonomic level of interest. ***Options are: Phylum, Class, Order, Family, Genus (case sensitive)***  
-- **taxa** is the taxa of interest from the taxonomic level. The taxa name must be the same as it is in the MetaAmp output. 
+- **taxa** is the taxa of interest from the taxonomic level. ***The taxa name must be the same as it is in the MetaAmp output.*** 
 
 Here is an example: 
 ```
