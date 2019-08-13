@@ -5,7 +5,7 @@ date: 2019-08-12
 ---
 
 
-It can be daunting to know where to start with your data analysis once you've received your (likely huge) amplicon sequencing dataset. Below I've divided the R tutorials into categories based on what you may be looking to accomplish: 
+It can be daunting to know where to start with your data analysis once you've received your (likely huge) amplicon sequencing dataset. Below I've written brief summaries on the goals of each R tutorial:
 
 ## Data Manipulation ##
 - **[R functions](https://jkzorz.github.io/2019/08/11/metaamp-r-functions.html)** for reproducible manipulation of your OTU table data [(MetaAmp output)](http://ebg.ucalgary.ca/metaamp/). Functions include: 
