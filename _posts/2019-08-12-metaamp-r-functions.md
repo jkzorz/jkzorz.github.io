@@ -35,7 +35,7 @@ df = read.table("METAMP_RUN.OTU-table.taxonomy", header = TRUE)
 
 This OTU table file looks like this when opened in excel: 
 
-*image of OTU table**
+![useful image]({{ site.url }}/assets/metaamp_otu_table.png)
 
 
 
@@ -85,7 +85,7 @@ rrna_summary(df, Phylum)
 
 This outputs a csv table called "Phylum_summary.csv" which has all OTU abundances summed into their respective phyla.  Here is what it looks like in excel: 
 
-*rrna_summary phylum excel*
+![useful image]({{ site.url }}/assets/rrna_summary excel.png)
 
 
 ### rrna_pc
@@ -142,7 +142,7 @@ rrna_pc(df, 1)
 
 This outputs a csv file called "1 pc_otu_subset.csv". The order of the OTU columns is based on their maximum abundance across the samples. Here is what it looks like in excel: 
 
-*rrna_summary phylum excel*
+![useful image]({{ site.url }}/assets/rrna_pc excel.png)
 
 ### rrna_taxa
 
@@ -186,4 +186,4 @@ rrna_pc(df, Phylum, Cyanobacteria)
 
 This outputs a csv file called "Cyanobacteria_subset.csv". The csv file contains all OTUs that were assigned to the the Phylum Cyanobacteria. The last few columns contain all taxonomic information. Here is what it looks like in excel: 
 
-*rrna_taxa excel*
+![useful image]({{ site.url }}/assets/rrna_taxa excel.png)
