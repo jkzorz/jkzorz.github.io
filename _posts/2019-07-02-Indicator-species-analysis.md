@@ -51,7 +51,7 @@ The parameters for <b>multipatt</b> are as follows:
   <li>the number of permutations used in the statistical test: <i> control = how(nperm=9999)</i></li>  
  </ul>
 
-I almost exclusively use the <i>"r.g"</i> function because it takes abundance information, rather than solely presence/absence information, into account when calculating significance.  The stat value for the "r.g" function in the indicator species test is a "point biserial correlation coefficient", which measures the correlation betweeen two binary vectors ([learn more about the indicator species method here](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf)). Depending on your computing power, 9999 permutations might be too many. Feel free to decrease this number. 
+The statistic value for the *"r.g"* function in the indicator species test is a "point biserial correlation coefficient", which measures the correlation betweeen two binary vectors ([learn more about the indicator species method here](https://cran.r-project.org/web/packages/indicspecies/vignettes/indicspeciesTutorial.pdf)). Depending on your computing power, 9999 permutations might be too many. Feel free to decrease this number. 
 
 To view the results: 
 
