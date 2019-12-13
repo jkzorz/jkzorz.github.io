@@ -15,9 +15,9 @@ date: 2019-06-11
   </ul>
  
 
-The [ANOSIM test](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim) is similar to an ANOVA hypothesis test, but it uses a dissimilarity matrix as input instead of raw data. It is also non-parametric, meaning it doesn't assume much about your data (like normal distribution etc), so it's a good bet for often-skewed microbial abundance data. As a non-parametric test, ANOSIM uses ranked dissimilarities instead of actual distances, and in this way it's a very nice complement to an [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). The main point of the ANOSIM test is to determine if the differences between two or more groups is significant. In our case, it is used to test if there is a significant difference in the microbial community composition of groups of samples. 
+The [ANOSIM test](https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim) is similar to an ANOVA hypothesis test, but it uses a dissimilarity matrix as input instead of raw data. It is also non-parametric, meaning it doesn't assume much about your data (like normal distribution etc), so it's a good bet for often-skewed microbial abundance data. As a non-parametric test, ANOSIM uses ranked dissimilarities instead of actual distances, and in this way it's a very nice complement to an [NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html). The main point of the ANOSIM test is to determine if the differences between two or more groups are significant. In our case, it is used to test if there is a significant difference in the microbial community composition of groups of samples. 
 
-Some examples where you can use an ANOSIM test to test for differences in microbial communities between: 
+Here are some examples of sample groupings where an ANOSIM test would be appropriate: 
 <ul> 
   <li>Healthy vs sick individuals </li>
   <li>Different sampling environments</li>
@@ -36,11 +36,11 @@ pc = read.csv("Your_OTU_table.csv", header= TRUE)
 
 ![useful image]({{ site.url }}/assets/NMDS_table_excel.png)
 
-As a reminder, this is the NMDS figure we made in this [tutorial](https://jkzorz.github.io/2019/06/06/NMDS.html). I will be checking statistical significance of the groupings of "Time" and "Type" below. 
+As a reminder, this is the NMDS figure we made in this [tutorial](https://jkzorz.github.io/2019/06/06/NMDS.html). I will be checking the statistical significance of the groupings of "Time" and "Type" below. 
 
 ![useful image]({{ site.url }}/assets/NMDS.png)
 
-Just like in the NMDS code, we need to make a data frame with just our abundance information. The first three columns of my data have information about my samples, so my abundance data goes from column 4 until the end. I then need to turn my data frame into a matrix.  
+Just like in the NMDS code, we need to make a data frame with only our abundance information. The first three columns of my data have information about my samples, so my abundance data goes from column 4 until the end. I then need to turn my data frame into a matrix.  
 
 ```
 #make community matrix - extract columns with abundance information, turn data frame into matrix
@@ -93,7 +93,7 @@ Number of permutations: 9999
 ```
 This time, my Significance value is 0.001, and my R value is 0.941. My significance value is much lower than 0.05, and my R value is close to 1. Therefore, there is a strong, statistically significant difference in my microbial communities based on the grouping "Time".  
 
-Reporting these statistics is sufficient for an ANOSIM test. If you want to dig deeper however, and find out which species are found statistically more abundantly in one group versus another, try **[Indicator species analysis](https://jkzorz.github.io/2019/07/02/Indicator-species-analysis.html)**
+Reporting these statistics is sufficient for an ANOSIM test. If you want to dig deeper however, and find out which species are found statistically more abundantly in one group versus another, try **[Indicator species analysis](https://jkzorz.github.io/2019/07/02/Indicator-species-analysis.html)** Also if you have a continuous variable, rather than a categorical grouping variable, and you want to see how your microbial community covaries with the continuous variable, try a **[Mantel Test](https://jkzorz.github.io/2019/07/08/mantel-test.html)**
 
 
 
