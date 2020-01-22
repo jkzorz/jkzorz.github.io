@@ -114,7 +114,7 @@ Now we plot it:
 ```
 xx = ggplot(pcm, aes(x = Sample, y = variable)) + 
       geom_point(aes(size = value, fill = Time), alpha = 0.75, shape = 21) + 
-       scale_size_continuous(limits = c(0.000001, 80), range = c(1,10), breaks = c(1,10,50,75)) + 
+       scale_size_continuous(limits = c(0.000001, 100), range = c(1,10), breaks = c(1,10,50,75)) + 
        labs( x= "", y = "", size = "Relative Abundance (%)", fill = "Time")  + 
        theme(legend.key=element_blank(), 
        axis.text.x = element_text(colour = "black", size = 12, face = "bold", angle = 90, vjust = 0.3, hjust = 1), 
