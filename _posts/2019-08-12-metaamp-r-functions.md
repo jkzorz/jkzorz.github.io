@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "R functions for automated data manipulation using MetaAmp"
+title: "R functions to automatically manipulate data from MetaAmp"
 date: 2019-08-11
 ---
 
