@@ -22,7 +22,7 @@ bin = read.csv("your_data.csv", header = TRUE)
 
 ![useful image]({{ site.url }}/assets/alluvial_excel.png)
 
-Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained here](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**. Below in the code, you will want to substitute in the names of all your sample descriptor columns, basically, all the columns that do not contain OTU/species abundance information. 
+Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained in this tutorial](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**. Below in the code, you will want to substitute in the names of all your sample descriptor columns. Basically, all the columns that do not contain OTU/species abundance information. 
 
 ```
 bmm = melt(bin, id = c("Sample", "Origin", "Day", "Day_num", "Time"))
@@ -36,13 +36,13 @@ I have 8 species in this data, so I need 8 colours
 colours = c("#418C6D", "#B11776","#F795A4", "#166BAF", "#F5D79E", "#AF794D", "#9C9CAF", "#1B1A54")
 ```
 
-The next bit of code keeps the "Day" variable in the same order as the excel sheet. It's a bit of a workaround to an R default, where the levels of a variable are automatically arranged alphabetically. In this case, Day10 comes before Day2 alphabetically, which obviously isn't what we want. 
+The next bit of code is a workaround to an R default. In R the levels of a variable are automatically arranged alphabetically. Thus, in this case, Day 10 would come before Day 2 alphabetically which doesn't make chronological sense. The following code keeps the "Day" variable in the same order as the excel sheet. You can substitute all instances of "Day" in the code for all instances of any variable you want to keep in the same order as your original data. 
 
 ```
 bmm$Day <- factor(bmm$Day,levels=unique(bmm$Day))
 ```
 
-The following code plots the alluvial figure. *geom_alluvium* specifies that we want to add the alluvium layer to the figure. The alluvium (plural: alluvia) are what is linked across the multiple time points or conditions. In this case the alluvia will be the "variable" column, which contains the OTUs/species from the original data. 
+The following code plots the alluvial figure. *geom_alluvium* specifies that we want to add the alluvium layer to the figure. The alluvium (plural: alluvia) is the "ribbon" that is linked across the multiple time points or conditions. In this case the alluvia will be the "variable" column, which contains the OTUs/species from the original data. 
 
 ```
  xx = ggplot(bmm, aes( x = Day, y = value, alluvium = variable)) + 
@@ -62,6 +62,9 @@ xx
 
 
 ![useful image]({{ site.url }}/assets/Alluvial_bins_bm_4pc.png)
+
+
+You can see clearly from this figure how the species are changing over the time series. The dominant species of Days 0-4, C1, becomes nearly non-existant by Day 10, while P1 and other species become more abundant.   
 
 Save with ggsave:
 
