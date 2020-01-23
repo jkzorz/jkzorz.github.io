@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "R functions for automated data manipulation using MetaAmp OTU table"
+title: "R functions for automated data manipulation using MetaAmp"
 date: 2019-08-11
 ---
 
