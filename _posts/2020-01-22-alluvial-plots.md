@@ -55,7 +55,7 @@ The following code plots the alluvial figure. *geom_alluvium* specifies that we 
 	axis.title.y = element_text(colour = "black", face = "bold", size = 14), 
 	panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2), 
 	legend.text = element_text(size = 10, face = "bold")) + 
-	scale_fill_manual(values = colours))
+	scale_fill_manual(values = colours)
 
 xx
 ```
