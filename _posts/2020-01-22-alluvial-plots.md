@@ -22,13 +22,13 @@ bin = read.csv("your_data.csv", header = TRUE)
 
 ![useful image]({{ site.url }}/assets/alluvial_excel.png)
 
-Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained here](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html). **
+Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained here](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**
 
 ```
 bmm = melt(bm, id = c("Sample", "Origin", "Day", "Day_num", "Time"))
 ```
 
-Choose your colours for the figure. The following colours are written in hex code, which is a way to represent colours in computer language. [You can also choose from a range of colours that are built into R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), but hex code will give you more flexibility. There are many colour scheme generators online that will also give you colours in hex code (i.e. ([https://coolors.co/app]))  
+Choose your colours for the figure. The following colours are written in hex code, which is a way to represent colours in computer language. [You can also choose from a range of colours that are built into R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), but hex code will give you more flexibility. There are many colour scheme generators online that will also give you colours in hex code (i.e. [https://coolors.co/app](https://coolors.co/app))  
 
 I have 8 species in this data, so I need 8 colours 
 
