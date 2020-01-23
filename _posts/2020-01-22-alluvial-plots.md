@@ -25,7 +25,7 @@ bin = read.csv("your_data.csv", header = TRUE)
 Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained here](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**. Below in the code, you will want to substitute in the names of all your sample descriptor columns, basically, all the columns that do not contain OTU/species abundance information. 
 
 ```
-bmm = melt(bm, id = c("Sample", "Origin", "Day", "Day_num", "Time"))
+bmm = melt(bin, id = c("Sample", "Origin", "Day", "Day_num", "Time"))
 ```
 
 Choose your colours for the figure. The following colours are written in hex code, which is a way to represent colours in computer language. [You can also choose from a range of colours that are built into R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), but hex code will give you more flexibility. There are many colour scheme generators online that will also give you colours in hex code (i.e. [https://coolors.co/app](https://coolors.co/app))  
