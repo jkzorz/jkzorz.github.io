@@ -49,7 +49,7 @@ con = read.csv("Data_table.csv", header = TRUE)
 ```
 
 
-If your data is already in the "long" format. Lucky you! Skip this next step and go straight to making your contour plot. If your data is in the "wide" format, you'll need to convert it to the long format:
+If your data is already in the "long" format. Lucky you! Skip the next two blocks of code and go straight to making your contour plot. If your data is in the "wide" format, you'll need to convert it to the long format:
 
 
 ```
