@@ -9,12 +9,12 @@ Contour plots are used to show 3-dimensional data on a 2-dimensional surface. Th
 **Examples of situations when contour plots are appropriate:**
 - *Maps:* 
   - x: longitude, y: latitude, z: elevation
-- *Oceanography:
+- *Oceanography:*
   - x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc
 - *Biology:* 
   - x: longitude, y: latitude, z: species abundance 
 - *Modeling:*
- - x: parameter1, y: parameter2, z: parameter 3
+  - x: parameter1, y: parameter2, z: parameter 3
   
  In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives Productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here I want to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
 
@@ -68,7 +68,7 @@ Now finally, the data is in the appropriate format for plotting a contour plot. 
 
 ```
 gg = ggplot(conm, aes(x = variable, y = (Biomass)*1000)) + 
-  geom_raster(aes(fill = value)) + scale_y_continuous(expand = c(0,0))+ 
+  geom_raster(aes(fill = value)) + 
   geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5) + 
   scale_x_continuous(expand = c(0,0)) + 
   labs(x = "Filtered light intensity (umol photons/m2/s)", 
@@ -80,12 +80,13 @@ gg = ggplot(conm, aes(x = variable, y = (Biomass)*1000)) +
   axis.title = element_text(size = 12, face = "bold"), 
   legend.text = element_text(size = 11), legend.key = element_blank()) + 
   scale_fill_continuous(low = "#BFE1B0", high = "#137177", limits = c(0, 0.7)) + 
+  scale_y_continuous(expand = c(0,0))+
   geom_text_contour(aes(z = value),  colour = "white" )
 
 gg
 ```
 
-![useful image]({{ site.url }}/assets/contour_plot2.png)
+![useful image]({{ site.url }}/assets/contour_plot3.png)
 
 
 
