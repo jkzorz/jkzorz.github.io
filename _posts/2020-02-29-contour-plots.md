@@ -16,7 +16,7 @@ Contour plots are used to show 3-dimensional data on a 2-dimensional surface. Th
 - *Modeling:*
   - x: parameter1, y: parameter2, z: parameter 3
   
- In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives Productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here I want to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
+ In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here, I am using the contour plot to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
 
 To make the contour plot we have to first load the required packages: 
 
@@ -28,7 +28,7 @@ library(reshape2)
 library(metR)
 ```
 
-ggplot2 is used for plotting the underlying coloured surface, reshape2 is used for manipulating the data, and metR is an extension to ggplot2 that adds the contour lines and numbers. 
+ggplot2 is used for plotting the underlying coloured surface, reshape2 is used for manipulating the data, and metR is an extension to ggplot2 that adds the contour lines and labels. 
 
 Next you have to read in your data. Ideally your data will be in the "long" format already, where you will only have one column for each of your three variables (x, y, and z). See below:
 
@@ -36,7 +36,7 @@ Next you have to read in your data. Ideally your data will be in the "long" form
 ![useful image]({{ site.url }}/assets/long_format_printscreen.png)
 
 
-However, you may have it in the "wide" format like the following matrix, with your row names as your x variables, your column names as your y variables (or vice versa), and the cells inbetween containing the values in your z variable. See below: 
+However, you may have it in the "wide" format as in the following matrix, with your row names as your x variables, your column names as your y variables (or vice versa), and the cells inbetween containing the values in your z variable. See below: 
 
 
 ![useful image]({{ site.url }}/assets/wide_format_printscreen.png)
@@ -55,7 +55,7 @@ If your data is already in the "long" format. Lucky you! Skip this next step and
 ```
 conm = melt(con, id = "Biomass")
 ```
-In the above code, my first column "Biomass" remains, while all other columns will be converted into a single column (termed "variable"), and all the corresponding values will be placed in a "value" column. 
+In the above code, my first column "Biomass" remains (change this to match the name of the first column of your data set), while all other columns will be converted into a single column (termed "variable"), and all the corresponding values will be placed in a "value" column. 
 
 R doesn't like that I loaded in a dataset that contained column names beginning with numbers and it automatically adds an "X" character to the start of any column names it deems inappropriate (like those beginning with numbers). The code below deletes the "X" character and then tells R that the new "variable" column is numeric (it contains numbers rather than characters). 
 
@@ -67,10 +67,10 @@ conm$variable = as.numeric(conm$variable)
 Now finally, the data is in the appropriate format for plotting a contour plot. The code is a bit long and complicated, see below for explanations on each parameter. 
 
 ```
-gg = ggplot(conm, aes(x = variable, y = (Biomass)*1000)) + 
+gg = ggplot(conm, aes(x = variable, y = Biomass)) + 
   geom_raster(aes(fill = value)) + 
   geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5) + 
-  scale_x_continuous(expand = c(0,0)) + 
+  geom_text_contour(aes(z = value),  colour = "white" ) +
   labs(x = "Filtered light intensity (umol photons/m2/s)", 
       y = "Dry Biomass Concentration (g/L)", 
       fill = "Productivity (umol O2/g biomass/s)") + 
@@ -80,8 +80,8 @@ gg = ggplot(conm, aes(x = variable, y = (Biomass)*1000)) +
   axis.title = element_text(size = 12, face = "bold"), 
   legend.text = element_text(size = 11), legend.key = element_blank()) + 
   scale_fill_continuous(low = "#BFE1B0", high = "#137177", limits = c(0, 0.7)) + 
-  scale_y_continuous(expand = c(0,0))+
-  geom_text_contour(aes(z = value),  colour = "white" )
+  scale_y_continuous(expand = c(0,0)) +
+  scale_x_continuous(expand = c(0,0)) 
 
 gg
 ```
@@ -89,6 +89,13 @@ gg
 ![useful image]({{ site.url }}/assets/contour_plot3.png)
 
 
-
-
+**Code breakdown:**
+-  *gg = ggplot(conm, aes(x = variable, y = Biomass))* : assigns plot to object **gg** and assigns x and y variables
+- *geom_raster(aes(fill = value))* : creates underlying coloured surface according which is filled according to the z variable ("value" in this case)
+- *geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5)* : adds white contour lines to the plo based on the z variable
+- *geom_text_contour(aes(z = value),  colour = "white" )* : labels contour lines with the corresponding numeric values 
+- *labs(x = "Filtered light intensity, ...)* : provides labels for axes and legends
+- *theme(legend.title = element_text...)* : provides specific details on the aesthetics of the plot (font sizes, background colours etc)
+- *scale_fill_continuous(low = "#BFE1B0", high = "#137177", limits = c(0, 0.7))* : gives the **colours** of the fill parameter in hex code. [See more r colour options here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+- *scale_y(x)_continuous(expand = c(0,0))* : prevents the plot from expanding beyond the limits of the y/x axis
 
