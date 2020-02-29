@@ -7,15 +7,25 @@ date: 2020-02-29
 Contour plots are used to show 3-dimensional data on a 2-dimensional surface. The most common example of a contour plot is a topographical map, which shows latitude and longitude on the y and x axis, and elevation overlaid with contours, and sometimes colours on the map surface. Contour plots can be useful in a variety of situations and are powerful tools for visualizing 3 continuous variables. Usually, the x and y variables are continuous predictor variables, and the 3rd contour variable (or Z variable) is dependent on the first two.
 
 **Examples of situations when contour plots are appropriate:**
-- *Maps:* 
-  - x: longitude, y: latitude, z: elevation
-- *Oceanography:* 
-  - x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc
-- *Biology:* 
-  - x: longitude, y: latitude, z: species abundance 
-- *Modeling:* 
-  - x: parameter1, y: parameter2, z: parameter 3
- 
+<ul>
+  <li>*Maps:*</li> 
+  <ul>
+    <li> x: longitude, y: latitude, z: elevation</li>
+  </ul>
+  <li>*Oceanography:*</li> 
+  <ul>
+    <li> x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc</li>
+  </ul>
+  <li>*Biology:* </li>
+  <ul>
+    <li> x: longitude, y: latitude, z: species abundance </li>
+  </ul>
+  <li>*Modeling:* </li>
+  <ul>
+    <li> x: parameter1, y: parameter2, z: parameter 3</li>
+  </ul>
+ </ul>
+  
  In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives Productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here I want to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
 
 To make the contour plot we have to first load the required packages: 
@@ -32,15 +42,15 @@ ggplot2 is used for plotting the underlying coloured surface, reshape2 is used f
 
 Next you have to read in your data. Ideally your data will be in the "long" format already, where you will only have one column for each of your three variables (x, y, and z). See below:
 
-```
-long image
-```
+
+![useful image]({{ site.url }}/assets/long_format_printscreen.png)
+
 
 However, you may have it in the "wide" format like the following matrix, with your row names as your x variables, your column names as your y variables (or vice versa), and the cells inbetween containing the values in your z variable. See below: 
 
-```
-wide image
-```
+
+![useful image]({{ site.url }}/assets/wide_format_printscreen.png)
+
 
 Either way, start by loading in your data table: 
 
@@ -85,10 +95,8 @@ gg = ggplot(conm, aes(x = variable, y = (Biomass)*1000)) +
 gg
 ```
 
+![useful image]({{ site.url }}/assets/contour_plot2.png)
 
-```
-contour image
-```
 
 
 
