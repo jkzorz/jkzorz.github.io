@@ -89,7 +89,7 @@ gg
 ![useful image]({{ site.url }}/assets/contour_plot3.png)
 
 
-**Code breakdown:**
+**Contour plot code breakdown:**
 -  *gg = ggplot(conm, aes(x = variable, y = Biomass))* : assigns plot to object **gg** and assigns x and y variables
 - *geom_raster(aes(fill = value))* : creates underlying coloured surface according which is filled according to the z variable ("value" in this case)
 - *geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5)* : adds white contour lines to the plo based on the z variable
