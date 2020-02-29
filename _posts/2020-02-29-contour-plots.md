@@ -7,24 +7,14 @@ date: 2020-02-29
 Contour plots are used to show 3-dimensional data on a 2-dimensional surface. The most common example of a contour plot is a topographical map, which shows latitude and longitude on the y and x axis, and elevation overlaid with contours, and sometimes colours on the map surface. Contour plots can be useful in a variety of situations and are powerful tools for visualizing 3 continuous variables. Usually, the x and y variables are continuous predictor variables, and the 3rd contour variable (or Z variable) is dependent on the first two.
 
 **Examples of situations when contour plots are appropriate:**
-<ul>
-  <li>*Maps:*</li> 
-  <ul>
-    <li> x: longitude, y: latitude, z: elevation</li>
-  </ul>
-  <li>*Oceanography:*</li> 
-  <ul>
-    <li> x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc</li>
-  </ul>
-  <li>*Biology:* </li>
-  <ul>
-    <li> x: longitude, y: latitude, z: species abundance </li>
-  </ul>
-  <li>*Modeling:* </li>
-  <ul>
-    <li> x: parameter1, y: parameter2, z: parameter 3</li>
-  </ul>
- </ul>
+- *Maps:* 
+  - x: longitude, y: latitude, z: elevation
+- *Oceanography:
+  - x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc
+- *Biology:* 
+  - x: longitude, y: latitude, z: species abundance 
+- *Modeling:*
+ - x: parameter1, y: parameter2, z: parameter 3
   
  In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives Productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here I want to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
 
