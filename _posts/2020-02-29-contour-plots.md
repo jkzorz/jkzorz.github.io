@@ -8,13 +8,13 @@ Contour plots are used to show 3-dimensional data on a 2-dimensional surface. Th
 
 **Examples of situations when contour plots are appropriate:**
 - *Maps:* 
- - x: longitude, y: latitude, z: elevation
+  - x: longitude, y: latitude, z: elevation
 - *Oceanography:* 
- - x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc
+  - x: time/distance/etc, y: depth, z: temperature/salinity/nutrient/etc
 - *Biology:* 
- - x: longitude, y: latitude, z: species abundance 
+  - x: longitude, y: latitude, z: species abundance 
 - *Modeling:* 
- - x: parameter1, y: parameter2, z: parameter 3
+  - x: parameter1, y: parameter2, z: parameter 3
  
  In the following case, I am using a modeling example where I want to show the predictions of a model based on two of the predictor variables. In this case, we have a certain equation/model (the specifics aren't important here) that gives Productivity (z variable) as a function of light intensity (x variable) and biomass concentration (y variable). Here I want to show the productivity (z variable) that can be expected over a range of light intensities (x variable) and biomass concentrations (y variable). 
 
