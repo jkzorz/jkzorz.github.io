@@ -79,7 +79,7 @@ gg = ggplot(conm, aes(x = variable, y = Biomass)) +
   axis.text = element_text(colour = "black", size = 10, face = "bold"), 
   axis.title = element_text(size = 12, face = "bold"), 
   legend.text = element_text(size = 11), legend.key = element_blank()) + 
-  scale_fill_continuous(low = "#BFE1B0", high = "#137177", limits = c(0, 0.7)) + 
+  scale_fill_continuous(low = "#BFE1B0", high = "#137177") + 
   scale_y_continuous(expand = c(0,0)) +
   scale_x_continuous(expand = c(0,0)) 
 
@@ -96,6 +96,6 @@ gg
 - *geom_text_contour(aes(z = value),  colour = "white" )* : labels contour lines with the corresponding numeric values 
 - *labs(x = "Filtered light intensity, ...)* : provides labels for axes and legends
 - *theme(legend.title = element_text...)* : provides specific details on the aesthetics of the plot (font sizes, background colours etc)
-- *scale_fill_continuous(low = "#BFE1B0", high = "#137177", limits = c(0, 0.7))* : gives the **colours** of the fill parameter in hex code. [See more r colour options here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+- *scale_fill_continuous(low = "#BFE1B0", high = "#137177")* : gives the **colours** of the fill parameter in hex code. [See more r colour options here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).  
 - *scale_y(x)_continuous(expand = c(0,0))* : prevents the plot from expanding beyond the limits of the y/x axis
 
