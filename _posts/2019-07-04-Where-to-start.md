@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Where to start?"
-date: 2020-01-23
+date: 2020-03-01
 ---
 
 
@@ -27,6 +27,8 @@ It can be daunting to know where to start with your data analysis once you've re
   - **[Scatter plots](https://jkzorz.github.io/2019/07/09/scatter-plots.html)**: For displaying two continuous variables (i.e. abundance of species 1 vs species 2, or abundance of a species vs temperature, etc) 
   
    - **[Alluvial plots](https://jkzorz.github.io/2020/01/22/alluvial-plots.html)**: For displaying compositional data (i.e. relative abundance of species). Especially useful to show how compositional data changes over a time series, or a set of conditions 
+   
+   - **[Contour plots](https://jkzorz.github.io/2020/02/29/contour-plots.html)**: For displaying three dimensional data in two dimensions (i.e. species abundance over an area, or outcomes of a multivariable model). Ideally used with 3 continuous variables 
 
 
 
