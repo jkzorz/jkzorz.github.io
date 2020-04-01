@@ -4,7 +4,7 @@ title: "Contour Plots in R"
 date: 2020-02-29
 ---
 
-Contour plots are used to show 3-dimensional data on a 2-dimensional surface. The most common example of a contour plot is a topographical map, which shows latitude and longitude on the y and x axis, and elevation overlaid with contours, and sometimes colours on the map surface. Contour plots can be useful in a variety of situations and are powerful tools for visualizing 3 continuous variables. Usually, the x and y variables are continuous predictor variables, and the 3rd contour variable (or Z variable) is dependent on the first two.
+Contour plots are used to show 3-dimensional data on a 2-dimensional surface. The most common example of a contour plot is a topographical map, which shows latitude and longitude on the y and x axis, and elevation overlaid with contours. Colours can also be used on the map surface to further highlight the contours. Contour plots can be useful in a variety of situations and are powerful tools for visualizing 3 continuous variables. Usually, the x and y variables are continuous predictor variables, and the 3rd contour variable (or Z variable) is dependent on the first two.
 
 **Examples of situations when contour plots are appropriate:**
 - *Maps:* 
@@ -36,7 +36,7 @@ Next you have to read in your data. Ideally your data will be in the "long" form
 ![useful image]({{ site.url }}/assets/long_format_printscreen.png)
 
 
-However, you may have it in the "wide" format as in the following matrix, with your row names as your x variables, your column names as your y variables (or vice versa), and the cells inbetween containing the values in your z variable. See below: 
+However, you may have it in the "wide" format as in the following matrix, with your row names as your x variables, your column names as your y variables (or vice versa), and the cells in between containing the values in your z variable. See below: 
 
 
 ![useful image]({{ site.url }}/assets/wide_format_printscreen.png)
@@ -91,8 +91,8 @@ gg
 
 **Contour plot code breakdown:**
 -  *gg = ggplot(conm, aes(x = variable, y = Biomass))* : assigns plot to object **gg** and assigns x and y variables
-- *geom_raster(aes(fill = value))* : creates underlying coloured surface according which is filled according to the z variable ("value" in this case)
-- *geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5)* : adds white contour lines to the plo based on the z variable
+- *geom_raster(aes(fill = value))* : creates underlying coloured surface which is filled according to the z variable ("value" in this case)
+- *geom_contour(aes(z = value), colour = "white", size = 0.2, alpha = 0.5)* : adds white contour lines to the plot based on the z variable
 - *geom_text_contour(aes(z = value),  colour = "white" )* : labels contour lines with the corresponding numeric values 
 - *labs(x = "Filtered light intensity, ...)* : provides labels for axes and legends
 - *theme(legend.title = element_text...)* : provides specific details on the aesthetics of the plot (font sizes, background colours etc)
