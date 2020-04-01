@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Alluvial plots in R"
+title: "Alluvial Plots in R"
 date: 2020-01-22
 ---
 
-Alluvial plots are, in the way that I'm using them here, similar to a **[stacked bar plot](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**, but look fancier and can be more aesthetically pleasing. They're useful if you want to show how a set of variables change over time, or over a set of conditions. At each time point or category along an axis, the variables are arranged in decreasing order of value, so it's easy to track how a variable changes with respect to the others in your data. 
+Alluvial plots, in the way that I'm using them here, are similar to a **[stacked bar plot](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**, but look fancier and can be more aesthetically pleasing. They're useful if you want to show how a set of variables change over time, or over a set of conditions. At each time point or category along an axis, the variables are arranged in decreasing order of value, so it's easy to track how a variable changes with respect to the others in your data. 
 
 To make an alluvial plot, as per usual, we first need to load the required packages: 
 
@@ -22,7 +22,7 @@ bin = read.csv("your_data.csv", header = TRUE)
 
 ![useful image]({{ site.url }}/assets/alluvial_excel.png)
 
-Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained in this tutorial](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**. Below in the code, you will want to substitute in the names of all your sample descriptor columns. Basically, all the columns that do not contain OTU/species abundance information. 
+Now we need to convert the data from a "wide" format to a "long" format. **[The difference is explained in this tutorial](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)**. Below in the code, you will want to substitute the names of all your sample descriptor columns. Basically, all the columns that do not contain OTU/species abundance information. 
 
 ```
 bmm = melt(bin, id = c("Sample", "Origin", "Day", "Day_num", "Time"))
@@ -64,7 +64,7 @@ xx
 ![useful image]({{ site.url }}/assets/Alluvial_bins_bm_4pc.png)
 
 
-You can see clearly from this figure how the species are changing over the time series. The dominant species of Days 0-4, C1, becomes nearly non-existant by Day 10, while P1 and other species become more abundant.   
+You can see clearly from this figure how the species are changing over the time series. The dominant species of Days 0-4, C1, becomes nearly non-existent by Day 10, while P1 and other species become more abundant.   
 
 Save with ggsave:
 
