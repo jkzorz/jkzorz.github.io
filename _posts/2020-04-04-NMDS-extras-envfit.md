@@ -7,7 +7,7 @@ date: 2020-04-04
 
 A **[non-metric multidimensional scaling (NMDS) plot](https://jkzorz.github.io/2019/06/06/NMDS.html)** is one of the many types of ordination plots that can be used to show multidimensional data in 2 dimensions. An NMDS plot basically highlights the similarities between samples of complex multidimensional data. The closer two points (samples) are on the plot the more similar those samples are in terms of the underlying data. In my case, I'm usually looking at species abunance of microorganisms across samples. So the closer two samples are to each other, the more similar they are in terms of their microbial communities.   
 
-The approach to generate an NMDS plot is non-metric, meaning that the algorithm doesn't assume any particular distribution of the data, which is handy when you have data that is inherently weird, and doesn't conform to bell-curve style distributions. The algorithm uses a rank based approach, that essentially ranks your samples in terms of closeness to one another based on a particular distance metric (i.e. Bray Curtis), [more about the specifics of the methods here](https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds). While this is a robust method for con-conforming data, it means that within an NMDS ordination plot the axes and coordinate system are arbitrary and don't relate to any meaningful values. 
+The approach to generate an NMDS plot is non-metric, meaning that the algorithm doesn't assume any particular distribution of the data, which is handy when you have data that is inherently weird, and doesn't conform to a bell-curve style distribution. The algorithm uses a rank based approach, that essentially ranks your samples in terms of closeness to one another based on a particular distance metric (i.e. Bray Curtis), [more about the specifics of the methods here](https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds). While this is a robust method for con-conforming data, it means that within an NMDS ordination plot the axes and coordinate system are arbitrary and don't relate to any meaningful values. 
 
 An NMDS is just a visualization technique, and **is not a statistical assessment of sample separation or correlation**. For this you should run an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** for categorical variables, or a **[Mantel test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** for continuous variables. Other ordination techniques like PCA, CA, CCA, RDA, etc, may be more useful to you if you want your axes to be meaningful, or if you want to talk about variation partitioning.  
 
@@ -32,7 +32,7 @@ My data contains samples as rows and columns contain either environmental variab
 ![useful image]({{ site.url }}/assets/envfit_csv.png)
 
 
-Next, subset your data so that you have a data frame with only environmental variables (env), and a data frame with only species abundance data (com). In the code below I'm naming the range of columns that contains the respective information.  
+Next, subset your data so that you have a data frame with only environmental variables *(env)*, and a data frame with only species abundance data *(com)*. In the code below I'm naming the range of columns that contains the respective information.  
 
 ```
 com = df[,9:32]
@@ -55,7 +55,7 @@ Now we run the envfit function with our environmental data frame, *env*.
 ```
 en = envfit(nmds, env, permutations = 999, na.rm = TRUE)
 ```
-The first parameter is the metaMDS object from the NMDS ordination we just performed. Next is *env* our environmental data frame. Then we state we want 999 permutations of the data, and to remove any rows with missing data. 
+The first parameter is the metaMDS object from the NMDS ordination we just performed. Next is *env*, our environmental data frame. Then we state we want 999 permutations, and to remove any rows with missing data. 
 
 Let's see what the envfit function returns: 
 
@@ -94,7 +94,7 @@ Number of permutations: 999
 
 ```
 
-When we call the results of the envfit function, we get a table that gives our environmental variables as rows. It then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
+When we call the results of the envfit function, we get results that are split into **Vectors** and **Factors**, for your continuous and categorical variables respectively. If your data does not include both, then you will see only either vectors or factors.  For both vectors and factors, a table is shown that gives the variables as rows, and then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
 
 From the envfit description:
 "The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors"
@@ -104,6 +104,8 @@ If permutations > 0, the significance of fitted vectors or factors is assessed u
 
 
 We can plot both our NMDS and the envfit results using base R: 
+Here is an excerpt describing what the vectors and factors represent from the *envfit* function description:
+"Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels."
 
 ```
 plot(nmds)
@@ -113,13 +115,7 @@ plot(en)
 ![useful image]({{ site.url }}/assets/envfit_base.png)
 
 
-The envfit vectors and factors (blue) are overlaid on the original NMDS plot with samples as black points. Projecting the samples onto an environmental vector will show how strongly that sample 
-
-From the envfit description:
-"Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels. Function factorfit treats ordered and unordered factors similarly."
-
- 
-
+The envfit vectors and factors (blue) are overlaid on the original NMDS plot with samples as black points. The base R plot here is really difficult to read, easily overcrowded, and difficult to customize. I recommend using *ggplot2* to make nicer looking plots. 
 
 In order to plot using *ggplot2*, you need to extract the appropriate information from the nmds and envfit results. 
 
@@ -130,7 +126,7 @@ data.scores = as.data.frame(scores(nmds))
 data.scores$season = df$Season
 ```
 
-Extracting the required information from the envfit result is a bit less straightforward. The envfit output contains information on the length of the segments for each variable. The segments are scaled to the r2 value, so that the environmental variables with a longer segment are more strongly correlated with the data than those with a shorter segment. You can extract this information with scores. Then these lengths are further scaled to fit the plot. This is done with a multiplier that is analysis specific, and can be accessed using the command *ordiArrowMul(en)*. Below I multiply the scores by this multiplier to keep the coordinates relative to each other. 
+Extracting the required information from the envfit result is a bit more complicated. The envfit output contains information on the length of the segments for each variable. The segments are scaled to the r2 value, so that the environmental variables with a longer segment are more strongly correlated with the data than those with a shorter segment. You can extract this information with scores. Then these lengths are further scaled to fit the plot. This is done with a multiplier that is analysis specific, and can be accessed using the command *ordiArrowMul(en)*. Below I multiply the scores by this multiplier to keep the coordinates in the correct proportion 
 
 Also because my data contained continuous and categorical environmental variables, I'm extracting the information from both separately using the "vectors" and "factors" options respectively. 
 
@@ -166,8 +162,10 @@ Now we will add the envfit data:
 gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + 
      geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + 
      scale_colour_manual(values = c("orange", "steelblue"))  + 
-     geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), data = en_coord, size =1, alpha = 0.5, colour = "grey30") +
-     geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), shape = "diamond", size = 4, alpha = 0.6, colour = "navy") +
+     geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), 
+       data = en_coord, size =1, alpha = 0.5, colour = "grey30") +
+     geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), 
+       shape = "diamond", size = 4, alpha = 0.6, colour = "navy") +
      geom_text(data = en_coord_cat, aes(x = NMDS1, y = NMDS2+0.04), 
        label = row.names(en_coord_cat), colour = "navy", fontface = "bold") + 
      geom_text(data = en_coord_cont, aes(x = NMDS1, y = NMDS2), colour = "grey30", 
@@ -185,8 +183,7 @@ gg
 ![useful image]({{ site.url }}/assets/envfit.png)
 
 
-It's a bit busy still, but looks much nicer than the original base R example. 
+The plot is a bit busy still, but looks much nicer than the original base R example. The code is a bit more complicated because there are now many aspects to the plot including points, line segments, and text labels. The main difference between this plot and others in this tutorial series, is that we are drawing information from 3 different data frames here, and thus must specify the *data* source each time we add a *geom* layer to the plot. 
 
-Remember you can also use the **[Mantel Test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** or an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** (or equivalent) as alternate methods to test the significance of continuous and categorical associations with your data.  
 
 
