@@ -60,7 +60,10 @@ The first parameter is the metaMDS object from the NMDS ordination we just perfo
 Let's see what the envfit function returns: 
 
 ```
-> en$vectors
+ en
+
+***VECTORS
+
                NMDS1    NMDS2     r2 Pr(>r)    
 Depth        0.32513 -0.94567 0.7954  0.001 ***
 Salinity     0.69000 -0.72381 0.5023  0.001 ***
@@ -72,6 +75,22 @@ Latitude    -0.95483 -0.29715 0.1051  0.001 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 Permutation: free
 Number of permutations: 999
+
+***FACTORS:
+
+Centroids:
+               NMDS1   NMDS2
+SeasonFall    0.2016  0.0592
+SeasonSpring -0.1741 -0.0511
+
+Goodness of fit:
+           r2 Pr(>r)    
+Season 0.4163  0.001 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation: free
+Number of permutations: 999
+
 
 ```
 
