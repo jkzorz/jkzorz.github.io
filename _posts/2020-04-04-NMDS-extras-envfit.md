@@ -137,7 +137,17 @@ Now the data is in the appropriate format to plot in R using ggplot2.
 First we will make a figure of just the nmds plot without the envfit variables: 
 
 ```
-gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + scale_colour_manual(values = c("orange", "steelblue")) + theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), legend.title = element_text(size = 10, face = "bold", colour = "grey30"), legend.text = element_text(size = 9, colour = "grey30")) + labs(colour = "Season")
+gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + 
+     geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + 
+     scale_colour_manual(values = c("orange", "steelblue")) + 
+     theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), 
+     panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), 
+     axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), 
+     legend.title = element_text(size = 10, face = "bold", colour = "grey30"), 
+     legend.text = element_text(size = 9, colour = "grey30")) +
+     labs(colour = "Season")
+     
+gg
 ```
 
 ![useful image]({{ site.url }}/assets/nmds_only.png)
@@ -146,7 +156,23 @@ gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + geom_point(data = d
 Now we will add the envfit data: 
 
 ```
-gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + scale_colour_manual(values = c("orange", "steelblue"))  + geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), data = en_coord, size =1, alpha = 0.5, colour = "grey30") + geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), shape = "diamond", size = 4, alpha = 0.6, colour = "navy") + geom_text(data = en_coord_cat, aes(x = NMDS1, y = NMDS2+0.04), label = row.names(en_coord_cat), colour = "navy", fontface = "bold") + geom_text(data = en_coord_cont, aes(x = NMDS1, y = NMDS2), colour = "grey30", fontface = "bold", label = row.names(en_coord_cont)) + theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), legend.title = element_text(size = 10, face = "bold", colour = "grey30"), legend.text = element_text(size = 9, colour = "grey30")) + labs(colour = "Season")
+gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + 
+     geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + 
+     scale_colour_manual(values = c("orange", "steelblue"))  + 
+     geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), data = en_coord, size =1, alpha = 0.5, colour = "grey30") +
+     geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), shape = "diamond", size = 4, alpha = 0.6, colour = "navy") +
+     geom_text(data = en_coord_cat, aes(x = NMDS1, y = NMDS2+0.04), 
+       label = row.names(en_coord_cat), colour = "navy", fontface = "bold") + 
+     geom_text(data = en_coord_cont, aes(x = NMDS1, y = NMDS2), colour = "grey30", 
+       fontface = "bold", label = row.names(en_coord_cont)) + 
+     theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), 
+       panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), 
+       axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), 
+       legend.title = element_text(size = 10, face = "bold", colour = "grey30"), 
+       legend.text = element_text(size = 9, colour = "grey30")) + 
+     labs(colour = "Season")
+     
+gg
 ```
 
 ![useful image]({{ site.url }}/assets/envfit.png)
