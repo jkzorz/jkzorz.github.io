@@ -107,6 +107,8 @@ We can plot both our NMDS and the envfit results using base R:
 Here is an excerpt describing what the vectors and factors represent from the *envfit* function description:
 "Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels."
 
+The way I interpret this is that the vectors act as a kind of "pseudo axis" within your plot. If you travel along your plot in that direction, you will see that your samples generally increase with respect to that variable. This of course is not perfect, which is where the r2 and signficance values come in to explain the strength of the association. Because this relationship isn't always linear, the developers of envfit suggest that you could also use alternate methods to map important variables onto your data including point size or the ordisurf function. 
+
 ```
 plot(nmds)
 plot(en)
