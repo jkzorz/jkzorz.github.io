@@ -29,7 +29,8 @@ df = read.csv("your_data_frame.csv", header = TRUE)
 
 My data contains samples as rows and columns contain either environmental variables, or species abundance data. In this example, I have both categorical and continuous environmental variables.
 
-(excel file) 
+![useful image]({{ site.url }}/assets/envfit_csv.png)
+
 
 Next, subset your data so that you have a data frame with only environmental variables (env), and a data frame with only species abundance data (com). In the code below I'm naming the range of columns that contains the respective information.  
 
@@ -74,6 +75,16 @@ Number of permutations: 999
 
 ```
 
+We can also plot both our NMDS and the envfit results using base R: 
+
+```
+plot(nmds)
+plot(en)
+```
+
+![useful image]({{ site.url }}/assets/envfit_base.png)
+
+
 When we call the results of the envfit function, we get a table that gives our environmental variables as rows. It then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
 
 The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors
@@ -110,7 +121,8 @@ First we will make a figure of just the nmds plot without the envfit variables:
 gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + scale_colour_manual(values = c("orange", "steelblue")) + theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), legend.title = element_text(size = 10, face = "bold", colour = "grey30"), legend.text = element_text(size = 9, colour = "grey30")) + labs(colour = "Season")
 ```
 
-"nmds_only.png"
+![useful image]({{ site.url }}/assets/nmds_only.png)
+
 
 Now we will add the envfit data: 
 
@@ -118,7 +130,8 @@ Now we will add the envfit data:
 gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + scale_colour_manual(values = c("orange", "steelblue"))  + geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), data = en_coord, size =1, alpha = 0.5, colour = "grey30") + geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), shape = "diamond", size = 4, alpha = 0.6, colour = "navy") + geom_text(data = en_coord_cat, aes(x = NMDS1, y = NMDS2+0.04), label = row.names(en_coord_cat), colour = "navy", fontface = "bold") + geom_text(data = en_coord_cont, aes(x = NMDS1, y = NMDS2), colour = "grey30", fontface = "bold", label = row.names(en_coord_cont)) + theme(axis.title = element_text(size = 10, face = "bold", colour = "grey30"), panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey30"), axis.ticks = element_blank(), axis.text = element_blank(), legend.key = element_blank(), legend.title = element_text(size = 10, face = "bold", colour = "grey30"), legend.text = element_text(size = 9, colour = "grey30")) + labs(colour = "Season")
 ```
 
-"envfit.png"
+![useful image]({{ site.url }}/assets/envfit.png)
+
 
 It's a bit busy still, but looks much nicer than the original base R example. 
 
