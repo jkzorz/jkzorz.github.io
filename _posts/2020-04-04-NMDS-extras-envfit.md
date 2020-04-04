@@ -94,7 +94,16 @@ Number of permutations: 999
 
 ```
 
-We can also plot both our NMDS and the envfit results using base R: 
+When we call the results of the envfit function, we get a table that gives our environmental variables as rows. It then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
+
+From the envfit description:
+"The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors"
+
+
+If permutations > 0, the significance of fitted vectors or factors is assessed using permutation of environmental variables.
+
+
+We can plot both our NMDS and the envfit results using base R: 
 
 ```
 plot(nmds)
@@ -104,14 +113,12 @@ plot(en)
 ![useful image]({{ site.url }}/assets/envfit_base.png)
 
 
-When we call the results of the envfit function, we get a table that gives our environmental variables as rows. It then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
+The envfit vectors and factors (blue) are overlaid on the original NMDS plot with samples as black points. Projecting the samples onto an environmental vector will show how strongly that sample 
 
-The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors
+From the envfit description:
+"Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels. Function factorfit treats ordered and unordered factors similarly."
 
-Scores gives scaled relative lengths 
-The plotted (and scaled) arrows are further adjusted to the current graph using a constant multiplier: this will keep the relative r2-scaled lengths of the arrows but tries to fill the current plot. You can see the multiplier using ordiArrowMul(result_of_envfit), and set it with the argument arrow.mul. 
-Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels. Function factorfit treats ordered and unordered factors similarly.
-If permutations > 0, the significance of fitted vectors or factors is assessed using permutation of environmental variables.
+ 
 
 
 In order to plot using *ggplot2*, you need to extract the appropriate information from the nmds and envfit results. 
@@ -180,6 +187,6 @@ gg
 
 It's a bit busy still, but looks much nicer than the original base R example. 
 
-Remember you can also use the **[Mantel Test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** or an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** (or equivalent) for alternate methods to test the significance of continuous and categorical associations with your data.  
+Remember you can also use the **[Mantel Test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** or an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** (or equivalent) as alternate methods to test the significance of continuous and categorical associations with your data.  
 
 
