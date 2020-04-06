@@ -95,20 +95,17 @@ Number of permutations: 999
 
 ```
 
-When we call the results of the envfit function, we get results that are split into **Vectors** and **Factors**, for your continuous and categorical variables respectively. If your data does not include both, then you will see only either vectors or factors.  For both vectors and factors, a table is shown that gives the variables as rows, and then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. 
+When we call the results of the envfit function, we get results that are split into **Vectors** and **Factors**, for your continuous and categorical variables respectively. If your data does not include both, then you will see only either vectors or factors.  For both vectors and factors, a table is shown that gives the variables as rows, and then gives their respective coordinates on the NMDS ordination in the NMDS1 and NMDS2 axes. If permutations > 0, the significance of fitted vectors or factors is assessed using permutation of environmental variables.
 
-From the envfit description:
-"The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors"
+An explanation from the **[envfit](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/envfit)** description:
+"The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors... 
+...Function vectorfit finds *directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration*. Function factorfit finds *averages of ordination scores for factor levels*."
 
+The way I interpret this is that the vectors act as a kind of "pseudo axis" within your plot. If you travel along your plot in that direction, you will see that your samples generally increase with respect to that variable. This of course is not a perfect relationship, which is where the r2 and signficance values come in to explain the strength of the association. Longer arrows, mean a strength of association. Because this relationship isn't always linear, the developers of envfit suggest that you could also use alternate methods to map important variables onto your data including point size or the ordisurf function. 
 
-If permutations > 0, the significance of fitted vectors or factors is assessed using permutation of environmental variables.
+The centroid value for all the samples belonging to a certain category are plotted by the factor coordinates, which allows you to see how well samples from specific categories are grouping together (or not). 
 
-
-We can plot both our NMDS and the envfit results using base R: 
-Here is an excerpt describing what the vectors and factors represent from the *envfit* function description:
-"Function vectorfit finds directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration. Function factorfit finds averages of ordination scores for factor levels."
-
-The way I interpret this is that the vectors act as a kind of "pseudo axis" within your plot. If you travel along your plot in that direction, you will see that your samples generally increase with respect to that variable. This of course is not perfect, which is where the r2 and signficance values come in to explain the strength of the association. Because this relationship isn't always linear, the developers of envfit suggest that you could also use alternate methods to map important variables onto your data including point size or the ordisurf function. 
+We can plot both our NMDS and the envfit results using base R to see how the factors and vectors are plotted: 
 
 ```
 plot(nmds)
@@ -129,9 +126,9 @@ data.scores = as.data.frame(scores(nmds))
 data.scores$season = df$Season
 ```
 
-Extracting the required information from the envfit result is a bit more complicated. The envfit output contains information on the length of the segments for each variable. The segments are scaled to the r2 value, so that the environmental variables with a longer segment are more strongly correlated with the data than those with a shorter segment. You can extract this information with scores. Then these lengths are further scaled to fit the plot. This is done with a multiplier that is analysis specific, and can be accessed using the command *ordiArrowMul(en)*. Below I multiply the scores by this multiplier to keep the coordinates in the correct proportion 
+Extracting the required information from the envfit result is a bit more complicated. The envfit output contains information on the length of the segments for each variable. The segments are scaled to the r2 value, so that the environmental variables with a longer segment are more strongly correlated with the data than those with a shorter segment. You can extract this information with scores. Then these lengths are further scaled to fit the plot. This is done with a multiplier that is analysis specific, and can be accessed using the command *ordiArrowMul(en)*. Below I multiply the scores by this multiplier to keep the coordinates in the correct proportion. 
 
-Also because my data contained continuous and categorical environmental variables, I'm extracting the information from both separately using the "vectors" and "factors" options respectively. 
+Because my data contained continuous and categorical environmental variables, I'm extracting the information from both separately using the "vectors" and "factors" options respectively. 
 
 ```
 en_coord_cont = as.data.frame(scores(en, "vectors")) * ordiArrowMul(en)
@@ -187,6 +184,8 @@ gg
 
 
 The plot is a bit busy still, but looks much nicer than the original base R example. The code is a bit more complicated because there are now many aspects to the plot including points, line segments, and text labels. The main difference between this plot and others in this tutorial series, is that we are drawing information from 3 different data frames here, and thus must specify the *data* source each time we add a *geom* layer to the plot. 
+
+Try adding each block of code before the "+" one at a time in order to get a better undertanding of what each layer is adding to the plot. 
 
 
 
