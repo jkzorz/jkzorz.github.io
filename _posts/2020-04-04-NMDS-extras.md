@@ -32,7 +32,7 @@ My data contains samples as rows and columns contain either environmental variab
 ![useful image]({{ site.url }}/assets/envfit_csv.png)
 
 
-Next, subset your data so that you have a data frame with only environmental variables *(env)*, and a data frame with only species abundance data *(com)*. In the code below I'm naming the range of columns that contains the respective information.  
+Next, subset your data so that you have a data frame with only environmental variables *(env)*, and a data frame with only species abundance data *(com)*. In the code below I'm naming the range of columns containing the respective information.  
 
 ```
 com = df[,9:32]
@@ -42,6 +42,7 @@ env = df[,2:8]
 Perform the NMDS ordination, as discussed more in **[this tutorial](https://jkzorz.github.io/2019/06/06/NMDS.html)**
 
 ```
+#convert com to a matrix
 m_com = as.matrix(com)
 
 #nmds code
@@ -165,7 +166,7 @@ gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) +
      geom_point(data = data.scores, aes(colour = season), size = 3, alpha = 0.5) + 
      scale_colour_manual(values = c("orange", "steelblue"))  + 
      geom_segment(aes(x = 0, y = 0, xend = NMDS1, yend = NMDS2), 
-       data = en_coord, size =1, alpha = 0.5, colour = "grey30") +
+       data = en_coord_cont, size =1, alpha = 0.5, colour = "grey30") +
      geom_point(data = en_coord_cat, aes(x = NMDS1, y = NMDS2), 
        shape = "diamond", size = 4, alpha = 0.6, colour = "navy") +
      geom_text(data = en_coord_cat, aes(x = NMDS1, y = NMDS2+0.04), 
