@@ -7,12 +7,6 @@ date: 2020-03-01
 
 It can be daunting to know where to start with your data analysis once you've received your (likely huge) amplicon sequencing dataset. Below I've written brief summaries on the goals of each R tutorial:
 
-## Data Manipulation ##
-- **[R functions](https://jkzorz.github.io/2019/08/11/metaamp-r-functions.html)** for reproducible manipulation of your OTU table data [(MetaAmp output)](http://ebg.ucalgary.ca/metaamp/). Functions include: 
-  - Summarizing OTUs based on taxonomic level (i.e. Phylum)
-  - Renaming, ordering, subsetting and transposing OTU table 
-  - Selecting only the OTUs from certain taxa (i.e. Firmicutes)
-
 
 ## Data Visualization ##
 
@@ -43,12 +37,18 @@ Statistics can be a scary word, especially, if you're like me and it's been a lo
   
   - **[NMDS plot](https://jkzorz.github.io/2019/06/06/NMDS.html)**: Non-metric multidimensional scaling. A non-parametric ordination technique used to visually display multidimensional data (i.e. abundances of many species over many samples) in two dimensions. Points (generally samples) that are closer together have more similar microbial communities
   
+  - **[Envfit](https://jkzorz.github.io/2020/04/04/NMDS-extras.html)**: Fitting environmental vectors and factors to your NMDS plot. Gives significance of association of enviornmental variables with data, and allows the user to overlay a visual representation of the relationship between environmental variables and your samples. 
+  
   - **[Indicator Species test](https://jkzorz.github.io/2019/07/02/Indicator-species-analysis.html)**: A test used to determine "indicator species" of a particular group of samples. Identifies the species that are found statistically more abundantly in one group of samples compared to others 
   
   - **[Correlation analyses](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)**: A test that identifies correlations between variables in your dataset. These correlative relationships can be species/species or species/environmental factor.   
   
   
-  
+  ## Data Manipulation ##
+- **[R functions](https://jkzorz.github.io/2019/08/11/metaamp-r-functions.html)** for reproducible manipulation of your OTU table data [(MetaAmp output)](http://ebg.ucalgary.ca/metaamp/). Functions include: 
+  - Summarizing OTUs based on taxonomic level (i.e. Phylum)
+  - Renaming, ordering, subsetting and transposing OTU table 
+  - Selecting only the OTUs from certain taxa (i.e. Firmicutes)
   
   
 
