@@ -44,6 +44,7 @@ Statistics can be a scary word, especially, if you're like me and it's been a lo
   - **[Correlation analyses](https://jkzorz.github.io/2019/06/11/Correlation-heatmaps.html)**: A test that identifies correlations between variables in your dataset. These correlative relationships can be species/species or species/environmental factor.   
   
   
+  
   ## Data Manipulation ##
   
 - **[R functions](https://jkzorz.github.io/2019/08/11/metaamp-r-functions.html)** for reproducible manipulation of your OTU table data [(MetaAmp output)](http://ebg.ucalgary.ca/metaamp/). Functions include: 
