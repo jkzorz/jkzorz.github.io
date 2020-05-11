@@ -5,18 +5,18 @@ date: 2020-04-04
 ---
 
 
-A **[non-metric multidimensional scaling (NMDS) plot](https://jkzorz.github.io/2019/06/06/NMDS.html)** is one of the many types of ordination plots that can be used to show multidimensional data in 2 dimensions. An NMDS plot basically highlights the similarities between samples of complex multidimensional data. The closer two points (samples) are on the plot the more similar those samples are in terms of the underlying data. In my case, I'm usually looking at species abunance of microorganisms across samples. So the closer two samples are to each other, the more similar they are in terms of their microbial communities.   
+A **[non-metric multidimensional scaling (NMDS) plot](https://jkzorz.github.io/2019/06/06/NMDS.html)** is one of the many types of ordination plots that can be used to show multidimensional data in 2 dimensions. An NMDS plot basically highlights the similarities between samples of complex multidimensional data. The closer two points (samples) are on the plot the more similar those samples are in terms of the underlying data. In my case, I'm usually looking at species abundance of microorganisms across samples. So the closer two samples are to each other, the more similar they are in terms of their microbial communities.   
 
 The approach to generate an NMDS plot is non-metric, meaning that the algorithm doesn't assume any particular distribution of the data, which is handy when you have data that is inherently weird, and doesn't conform to a bell-curve style distribution. The algorithm uses a rank based approach, that essentially ranks your samples in terms of closeness to one another based on a particular distance metric (i.e. Bray Curtis) and plots these relationships in 2 dimensional space. [More about the specifics of the methods here](https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds). While this is a robust method for non-conforming data, it means that within an NMDS ordination plot the axes and coordinate system are arbitrary and don't directly relate to any meaningful values. 
 
-**An important note:** An NMDS is just a visualization technique, and **is not a statistical assessment of sample separation or correlation**. For this you should run an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** for categorical variables, or a **[Mantel test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** for continuous variables. Other ordination techniques like [PCA, CA, CCA, RDA, etc,](https://mb3is.megx.net/gustame/home/visualisations) may be more useful to you if you want your axes to be meaningful, or if you want to talk about variation partitioning.  
+**An important note:** An NMDS is just a visualization technique, and **is not a statistical assessment of sample separation or correlation**. For this you should run a statistical test, like an **[ANOSIM test](https://jkzorz.github.io/2019/06/11/ANOSIM-test.html)** for categorical variables, or a **[Mantel test](https://jkzorz.github.io/2019/07/08/mantel-test.html)** for continuous variables. Other ordination techniques like [PCA, CA, CCA, RDA, etc,](https://mb3is.megx.net/gustame/home/visualisations) may be more useful to you if you want your axes to be meaningful, or if you want to talk about variation partitioning.  
 
-Okay, all that being said. There are ways to overlay extra information on your NMDS plots to help visualize the underlying trends that are affecting your data. In my case, the underlying environmental variables that are covarying with microbial community structure, and thus potentially driving changes in the community.  A series of functions from the R package *vegan* are meant to overlay extra information on ordination plots like NMDS plots. These functions include **[envfit](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/envfit)**, **[ordiplot](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordiplot)**, **[ordiellipse](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordihull)** and **[ordisurf](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordisurf)**, and I will explain how to use some of their features here. 
+Okay, all that being said. There are ways to overlay extra information on your NMDS plots to help visualize the underlying trends that are affecting your data. In my case, the underlying environmental variables that are covarying with microbial community structure, and thus potentially driving changes in the community.  A series of functions from the R package *vegan* are meant to overlay extra information on ordination plots like NMDS plots. These functions include **[envfit](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/envfit)**, **[ordiplot](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordiplot)**, **[ordiellipse](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordihull)** and **[ordisurf](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/ordisurf)**.  I will start by explaining how to use the features of envfit here. 
 
 
 **ENVFIT**
 
-Envfit fits environmental vectors or factors onto an ordination. The default plot for envfit, like metaMDS, isn't very aesthetically pleasing, so I will show how you can plot both using **ggplot2**.
+Envfit fits environmental vectors or factors onto an ordination. The default plot for *envfit*, like *metaMDS*, isn't very aesthetically pleasing, so I will show how you can plot both using **ggplot2**.
 
 First load your libraries and read in your data: 
 
@@ -32,7 +32,7 @@ My data contains samples as rows and columns contain either environmental variab
 ![useful image]({{ site.url }}/assets/envfit_csv.png)
 
 
-Next, subset your data so that you have a data frame with only environmental variables *(env)*, and a data frame with only species abundance data *(com)*. In the code below I'm naming the range of columns containing the respective information.  
+Next, subset your data so that you have a data frame with only environmental variables *(env)*, and a data frame with only species abundance data *(com)*. In the code below I'm naming the range of columns in my data containing the respective information.  
 
 ```
 com = df[,9:32]
@@ -101,7 +101,7 @@ An explanation from the **[envfit](https://www.rdocumentation.org/packages/vegan
 "The printed output of continuous variables (vectors) gives the direction cosines which are the coordinates of the heads of unit length vectors. In plot these are scaled by their correlation (square root of the column r2) so that “weak” predictors have shorter arrows than “strong” predictors... 
 ...Function vectorfit finds *directions in the ordination space towards which the environmental vectors change most rapidly and to which they have maximal correlations with the ordination configuration*. Function factorfit finds *averages of ordination scores for factor levels*."
 
-The way I interpret this is that the vectors act as a kind of "pseudo axis" within your plot. If you travel along your plot in that direction, you will see that your samples generally increase with respect to that variable. This of course is not a perfect relationship, which is where the r2 and signficance values come in to explain the strength of the association. Longer arrows, mean a strength of association. Because this relationship isn't always linear, the developers of envfit suggest that you could also use alternate methods to map important variables onto your data including point size or the ordisurf function. 
+The way I interpret this is that the vectors act as a kind of "pseudo axis" within your plot. If you travel along your plot in that direction, you will see that your samples generally increase with respect to that variable. This of course is not a perfect relationship, which is where the r2 and signficance values come in to explain the strength of the association. Longer arrows, mean a stronger association. Because this relationship isn't always linear, the developers of envfit suggest that you could also use alternate methods to map important variables onto your data including point size or the ordisurf function. 
 
 The centroid value for all the samples belonging to a certain category are plotted by the factor coordinates, which allows you to see how well samples from specific categories are grouping together (or not). 
 
@@ -119,7 +119,7 @@ The envfit vectors and factors (blue) are overlaid on the original NMDS plot wit
 
 In order to plot using *ggplot2*, you need to extract the appropriate information from the nmds and envfit results. 
 
-For the NMDS output, use the following code to extract the sample coordinates in the NMDS ordination space. Then add columns from your original data set that contain information that you would like to include in your plot. In this case I'm including the column "season" 
+For the NMDS output, use the following code to extract the sample coordinates in the NMDS ordination space. Then add columns from your original data that contain information that you would like to include in your plot. In this case I'm including the column "season" 
 
 ```
 data.scores = as.data.frame(scores(nmds))
@@ -156,7 +156,7 @@ gg
 ![useful image]({{ site.url }}/assets/nmds_only.png)
 
 
-Now we will add the envfit data: 
+And below is the code for the NMDS plot and the envfit data: 
 
 ```
 gg = ggplot(data = data.scores, aes(x = NMDS1, y = NMDS2)) + 
