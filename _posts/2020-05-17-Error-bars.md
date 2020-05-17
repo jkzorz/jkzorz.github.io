@@ -85,7 +85,7 @@ This code rearranges your data so that you end up with a column for your initial
 (image error_bars_long.png) 
 
 
-Now we can plot with ggplot2. This code is a bit 
+Now we can plot with ggplot2. This code is basically the same as the code for one variable. However, it now includes extra information for including a legend and for defining fill colours. Within the *geom_bar* layer, the "width" parameter makes the bars skinnier, and the "position" parameter in *geom_errorbar* helps to align the errorbars with their respective bar. Otherwise, they all get annoyingly plotted on top of each other. 
 
 ```
 xx = ggplot(df2, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev, fill = Species)) + 
