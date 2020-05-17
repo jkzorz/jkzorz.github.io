@@ -1,4 +1,9 @@
-Tips for R beginners 
+---
+layout: post
+title: "Beginner R Tips"
+date: 2019-05-17
+---
+
 
 If you’re new to R and coding, everything can seem a bit daunting. Even the process of asking for help, and finding answers online can be a struggle, as often you don’t even know the right questions to google. When you do find answers, they’re often disjointed, buried in the depths of internet forums filled with jargon that you can barely understand. It’s frustrating, and sometimes quite a bit disheartening. It gets better, sometimes very slowly, but it does get better. You’ll start to recognize errors and you’ll have bits of code that you can reuse to accomplish tasks much faster than before.  I’ve compiled here some tips and common errors that I would have found helpful at the beginning of my R journey. 
 
