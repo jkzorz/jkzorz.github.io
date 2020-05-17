@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Error Bars with ggplot2"
+title: "Error bars with ggplot2"
 date: 2020-05-17
 ---
 
@@ -13,7 +13,38 @@ There are two general ways to approach error bars in R:
 
 
 I'll start with method 1 because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
-Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
+
+## One Variable ##
+Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data, where I only have one variable. 
+
+(image error_bars_simple.png)
+
+
+Here the data is already in the correct format so we can plot it right away with *ggplot2*: 
+
+```
+xx = ggplot(df, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev)) + 
+	geom_bar(colour = "black", stat = "identity", width = 0.65, fill = "#ff5555") + 
+	geom_errorbar(colour = "black", stat = "identity", width = 0.4) + 
+	theme(axis.text.x = element_text(size = 9.5, face = "bold", angle = 90,hjust = 1, vjust = 0.5), 
+	axis.title = element_text(size = 12, face = "bold"), axis.text.y = element_text(size = 10, face = "bold"), 
+	panel.background = element_blank(), panel.border = element_rect(size = 1, fill = NA, colour = "black"), 
+	panel.grid.major.x = element_blank(), panel.grid.major.y = element_line(colour = "grey80")) + 
+	labs(x = "Gene", y = "Relative Abundance (%)") + 
+	scale_y_continuous(expand = c(0,0))
+	
+
+ggsave("your_figure.svg")
+
+```
+
+
+(image error_bars_simple.png)
+
+
+
+## Multiple Variables ##
+In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
 
 (image error_bars_csv.png) 
 
@@ -45,7 +76,7 @@ This code rearranges your data so that you end up with a column for your initial
 (image error_bars_long.png) 
 
 
-Now we can plot with ggplot2
+Now we can plot with ggplot2. This code is a bit 
 
 ```
 xx = ggplot(df2, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev, fill = Species)) + 
