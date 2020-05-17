@@ -5,6 +5,66 @@ date: 2020-05-17
 ---
 
 
-Error bars show the range of variability associated with a value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots in R is actually not as straightforward as you might expect coming from excel or the like, so I've decided to provide this tutorial based on my trials and tribulations with this process. 
+Error bars show the range of variability associated with a value around the mean of that value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots (like bar plots) in R is actually not as straightforward as you might expect coming from excel or the like, so I've decided to provide this tutorial based on my trials and tribulations with this process. 
 
-There are two ways to start with this
+There are two general ways to approach error bars in R:
+1. Come with your averages and variability already calculated and included in your data frame 
+2. Calculate your averages and variability based on your data in R
+
+
+I'll start with method 1 because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
+Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
+
+(image error_bars_csv.png) 
+
+It's easier for the next steps if you name your columns in a format that specifies in a repeatable manner which columns are averages and which are standard deviations. For example, in this data, the prefixes "Avg_", and "Stdev_" are added to specify that the values are averages and standard deviations respectively. 
+
+Next we load our data into R, and set up the required packages. The library *tidyverse* contains all Hadley Wickham's tidy packages, including *ggplot2* for data visualization, and *dplyr* for data manipulation. 
+
+
+```
+library(tidyverse)
+
+df = read.csv("your_data.csv", header = TRUE)
+```
+
+From here we need to do a bit of manipulation to get the data in the correct format for plotting. This format is called "long" format, and I talk about it more in other tutorials (e.g.)[https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html]
+
+```
+df2 = df %>% 
+    gather(desc, value, -Name) %>% 
+    separate(desc, c("Stat", "Var")) %>% 
+    spread(Stat, value)
+    
+head(df2)
+```
+
+This code rearranges your data so that you end up with a column for your initial categories (in my case genes), a column for variable (in my case species), a column for your average, and a column for standard deviation. You will need to change "Name" to whatever you've named your category column. The command *separate* separates the names of your original columns based on a separator character, in this case an underscore. This is why it is helpful to name your original columns with prefixes or suffixes that can be easily separated. Try running each line of code separately (before the pipe, %>%) to determine what is occurring at each step. 
+
+
+(image error_bars_long.png) 
+
+
+Now we can plot with ggplot2
+
+```
+xx = ggplot(df2, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev, fill = Species)) + 
+	geom_bar(colour = "black", stat = "identity", position = "dodge", width = 0.65) +      	
+	geom_errorbar(colour = "black", stat = "identity", position = position_dodge(0.65), width = 0.4) + 
+	theme(axis.text.x = element_text(size = 9.5, face = "bold", angle = 90,hjust = 1, vjust = 0.5), 
+	axis.title = element_text(size = 12, face = "bold"), axis.text.y = element_text(size = 10, face = "bold"), 
+	legend.text = element_text(size = 10, face= "bold"), panel.background = element_blank(), 
+	panel.border = element_rect(size = 1, fill = NA, colour = "black"), 
+	panel.grid.major.x = element_blank(), panel.grid.major.y = element_line(colour = "grey80"), 
+	legend.title = element_text(size = 12, face = "bold")) + 
+	labs(x = "Gene", y = "Relative Abundance (%)", fill = "Species") + 
+	scale_y_continuous(expand = c(0,0)) + 
+	scale_fill_manual(values = c( "#ff5555", "#00d4aa", "#aa87de"))
+
+
+ggsave("your_image.svg")
+```
+
+
+(image "error_bars_multi.png")
+
