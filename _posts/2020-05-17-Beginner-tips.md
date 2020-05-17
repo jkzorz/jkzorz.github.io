@@ -21,19 +21,19 @@ A useful way to embed notes to yourself and others in your code is the *hash* sy
 **Jargon**
 
 I despise jargon. I try to avoid using it as much as possible, partly because it feels pretentious and is a barrier to learning, and partly because I’m still not very good at or interested in terminology and semantics. That being said, you can’t avoid all jargon, so here is a brief list of some of the more common words you should become familiar with: 
--	Shell:
--	Script:
--	Function: 
--	Package: 
--	Object:
--	Vector:
--	Matrix: 
--	Data frame:
--	“=” or ->:  
--	Vignette: 
--	CRAN: 
--	Console: 
--	Environment:
+
+
+-	*Object:* Most definitions online of objects in programming language border on the philosphoical. So for the purposes here, and object is your data, and all subsequent alterations of your data in the programming environment. 
+-	*“=” or <-:* the equals sign and the arrow can be used interchangeably (for the most part) as assignment operators in R. These assignment operators will tell R that whatever is on the right side of the operator is now assigned to whatever is on the right side of the operator. (There are subtle differences between the two, and if you want to be hardcore use <- because it's more correct, but I'm not hardcore and lazy and use the operator with only one character) 
+-	*Function:* In very basic terms, a function is technically an object itself, but it is essentially a piece of code that will perform a task for you. You can eventually write your own functions to perform specific tasks if you so desire, but the nice R community has developed many different functions for different uses so for the most part, you don't have to trouble yourself with reinventing the wheel.  
+-	*Package:* collections of functions and data sets developed by the community. Extend the functionalities of R beyond what is possible with base R! 
+-	*Vector:* The simplest data structure in R. A sequence of data of the same type (i.e. all numeric or all character).  
+-	*Matrix:* Similar to a vector but contains two dimensions (columns *and* rows). All data is of the same type 
+-	*Data frame:* Also data stored in two dimensions, but in contrast to a matrix, the data can be of multiple types. 
+-	*Vignette:* Basically the help page. 
+-	*CRAN:* contains all up-to-date code an documentation for R and R packages
+-	*Console:* A window in which a user can type R commands, submit them for execution, and view the results. The most user-friendly I've come across for R is [RStudio](https://rstudio.com/)
+-	*Environment:* The environment can be thought of as a collection of objects created during your R session. There is a list under the tab "Environment" in RStudio that contains a list of all the objects in your environment 
 
 **Beginner courses**
 
@@ -97,7 +97,8 @@ These commands will provide you some exploratory insight into your data to ensur
 
 -	*str()* : gives you information about the structure of your object. Mainly, how many variables and observations, what type of object is it (data frame, matrix, etc), and what type of data is contained in each of your variables (if present)
 -	*summary()* : when used on a data frame or matrix, will return the summary statistics of each column in your data set, i.e. mean, median, number of occurrences of each factor etc. Useful for finding “NAs” or missing data in columns 
--	*head()* : displays the top n (5 default) rows of your object in the console
+-	*class()* : will tell you the class of your object
+- *head()* : displays the top n (5 default) rows of your object in the console
 -	*names()* : returns the column name of your object 
 -	*ncol()* : returns the number of columns in your object
 -	*nrow()* : returns the number of rows in your object
@@ -126,9 +127,10 @@ This one is another common problem but is confusing for beginners. Many function
 
 To check what format your data is in: 
 ```
-str(df)
+class(df)
 ``` 
-The first line that is returned by this function will either say “data.frame” or “num” (or something else). If the object says “data.frame” but the function requires a matrix, you need to change your data frame over to a matrix. “num” means numeric and signifies the data is already in a matrix form. 
+If the output says “data.frame” but the function requires a matrix, you need to change your data frame over to a matrix. “num” means numeric and signifies the data is already in a matrix form. 
+
 ```
 #to change a data frame to a matrix
 df_m = as.matrix(df)
