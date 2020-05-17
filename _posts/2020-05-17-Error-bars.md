@@ -125,7 +125,7 @@ df = read.csv("your_data_frame.csv", header = TRUE)
 
 ```
 
-(image) error_bars_calculate_csv.png
+![useful image]({{ site.url }}/assets/error_bars_calculate_csv.png) 
 
 Next we need to summarize our data so that we calculate the average and standard deviation for each variable for each category. We will end up with a data frame that has a column for category, a column for species, and then a column for the corresponding average, and a column for the corresponding standard deviation. *sd* is the R command for standard deviation. If you would like to use a different metric of variability, change the sd command in the code accordingly. 
 
@@ -139,7 +139,7 @@ df2 = df %>%
 head(df2)
 ```
 
-(image error_bars_calculate_screenshot.png)
+![useful image]({{ site.url }}/assets/error_bars_calculate_screenshot.png)
 
 This code uses a series of data manipulation commands from the *dplyr* package within the *tidyverse* suite of packages. Try running each line of code separately (before the pipe symbol, %>%) to get a better idea of what each command is doing. If your data was in a slightly different format to begin with, you may need to tweak some of the code. From here you can run the exact same *ggplot2* command that generated the plot above. Good luck! 
 
