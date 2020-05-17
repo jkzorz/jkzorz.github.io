@@ -17,7 +17,7 @@ I'll start with method 1 which assumes you have already calculated averages and 
 ## One Variable ##
 Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data where I only have one variable. 
 
-(image error_bars_simple.png)
+![useful image]({{ site.url }}/assets/error_bars_simple_csv.png)
 
 
 Here the data is already in the correct format so we can plot it right away with *ggplot2*. In the code below, you will need to change "Name" to whatever you've named your category column.
@@ -48,14 +48,14 @@ In order to include error bars with *ggplot2* plots, you need to add the layer *
 ### ymax = Avg + Stdev
 ```
 
-(image error_bars_simple.png)
+![useful image]({{ site.url }}/assets/error_bars_simple.png)
 
 
 
 ## Multiple Variables ##
 Now what if you have more than one variable? In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
 
-(image error_bars_csv.png) 
+![useful image]({{ site.url }}/assets/error_bars_csv.png)
 
 It's easier for the next steps if you name your columns in a format that specifies in a repeatable manner which columns are averages and which are standard deviations. For example, in this data, the prefixes "Avg_", and "Stdev_" are added to specify that the values are averages and standard deviations respectively. 
 
@@ -68,7 +68,7 @@ library(tidyverse)
 df = read.csv("your_data.csv", header = TRUE)
 ```
 
-From here we need to do a bit of manipulation to get the data in the correct format for plotting. This format is called "long" format, and I talk about it more in other tutorials (e.g.)[https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html]
+From here we need to do a bit of manipulation to get the data in the correct format for plotting. This format is called "long" format, and I talk about it more in [other tutorials](https://jkzorz.github.io/2019/06/05/stacked-bar-plots.html)
 
 ```
 df2 = df %>% 
@@ -82,7 +82,7 @@ head(df2)
 This code rearranges your data so that you end up with a column for your initial categories (in my case genes), a column for variable (in my case species), a column for your average, and a column for standard deviation. You will need to change "Name" to whatever you've named your category column. The command *separate* separates the names of your original columns based on a separator character, in this case an underscore. This is why it is helpful to name your original columns with prefixes or suffixes that can be easily separated. Try running each line of code separately (before the pipe, %>%) to determine what is occurring at each step. 
 
 
-(image error_bars_long.png) 
+![useful image]({{ site.url }}/assets/error_bars_long.png)
 
 
 Now we can plot with ggplot2. This code is basically the same as the code for one variable. However, it now includes extra information for including a legend and for defining fill colours. Within the *geom_bar* layer, the "width" parameter makes the bars skinnier, and the "position" parameter in *geom_errorbar* helps to align the errorbars with their respective bar. Otherwise, they all get annoyingly plotted on top of each other. 
@@ -108,5 +108,5 @@ ggsave("your_image.svg")
 ```
 
 
-(image "error_bars_multi.png")
+![useful image]({{ site.url }}/assets/error_bars_multi.png)
 
