@@ -5,7 +5,7 @@ date: 2020-05-17
 ---
 
 
-Error bars show the range of variability associated with a value around the mean of that value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots (like bar plots) in R is actually not as straightforward as you might expect coming from excel or the like, so I've decided to provide this tutorial based on my trials and tribulations with this process. 
+Error bars show the range of variability associated with a value around the mean of that value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots (like bar plots) in R is actually not as straightforward as you might expect, so I've decided to provide this tutorial based on my trials and tribulations with this process. 
 
 There are two general ways to approach error bars in R:
 1. Come with your averages and variability already calculated and included in your data frame 
@@ -13,7 +13,7 @@ There are two general ways to approach error bars in R:
 
 ## Averages and variability already calculated ##
 
-I'll start with method 1 which assumes you have already calculated averages and variability because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
+I'll start with method 1 which assumes you have already calculated averages and variability for your samples.  
 
 ### One Variable ###
 Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data where I only have one variable. 
@@ -41,7 +41,7 @@ ggsave("your_figure.svg")
 
 ```
 
-In order to include error bars with *ggplot2* plots, you need to add the layer *geom_errorbar* and specify the ymin and ymax in your aesthethics, either for the plot, or within geom_errorbar. Here ymax and ymin refer to the top and bottom of the error bars, and in order to calculate this value, you need add and subtract your standard deviation from your average. 
+In order to include error bars with *ggplot2* plots, you need to add the layer *geom_errorbar* and specify the ymin and ymax in your aesthethics, either for the plot, or within *geom_errorbar*. Here ymax and ymin refer to the top and bottom of the error bars, and in order to calculate these values, you need to add and subtract your standard deviation from your average. 
 
 ```
 ### Example from the previous code: 
@@ -80,7 +80,7 @@ df2 = df %>%
 head(df2)
 ```
 
-This code rearranges your data so that you end up with a column for your initial categories (in my case genes), a column for variable (in my case species), a column for your average, and a column for standard deviation. You will need to change "Name" to whatever you've named your category column. The command *separate* separates the names of your original columns based on a separator character, in this case an underscore. This is why it is helpful to name your original columns with prefixes or suffixes that can be easily separated. Try running each line of code separately (before the pipe, %>%) to determine what is occurring at each step. 
+This code rearranges your data so that you end up with a column for your initial categories (in my case genes), a column for variable (in my case species), a column for your average, and a column for standard deviation. You will need to change "Name" to whatever you've named your category column. The command *separate* separates the names of your original columns based on a separator character, in this case an underscore. This is why it is helpful to name your original columns with prefixes or suffixes that can be easily separated. Try running each line of code on its own (before the pipe, %>%) to determine what is occurring at each step. 
 
 
 ![useful image]({{ site.url }}/assets/error_bars_long.png)
@@ -141,7 +141,7 @@ head(df2)
 
 ![useful image]({{ site.url }}/assets/error_bars_calculate_screenshot.png)
 
-This code uses a series of data manipulation commands from the *dplyr* package within the *tidyverse* suite of packages. Try running each line of code separately (before the pipe symbol, %>%) to get a better idea of what each command is doing. If your data was in a slightly different format to begin with, you may need to tweak some of the code. From here you can run the exact same *ggplot2* command that generated the plot above. Good luck! 
+This code uses a series of data manipulation commands from the *dplyr* package within the *tidyverse* suite of packages. Try running each line of code separately (before the pipe symbol, %>%) to get a better idea of what each command is doing. If your data was in a slightly different format to begin with, you may need to tweak some of the code. **From here you can run the exact same *ggplot2* command that generated the plot above. Good luck! 
 
 
 
