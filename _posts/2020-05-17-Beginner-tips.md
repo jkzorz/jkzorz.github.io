@@ -95,12 +95,12 @@ Some other things to note about loading in data. R doesn’t like when column na
 
 These commands will provide you some exploratory insight into your data to ensure that it was loaded properly and is behaving how you think it should: 
 
--	str() : gives you information about the structure of your object. Mainly, how many variables and observations, what type of object is it (data frame, matrix, etc), and what type of data is contained in each of your variables (if present)
--	summary() : when used on a data frame or matrix, will return the summary statistics of each column in your data set, i.e. mean, median, number of occurrences of each factor etc. Useful for finding “NAs” or missing data in columns 
--	head() : displays the top n (5 default) rows of your object in the console
--	names() : returns the column name of your object 
--	ncol() : returns the number of columns in your object
--	nrow() : returns the number of rows in your object
+-	*str()* : gives you information about the structure of your object. Mainly, how many variables and observations, what type of object is it (data frame, matrix, etc), and what type of data is contained in each of your variables (if present)
+-	*summary()* : when used on a data frame or matrix, will return the summary statistics of each column in your data set, i.e. mean, median, number of occurrences of each factor etc. Useful for finding “NAs” or missing data in columns 
+-	*head()* : displays the top n (5 default) rows of your object in the console
+-	*names()* : returns the column name of your object 
+-	*ncol()* : returns the number of columns in your object
+-	*nrow()* : returns the number of rows in your object
 
 
 ## Errors ##
