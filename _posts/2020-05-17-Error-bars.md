@@ -11,10 +11,11 @@ There are two general ways to approach error bars in R:
 1. Come with your averages and variability already calculated and included in your data frame 
 2. Calculate your averages and variability based on your data in R
 
+## Averages and variability already calculated ##
 
-I'll start with method 1 which assumes you have already calculated averages and standard deviation because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
+I'll start with method 1 which assumes you have already calculated averages and variability because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
 
-## One Variable ##
+### One Variable ###
 Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data where I only have one variable. 
 
 ![useful image]({{ site.url }}/assets/error_bars_simple_csv.png)
@@ -52,7 +53,7 @@ In order to include error bars with *ggplot2* plots, you need to add the layer *
 
 
 
-## Multiple Variables ##
+### Multiple Variables ###
 Now what if you have more than one variable? In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
 
 ![useful image]({{ site.url }}/assets/error_bars_csv.png)
@@ -109,4 +110,40 @@ ggsave("your_image.svg")
 
 
 ![useful image]({{ site.url }}/assets/error_bars_multi.png)
+
+
+
+## Calculate averages and variability in R ##
+
+Okay so here is a workflow if you've decided to import raw data without averages and variability already calculated. The following code works if your data is in the format of one column containing variables/categories ("Name"), and the remaining columns as numeric values corresponding to sample replicates. Again, it helps if you name your sample columns in an intuitive way. In my data, I have the species abbreviation first, followed by an underscore and the replicate number: i.e. "Ne_1". This will make it easier to separate the species information from the replicate information later on. 
+
+First load in your data and libraries
+
+```
+library(tidyverse)
+df = read.csv("your_data_frame.csv", header = TRUE)
+
+```
+
+(image) error_bars_calculate_csv.png
+
+Next we need to summarize our data so that we calculate the average and standard deviation for each variable for each category. We will end up with a data frame that has a column for category, a column for species, and then a column for the corresponding average, and a column for the corresponding standard deviation. *sd* is the R command for standard deviation. If you would like to use a different metric of variability, change the sd command in the code accordingly. 
+
+```
+df2 = df %>% 
+    gather(sample, value, -Name) %>%
+    separate(sample, c("Species", "replicate")) %>%
+    group_by(Name, Species) %>%
+    summarize(Avg = mean(value), Stdev = sd(value))
+
+head(df2)
+```
+
+(image error_bars_calculate_screenshot.png)
+
+This code uses a series of data manipulation commands from the *dplyr* package within the *tidyverse* suite of packages. Try running each line of code separately (before the pipe symbol, %>%) to get a better idea of what each command is doing. If your data was in a slightly different format to begin with, you may need to tweak some of the code. From here you can run the exact same *ggplot2* command that generated the plot above. Good luck! 
+
+
+
+
 
