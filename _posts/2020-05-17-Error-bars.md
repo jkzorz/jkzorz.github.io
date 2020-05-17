@@ -12,15 +12,15 @@ There are two general ways to approach error bars in R:
 2. Calculate your averages and variability based on your data in R
 
 
-I'll start with method 1 because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
+I'll start with method 1 which assumes you have already calculated averages and standard deviation because it's easier for the R beginner, and it is still generally how I would approach this task (data dependent). 
 
 ## One Variable ##
-Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data, where I only have one variable. 
+Here is an example of the layout for your data with variables/categories as rows, and averages and standard deviation (calculated already in excel), as columns. In the first example, I'm going to use simple data where I only have one variable. 
 
 (image error_bars_simple.png)
 
 
-Here the data is already in the correct format so we can plot it right away with *ggplot2*: 
+Here the data is already in the correct format so we can plot it right away with *ggplot2*. In the code below, you will need to change "Name" to whatever you've named your category column.
 
 ```
 xx = ggplot(df, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev)) + 
@@ -33,18 +33,27 @@ xx = ggplot(df, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev)) +
 	labs(x = "Gene", y = "Relative Abundance (%)") + 
 	scale_y_continuous(expand = c(0,0))
 	
+xx
 
+#save your figure
 ggsave("your_figure.svg")
 
 ```
 
+In order to include error bars with *ggplot2* plots, you need to add the layer *geom_errorbar* and specify the ymin and ymax in your aesthethics, either for the plot, or within geom_errorbar. Here ymax and ymin refer to the top and bottom of the error bars, and in order to calculate this value, you need add and subtract your standard deviation from your average. 
+
+```
+### Example from the previous code: 
+### ymin = Avg - Stdev
+### ymax = Avg + Stdev
+```
 
 (image error_bars_simple.png)
 
 
 
 ## Multiple Variables ##
-In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
+Now what if you have more than one variable? In this example I have three species: Ne, Nm, Nu. The first column lists the gene name, columns 2-4 show average expression per species. Columns 5-7 show standard deviation of the replicates for each species. 
 
 (image error_bars_csv.png) 
 
@@ -92,7 +101,9 @@ xx = ggplot(df2, aes(x = Name, y = Avg, ymin = Avg-Stdev, ymax = Avg+Stdev, fill
 	scale_y_continuous(expand = c(0,0)) + 
 	scale_fill_manual(values = c( "#ff5555", "#00d4aa", "#aa87de"))
 
+xx
 
+#save your figure
 ggsave("your_image.svg")
 ```
 
