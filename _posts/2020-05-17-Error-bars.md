@@ -5,7 +5,7 @@ date: 2020-05-17
 ---
 
 
-Error bars show the range of variability associated with a value around the mean of that value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots (like bar plots) in R is actually not as straightforward as you might expect, so I've decided to provide this tutorial based on my trials and tribulations with this process. 
+Error bars show the range of variability associated with a value around the mean of that value. This variability can be representative of natural variations, uncertainty, or error, and can be caluculated from a number of measures for variation including standard deviation, standard error, range, and confidence intervals. Incorporating error bars into plots (like bar plots) in R is actually not as straightforward as you might expect, so I've put together this tutorial based on my trials and tribulations with this process. 
 
 There are two general ways to approach error bars in R:
 1. Come with your averages and variability already calculated and included in your data frame 
