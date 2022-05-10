@@ -126,6 +126,20 @@ data.scores = as.data.frame(scores(nmds))
 data.scores$season = df$Season
 ```
 
+
+**The newest version of the vegan package (>2.6-2) changed the format of the scores(nmds) object to a list, and so the above code will throw an error saying** ***arguments imply differing number of rows***. **If you get this error try the following code instead to extract your site scores:** 
+
+```
+#extract NMDS scores (x and y coordinates) for sites from newer versions of vegan package
+data.scores = as.data.frame(scores(nmds)$sites)
+
+#add 'season' column as before
+data.scores$season = df$Season
+```
+
+
+
+
 Extracting the required information from the envfit result is a bit more complicated. The envfit output contains information on the length of the segments for each variable. The segments are scaled to the r2 value, so that the environmental variables with a longer segment are more strongly correlated with the data than those with a shorter segment. You can extract this information with scores. Then these lengths are further scaled to fit the plot. This is done with a multiplier that is analysis specific, and can be accessed using the command *ordiArrowMul(en)*. Below I multiply the scores by this multiplier to keep the coordinates in the correct proportion. 
 
 Because my data contained continuous and categorical environmental variables, I'm extracting the information from both separately using the "vectors" and "factors" options respectively. 
