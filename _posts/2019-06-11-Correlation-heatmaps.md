@@ -82,7 +82,7 @@ corrplot(cc, tl.col = "black", order = "hclust", hclust.method = "average", addr
 dev.off()
 ```
 
-The plots generated with corrplot are easy to make and generate very nice figures. However, they are difficult to customize, so if you're looking for more control over your figures I would point you back in the direction of <b>ggplot2</b>. Below is the code to make a heatmap with correlation data using ggplot2.  
+The plots generated with corrplot are easy to make and create very nice figures. However, they are difficult to customize, so if you're looking for more control over your figures I would suggest using <b>ggplot2</b>. Below is the code to make a heatmap with correlation data using ggplot2.  
 
 
 You need to manipulate the correlation matrix a bit to get it in the proper format for ggplot:
